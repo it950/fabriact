@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "achappey.office.ui.fabric.react.extensions", "achappey.office.ui.fabric.react.extensions.njsproj", "{D9DDD68F-3CFB-47F6-97E7-38D30E7F2AD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9DDD68F-3CFB-47F6-97E7-38D30E7F2AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DDD68F-3CFB-47F6-97E7-38D30E7F2AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DDD68F-3CFB-47F6-97E7-38D30E7F2AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DDD68F-3CFB-47F6-97E7-38D30E7F2AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19BAE2B8-BC6B-499A-A8ED-310EE1884F8E}
+	EndGlobalSection
+EndGlobal

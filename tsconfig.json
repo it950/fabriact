@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "target": "es6",
+    "jsx": "react"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "app.tsx",
+    "./src/*",
+    "./src/**/**/*"
+  ],
+  "lib": [ "es2017", "dom", "es6" ]
+}

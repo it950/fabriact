@@ -10,3 +10,9 @@ export * from './ModernPercentField/index';
 export * from './ModernMultiLineField/index';
 export * from './ModernDatePicker/index';
 export * from './ModernDateField/index';
+export * from './ModernLoginField/index';
+export * from './ModernImageField/index';
+export * from './ModernDisplayField/index';
+export * from './ModernFileField/index';
+
+

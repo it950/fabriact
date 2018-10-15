@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernEditFieldProps } from './IModernEditFieldProps';
-import { ModernNumberEditField, ModernTextEditField, ModernEmailEditField, ModernPhoneEditField, ModernPercentEditField, ModernMultiLineEditField, ModernMetadataEditField, ModernCurrencyEditField, ModernDateEditField } from '..';
+import { ModernNumberEditField, ModernTextEditField, ModernEmailEditField, ModernPhoneEditField, ModernPercentEditField, ModernMultiLineEditField, ModernMetadataEditField, ModernCurrencyEditField, ModernDateEditField, ModernLoginEditField } from '..';
 import { ModernFieldType } from '../../..';
 
 @observer
@@ -20,6 +20,16 @@ export class ModernEditField extends React.Component<IModernEditFieldProps, any>
 
             case ModernFieldType.text:
                 html = <ModernTextEditField field={this.props.field} value={this.props.value}
+                    validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
+
+                break;
+            case ModernFieldType.login:
+                html = <ModernLoginEditField field={this.props.field} value={this.props.value} domain={""}
+                    validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
+
+                break;
+            case ModernFieldType.file:
+                html = <ModernFileInputField field={this.props.field} value={this.props.value}
                     validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
 
                 break;

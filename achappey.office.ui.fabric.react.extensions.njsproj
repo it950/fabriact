@@ -69,6 +69,9 @@
     <TypeScriptCompile Include="src\components\Fields\ModernDatePicker\IModernDatePickerProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernDatePicker\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernDatePicker\ModernDatePicker.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernDisplayField\IModernDisplayFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernDisplayField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernDisplayField\ModernDisplayField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernEditFieldLabel\IModernEditFieldLabelProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernEditFieldLabel\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernEditFieldLabel\ModernEditFieldLabel.tsx" />
@@ -80,6 +83,15 @@
     <TypeScriptCompile Include="src\components\Fields\ModernEmailField\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernEmailField\ModernEmailDisplayField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernEmailField\ModernEmailEditField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernFileField\IModernFileEditFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernFileField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernFileField\ModernFileEditField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernImageField\IModernImageDisplayFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernImageField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernImageField\ModernImageDisplayField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernLoginField\IModernLoginEditFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernLoginField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernLoginField\ModernLoginEditField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernMetadataField\IModernMetadataButtonProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernMetadataField\IModernMetadataDisplayFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernMetadataField\IModernMetadataEditFieldProps.ts" />
@@ -140,6 +152,7 @@
     <Content Include="index.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\Fields\ModernImageField\ModernImageDisplayField.module.scss" />
     <Content Include="src\components\ModernCommandBar\ModernCommandBar.module.css">
       <SubType>Code</SubType>
     </Content>
@@ -178,6 +191,7 @@
     <Folder Include="src\components\Buttons\ModernButtonRow\" />
     <Folder Include="src\components\Buttons\ModernButton\" />
     <Folder Include="src\components\Buttons\ModernPrimaryButton\" />
+    <Folder Include="src\components\Fields\ModernDisplayField\" />
     <Folder Include="src\components\Fields\ModernEditField\" />
     <Folder Include="src\components\Fields\ModernNumberField\" />
     <Folder Include="src\components\Fields\ModernTextField\" />
@@ -190,7 +204,7 @@
     <Folder Include="src\components\Fields\ModernMetadataField\" />
     <Folder Include="src\components\Fields\ModernLoginField\" />
     <Folder Include="src\components\Fields\ModernPercentField\" />
-    <Folder Include="src\components\Fields\ModernFileInputField\" />
+    <Folder Include="src\components\Fields\ModernFileField\" />
     <Folder Include="src\components\Fields\ModernCurrencyField\" />
     <Folder Include="src\components\Fields\ModernUserField\" />
     <Folder Include="src\components\Fields\ModernMultiLineField\" />

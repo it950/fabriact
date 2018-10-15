@@ -1,10 +1,11 @@
 ﻿import * as React from 'react';
 import { IModernDetailsListProps } from './IModernDetailsListProps';
 import { observer } from 'mobx-react';
-import { DetailsList } from "office-ui-fabric-react/lib/DetailsList";
+import { DetailsList, IColumn } from "office-ui-fabric-react/lib/DetailsList";
 import { ModernSpinner } from '../ModernSpinner';
 import ModernDetailsListState from './ModernDetailsListState';
 import { reaction } from 'mobx';
+import { ModernDisplayField } from '../Fields';
 
 @observer
 export class ModernDetailsList extends React.Component<IModernDetailsListProps, any> {
@@ -25,10 +26,47 @@ export class ModernDetailsList extends React.Component<IModernDetailsListProps, 
         });
     }
 
+
+
+
+    //public renderItemColumn = (item: any, index: number, column: IColumn) => {
+    //    if (item) {
+    //        const fieldContent = item[column.fieldName];
+    //        var schema = this.config.fields.find(a => a.key == column.key);
+
+    //        return (
+    //            <ModernDisplayField field={schema} value={fieldContent}  />
+    //        );
+    //    }
+    //    else {
+    //        return (
+    //            <div></div>
+    //        );
+    //    }
+
+    //}
+
+
     render() {
         const result = this.config.items ?
             <DetailsList items={this.config.items} selection={this.config.selection} columns={this.config.columns}
-                selectionPreservedOnEmptyClick={true} />
+                selectionPreservedOnEmptyClick={true}
+
+                onRenderItemColumn={(item: any, index: number, column: IColumn) => {
+                    if (item) {
+                        const fieldContent = item[column.fieldName];
+                        var schema = this.config.fields.find(a => a.key == column.key);
+
+                        return (
+                            <ModernDisplayField field={schema} value={fieldContent} />
+                        );
+                    }
+                    else {
+                        return (
+                            <div></div>
+                        );
+                    }
+                }} />
             : <ModernSpinner />;
 
         return (

@@ -16,6 +16,24 @@ export interface IModernCommandBarProps {
     //onDeleteClicked?: () => void;
     //onSearch?: (newValue) => void;
     //onSearchCleared?: () => void;
-    config: ModernCommandBarConfig;
+   // config: ModernCommandBarConfig;
+
+    actions?: any[];
+    hideSearch?: boolean;
+    hideNew?: boolean;
+    hideDelete?: boolean;
+    views?: any[];
+  //  searchPlaceholder?: string;
+    searchValue?: string;
+   // defaultView?: string;
+    selectedViewId?: string;
+
+    onActionClicked?: (actionId) => void;
+    onViewClicked?: (viewId) => Promise<void>;
+    onViewTypeSwitch?: (viewType) => void;
+    onNewClicked?: () => void;
+    onDeleteClicked?: () => void;
+    onSearch?: (newValue) => void;
+    onSearchCleared?: () => void;
 
 }

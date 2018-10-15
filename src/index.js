@@ -4,4 +4,5 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./components/ModernOfficeList/index"));
+__export(require("./Modern.Types"));
 //# sourceMappingURL=index.js.map

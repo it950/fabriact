@@ -9,7 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mobx_1 = require("mobx");
 const ContextualMenu_1 = require("office-ui-fabric-react/lib/ContextualMenu");
 class ModernCommandBarConfig {
-    constructor(options) {
+    constructor(actions = [], views = [], onNewClickedEvent, defaultView = null, hideNew = false, hideDelete = false, hideSearch = false) {
+        this.onNewClickedEvent = onNewClickedEvent;
         this.actions = [];
         this.views = [];
         this.searchValue = "";
@@ -26,12 +27,27 @@ class ModernCommandBarConfig {
         this.onSearch = (value) => {
             this.searchValue = value;
         };
-        this.actions = options.actions;
-        this.views = options.views;
-        this.hideNew = options.hideNew;
-        this.hideDelete = options.hideDelete;
-        this.hideSearch = options.hideSearch;
-        this.searchPlaceholder = options.searchPlaceholder;
+        this.newClicked = () => {
+            console.log("wueuue");
+            console.log(this.onNewClickedEvent);
+            this.onNewClickedEvent();
+        };
+        this.viewClicked = (viewKey) => {
+            console.log(viewKey);
+            this.currentViewKey = viewKey;
+        };
+        this.actions = actions;
+        this.hideDelete = hideDelete;
+        this.hideSearch = hideSearch;
+        this.hideNew = hideNew;
+        this.views = views;
+        this.currentViewKey = defaultView;
+    }
+    get currentViewName() {
+        if (this.views && this.currentViewKey) {
+            return this.views.find(f => f.key == this.currentViewKey).name;
+        }
+        return null;
     }
     get items() {
         let result = this.actions.map(t => {
@@ -44,6 +60,7 @@ class ModernCommandBarConfig {
                 key: "new",
                 icon: "Add",
                 name: "New",
+                onClick: this.newClicked
             }].concat(result) : result;
         result = !this.hideSearch ? [{
                 key: "search",
@@ -53,8 +70,6 @@ class ModernCommandBarConfig {
                 icon: "Delete",
                 name: "Delete",
             }]) : result;
-        console.log("dsadsa");
-        console.log(result);
         return result;
     }
     get farItems() {
@@ -83,14 +98,15 @@ class ModernCommandBarConfig {
         ];
         let items = typeItems.concat(this.views.map(t => {
             t.onClick = () => {
-                //   this.actionClicked(t.key);
+                this.viewClicked(t.key);
             };
+            t.checked = this.currentViewKey == t.key;
             return t;
         }));
         let menu = [
             {
                 key: 'currentView',
-                //   name: this.currentViewName,
+                name: this.currentViewName,
                 icon: icon,
                 subMenuProps: {
                     items: items,
@@ -117,6 +133,12 @@ __decorate([
 ], ModernCommandBarConfig.prototype, "hideSearch", void 0);
 __decorate([
     mobx_1.observable
+], ModernCommandBarConfig.prototype, "currentViewKey", void 0);
+__decorate([
+    mobx_1.computed
+], ModernCommandBarConfig.prototype, "currentViewName", null);
+__decorate([
+    mobx_1.observable
 ], ModernCommandBarConfig.prototype, "searchValue", void 0);
 __decorate([
     mobx_1.observable
@@ -136,6 +158,12 @@ __decorate([
 __decorate([
     mobx_1.action
 ], ModernCommandBarConfig.prototype, "onSearch", void 0);
+__decorate([
+    mobx_1.action
+], ModernCommandBarConfig.prototype, "newClicked", void 0);
+__decorate([
+    mobx_1.action
+], ModernCommandBarConfig.prototype, "viewClicked", void 0);
 __decorate([
     mobx_1.computed
 ], ModernCommandBarConfig.prototype, "items", null);

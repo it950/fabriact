@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernPercentEditFieldProps } from './IModernPercentEditFieldProps';
-import { ModernEditFieldLabel } from '../ModernEditFieldLabel/ModernEditFieldLabel';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { ModernFieldLabel } from '..';
 
 @observer
 export class ModernPercentEditField extends React.Component<IModernPercentEditFieldProps, any> {
@@ -25,7 +25,7 @@ export class ModernPercentEditField extends React.Component<IModernPercentEditFi
 
         return (
             <span>
-                <ModernEditFieldLabel required={this.props.field.required} label={this.props.field.name} />
+                <ModernFieldLabel required={this.props.field.required} label={this.props.field.name} />
 
                 <TextField description={this.props.field.description} onChanged={this.updateItem} value={value} suffix={'%'} 
                     validateOnLoad={false} validateOnFocusOut onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage} />

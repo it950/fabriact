@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernCurrencyEditFieldProps } from './IModernCurrencyEditFieldProps';
-import { ModernEditFieldLabel } from '../ModernEditFieldLabel/ModernEditFieldLabel';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { ModernFieldLabel } from '..';
 
 @observer
 export class ModernCurrencyEditField extends React.Component<IModernCurrencyEditFieldProps, any> {
@@ -37,7 +37,7 @@ export class ModernCurrencyEditField extends React.Component<IModernCurrencyEdit
 
         return (
             <span>
-                <ModernEditFieldLabel required={this.props.field.required} label={this.props.field.name} />
+                <ModernFieldLabel required={this.props.field.required} label={this.props.field.name} />
 
                 <TextField prefix={'€'} description={this.props.field.description} onChanged={this.updateItem} value={value}
                     validateOnLoad={false} validateOnFocusOut onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage} />

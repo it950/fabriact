@@ -16,6 +16,7 @@
   "include": [
     "app.tsx",
     "ExampleData.ts",
+    "custom.d.ts",
     "./src/*",
     "./src/**/**/*"
   ],

@@ -1,39 +1,39 @@
-﻿import ModernCommandBarConfig from "./ModernCommandBarConfig";
+﻿import { IModernView, IModernLookup, IModernFieldGroup } from "../../Modern.Types";
 
 export interface IModernCommandBarProps {
-    //actions: any[];
-    //hideSearch?: boolean;
-    //hideNew?: boolean;
-    //hideDelete?: boolean;
-    //views?: any[];
-    //searchPlaceholder?: string;
-    //searchValue?: string;
-
-    //onActionClicked: (actionId) => void;
-    //onViewClicked: (viewId) => void;
-    //onViewTypeSwitch: (viewType) => void;
-    //onNewClicked?: () => void;
-    //onDeleteClicked?: () => void;
-    //onSearch?: (newValue) => void;
-    //onSearchCleared?: () => void;
-   // config: ModernCommandBarConfig;
-
-    actions?: any[];
+   
     hideSearch?: boolean;
     hideNew?: boolean;
+    language?: string;
     hideDelete?: boolean;
-    views?: any[];
-  //  searchPlaceholder?: string;
+    views?: IModernView[];
     searchValue?: string;
-   // defaultView?: string;
     selectedViewId?: string;
-
+    selectedItemCount: number;
     onActionClicked?: (actionId) => void;
     onViewClicked?: (viewId) => Promise<void>;
     onViewTypeSwitch?: (viewType) => void;
-    onNewClicked?: () => void;
-    onDeleteClicked?: () => void;
+   // onNewClicked?: () => void;
+    onDeleteConfirmed?: () => void;
     onSearch?: (newValue) => void;
     onSearchCleared?: () => void;
+    onViewOffsetChanged?: any;
+    onExport?: any;
+
+    resolveSuggestions?: (fieldId) => Promise<IModernLookup[]>;
+    resolveLookup?: (fieldId, search) => Promise<IModernLookup[]>;
+    newItemTitle?: string;
+    newItemGroups?: IModernFieldGroup[];
+    onNewItem?: () => Promise<any>;
+    onSaveNewItem?: (newItem) => Promise<void>;
+
+    getNewOptionFieldGroups: (fieldId) => Promise<IModernFieldGroup[]>;
+    getNewOptionItem: (fieldId) => Promise<any>;
+    onSaveNewOption: (item) => Promise<IModernLookup[]>;
+
+    getNewActionFieldGroups: (fieldId) => Promise<IModernFieldGroup[]>;
+    getNewActionItem: (fieldId) => Promise<any>;
+    onSaveNewAction: (item) => Promise<any>;
+
 
 }

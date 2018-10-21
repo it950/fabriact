@@ -13,7 +13,7 @@ let ModernMetadataDisplayField = class ModernMetadataDisplayField extends React.
         super(props);
     }
     render() {
-        const value = this.props.value ? this.props.value : "";
+        const value = this.props.value ? this.props.value.constructor == Array ? this.props.value.map(b => b.title).join(", ") : this.props.value.title : "";
         return (React.createElement("span", null, value));
     }
 };

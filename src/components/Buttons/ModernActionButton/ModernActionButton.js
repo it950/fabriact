@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const mobx_react_1 = require("mobx-react");
 const Button_1 = require("office-ui-fabric-react/lib/Button");
+require("./ModernActionButton.module.css");
 let ModernActionButton = class ModernActionButton extends React.Component {
     constructor(props) {
         super(props);
@@ -17,7 +18,7 @@ let ModernActionButton = class ModernActionButton extends React.Component {
         };
     }
     render() {
-        return (React.createElement(Button_1.ActionButton, { onClick: this.onClick, iconProps: { iconName: this.props.icon } }, this.props.label));
+        return (React.createElement(Button_1.ActionButton, { className: "actionButton", onClick: this.onClick, iconProps: { iconName: this.props.icon } }, this.props.label));
     }
 };
 ModernActionButton = __decorate([

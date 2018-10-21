@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const mobx_react_1 = require("mobx-react");
-const ModernEditFieldLabel_1 = require("../ModernEditFieldLabel/ModernEditFieldLabel");
 const TextField_1 = require("office-ui-fabric-react/lib/TextField");
+const __1 = require("..");
 let ModernCurrencyEditField = class ModernCurrencyEditField extends React.Component {
     constructor(props) {
         super(props);
@@ -32,7 +32,7 @@ let ModernCurrencyEditField = class ModernCurrencyEditField extends React.Compon
     render() {
         const value = this.props.value ? this.props.value.toString() : "";
         return (React.createElement("span", null,
-            React.createElement(ModernEditFieldLabel_1.ModernEditFieldLabel, { required: this.props.field.required, label: this.props.field.name }),
+            React.createElement(__1.ModernFieldLabel, { required: this.props.field.required, label: this.props.field.name }),
             React.createElement(TextField_1.TextField, { prefix: '€', description: this.props.field.description, onChanged: this.updateItem, value: value, validateOnLoad: false, validateOnFocusOut: true, onGetErrorMessage: this.getErrorMessage, errorMessage: this.props.errorMessage })));
     }
 };

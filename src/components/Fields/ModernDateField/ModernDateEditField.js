@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const mobx_react_1 = require("mobx-react");
-const ModernEditFieldLabel_1 = require("../ModernEditFieldLabel/ModernEditFieldLabel");
-const Button_1 = require("office-ui-fabric-react/lib/Button");
 const __1 = require("..");
+const Button_1 = require("office-ui-fabric-react/lib/Button");
+const __2 = require("..");
 let ModernDateEditField = class ModernDateEditField extends React.Component {
     constructor(props) {
         super(props);
@@ -31,9 +31,9 @@ let ModernDateEditField = class ModernDateEditField extends React.Component {
             React.createElement(Button_1.IconButton, { onClick: this.onClear, iconProps: { iconName: 'Clear' } })
             : React.createElement("span", null);
         //placeholder={this.props.placeholder}
-        var field = React.createElement(__1.ModernDatePicker, { onChange: this.updateItem, value: this.props.value });
+        var field = React.createElement(__2.ModernDatePicker, { onChange: this.updateItem, value: this.props.value });
         return (React.createElement("span", null,
-            React.createElement(ModernEditFieldLabel_1.ModernEditFieldLabel, { required: this.props.field.required, label: this.props.field.name }),
+            React.createElement(__1.ModernFieldLabel, { required: this.props.field.required, label: this.props.field.name }),
             React.createElement("div", { className: "ms-Grid-row" },
                 React.createElement("div", { className: "ms-Grid-col ms-sm11" }, field),
                 React.createElement("div", { className: "ms-Grid-col ms-sm1" },

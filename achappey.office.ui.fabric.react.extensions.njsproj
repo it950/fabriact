@@ -39,10 +39,16 @@
     <TypeScriptCompile Include="app.tsx">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="custom.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ExampleData.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\components\Buttons\index.ts" />
+    <TypeScriptCompile Include="src\components\Buttons\ModernActionButtonRow\IModernActionButtonRowProps.ts" />
+    <TypeScriptCompile Include="src\components\Buttons\ModernActionButtonRow\index.ts" />
+    <TypeScriptCompile Include="src\components\Buttons\ModernActionButtonRow\ModernActionButtonRow.tsx" />
     <TypeScriptCompile Include="src\components\Buttons\ModernActionButton\IModernActionButtonProps.ts" />
     <TypeScriptCompile Include="src\components\Buttons\ModernActionButton\index.ts" />
     <TypeScriptCompile Include="src\components\Buttons\ModernActionButton\ModernActionButton.tsx" />
@@ -52,10 +58,26 @@
     <TypeScriptCompile Include="src\components\Buttons\ModernButton\IModernButtonProps.ts" />
     <TypeScriptCompile Include="src\components\Buttons\ModernButton\index.ts" />
     <TypeScriptCompile Include="src\components\Buttons\ModernButton\ModernButton.tsx" />
+    <TypeScriptCompile Include="src\components\Buttons\ModernLinkButton\IModernLinkButtonProps.ts" />
+    <TypeScriptCompile Include="src\components\Buttons\ModernLinkButton\index.ts" />
+    <TypeScriptCompile Include="src\components\Buttons\ModernLinkButton\ModernLinkButton.tsx" />
     <TypeScriptCompile Include="src\components\Buttons\ModernPrimaryButton\IModernPrimaryButtonProps.ts" />
     <TypeScriptCompile Include="src\components\Buttons\ModernPrimaryButton\index.ts" />
     <TypeScriptCompile Include="src\components\Buttons\ModernPrimaryButton\ModernPrimaryButton.tsx" />
     <TypeScriptCompile Include="src\components\Fields\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernBooleanField\IModernBooleanDisplayFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernBooleanField\IModernBooleanEditFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernBooleanField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernBooleanField\ModernBooleanDisplayField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernBooleanField\ModernBooleanEditField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernChoiceField\IModernChoiceDisplayFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernChoiceField\IModernChoiceEditFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernChoiceField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernChoiceField\ModernChoiceDisplayField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernChoiceField\ModernChoiceEditField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernColorField\IModernColorEditFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernColorField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernColorField\ModernColorEditField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernCurrencyField\IModernCurrencyDisplayFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernCurrencyField\IModernCurrencyEditFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernCurrencyField\index.ts" />
@@ -72,9 +94,12 @@
     <TypeScriptCompile Include="src\components\Fields\ModernDisplayField\IModernDisplayFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernDisplayField\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernDisplayField\ModernDisplayField.tsx" />
-    <TypeScriptCompile Include="src\components\Fields\ModernEditFieldLabel\IModernEditFieldLabelProps.ts" />
-    <TypeScriptCompile Include="src\components\Fields\ModernEditFieldLabel\index.ts" />
-    <TypeScriptCompile Include="src\components\Fields\ModernEditFieldLabel\ModernEditFieldLabel.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernDisplayField\ModernDisplayFieldState.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\components\Fields\ModernFieldLabel\IModernFieldLabelProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernFieldLabel\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernFieldLabel\ModernFieldLabel.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernEditField\IModernEditFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernEditField\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernEditField\ModernEditField.tsx" />
@@ -84,14 +109,21 @@
     <TypeScriptCompile Include="src\components\Fields\ModernEmailField\ModernEmailDisplayField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernEmailField\ModernEmailEditField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernFileField\IModernFileEditFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernFileField\IModernFileDisplayFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernFileField\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernFileField\ModernFileEditField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernFileField\ModernFileDisplayField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernImageField\IModernImageDisplayFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernImageField\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernImageField\ModernImageDisplayField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernLoginField\IModernLoginEditFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernLoginField\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernLoginField\ModernLoginEditField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernLookupField\IModernLookupEditFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernLookupField\IModernLookupDisplayFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernLookupField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernLookupField\ModernLookupEditField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernLookupField\ModernLookupDisplayField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernMetadataField\IModernMetadataButtonProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernMetadataField\IModernMetadataDisplayFieldProps.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernMetadataField\IModernMetadataEditFieldProps.ts" />
@@ -122,6 +154,12 @@
     <TypeScriptCompile Include="src\components\Fields\ModernTextField\index.ts" />
     <TypeScriptCompile Include="src\components\Fields\ModernTextField\ModernTextEditField.tsx" />
     <TypeScriptCompile Include="src\components\Fields\ModernTextField\ModernTextDisplayField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernUrlField\IModernUrlDisplayFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernUrlField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernUrlField\ModernUrlDisplayField.tsx" />
+    <TypeScriptCompile Include="src\components\Fields\ModernUserField\IModernUserDisplayFieldProps.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernUserField\index.ts" />
+    <TypeScriptCompile Include="src\components\Fields\ModernUserField\ModernUserDisplayField.tsx" />
     <TypeScriptCompile Include="src\components\ModernCommandBar\index.ts" />
     <TypeScriptCompile Include="src\components\ModernDeleteDialog\IModernDeleteDialogProps.ts" />
     <TypeScriptCompile Include="src\components\ModernDeleteDialog\index.ts" />
@@ -130,20 +168,56 @@
     <TypeScriptCompile Include="src\components\ModernDetailsList\index.ts" />
     <TypeScriptCompile Include="src\components\ModernDetailsList\ModernDetailsList.tsx" />
     <TypeScriptCompile Include="src\components\ModernDetailsList\ModernDetailsListState.ts" />
-    <TypeScriptCompile Include="src\components\ModernEditForm\IModernEditFormProps.ts" />
-    <TypeScriptCompile Include="src\components\ModernEditForm\index.ts" />
-    <TypeScriptCompile Include="src\components\ModernEditForm\ModernEditForm.tsx" />
-    <TypeScriptCompile Include="src\components\ModernEditForm\ModernEditFormState.ts" />
+    <TypeScriptCompile Include="src\components\ModernEditItemPanel\IModernEditItemPanelProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernEditItemPanel\index.ts" />
+    <TypeScriptCompile Include="src\components\ModernEditItemPanel\ModernEditItemPanel.tsx" />
+    <TypeScriptCompile Include="src\components\ModernEditItemPanel\ModernEditItemPanelState.ts" />
+    <TypeScriptCompile Include="src\components\ModernFilterPanel\IModernFilterPanelProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernFilterPanel\index.ts" />
+    <TypeScriptCompile Include="src\components\ModernFilterPanel\ModernFilterPanel.tsx" />
+    <TypeScriptCompile Include="src\components\ModernFilterPanel\ModernFilterPanelState.ts" />
+    <TypeScriptCompile Include="src\components\ModernForm\IModernFormProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernForm\index.ts" />
+    <TypeScriptCompile Include="src\components\ModernForm\ModernForm.tsx" />
+    <TypeScriptCompile Include="src\components\ModernForm\ModernFormState.ts" />
+    <TypeScriptCompile Include="src\components\ModernForm\ModernFormValidator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\components\ModernItemPanel\IModernItemPanelProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernItemPanel\index.ts" />
+    <TypeScriptCompile Include="src\components\ModernItemPanel\ModernItemPanel.tsx" />
+    <TypeScriptCompile Include="src\components\ModernItemPanel\ModernItemPanelState.ts" />
     <TypeScriptCompile Include="src\components\ModernLink\IModernLinkProps.ts" />
     <TypeScriptCompile Include="src\components\ModernLink\index.ts" />
     <TypeScriptCompile Include="src\components\ModernLink\ModernLink.tsx" />
-    <TypeScriptCompile Include="src\components\ModernNewFormPanel\IModernNewFormPanelProps.ts" />
-    <TypeScriptCompile Include="src\components\ModernNewFormPanel\index.ts" />
-    <TypeScriptCompile Include="src\components\ModernNewFormPanel\ModernNewFormPanel.tsx" />
-    <TypeScriptCompile Include="src\components\ModernNewFormPanel\ModernNewFormPanelState.ts" />
+    <TypeScriptCompile Include="src\components\ModernNewItemPanel\IModernNewItemPanelProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernNewItemPanel\index.ts" />
+    <TypeScriptCompile Include="src\components\ModernNewItemPanel\ModernNewItemPanel.tsx" />
+    <TypeScriptCompile Include="src\components\ModernNewItemPanel\ModernNewItemPanelState.ts" />
+    <TypeScriptCompile Include="src\components\ModernRedirectDialog\IModernRedirectDialogProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernRedirectDialog\index.ts" />
+    <TypeScriptCompile Include="src\components\ModernRedirectDialog\ModernRedirectDialog.tsx" />
     <TypeScriptCompile Include="src\components\ModernSpinner\IModernSpinnerProps.ts" />
     <TypeScriptCompile Include="src\components\ModernSpinner\index.ts" />
     <TypeScriptCompile Include="src\components\ModernSpinner\ModernSpinner.tsx" />
+    <TypeScriptCompile Include="src\components\ModernTileList\IModernTileListProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernTileList\index.ts" />
+    <TypeScriptCompile Include="src\components\ModernTileList\ModernTileList.tsx" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\IModernViewGroupFieldButtonProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\IModernViewItemDetailProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\IModernViewItemPanelProps.ts" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\index.ts" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\IModernViewGroupProps.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\ModernViewGroupFieldButton.tsx" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\ModernViewItemDetail.tsx" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\ModernViewItemPanel.tsx" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\ModernViewItemDetailState.ts" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\ModernViewItemPanelState.ts" />
+    <TypeScriptCompile Include="src\components\ModernViewItemPanel\ModernViewGroup.tsx">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\index.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -152,10 +226,22 @@
     <Content Include="index.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\Buttons\ModernActionButtonRow\ModernActionButtonRow.module.css" />
+    <Content Include="src\components\Buttons\ModernActionButton\ModernActionButton.module.css" />
+    <Content Include="src\components\Buttons\ModernButtonRow\ModernButtonRow.module.css" />
+    <Content Include="src\components\Fields\ModernFieldLabel\ModernFieldLabel.module.css" />
+    <Content Include="src\components\Fields\ModernFileField\ModernFileEditField.module.css" />
     <Content Include="src\components\Fields\ModernImageField\ModernImageDisplayField.module.scss" />
+    <Content Include="src\components\Fields\ModernMetadataField\ModernMetadataButton.module.css" />
     <Content Include="src\components\ModernCommandBar\ModernCommandBar.module.css">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\components\ModernFilterPanel\ModernFilterPanel.module.css" />
+    <Content Include="src\components\ModernItemPanel\ModernItemPanel.module.css" />
+    <Content Include="src\components\ModernOfficeList\ModernOfficeList.module.css" />
+    <Content Include="src\utilities\images\placeholder.svg" />
+    <Content Include="src\components\ModernTileList\ModernTileList.module.css" />
+    <Content Include="src\components\ModernViewItemPanel\ModernViewGroup.module.css" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -176,6 +262,9 @@
     <TypeScriptCompile Include="src\utilities\locales.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\utilities\ModernState.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dist\app-bundle.js" />
@@ -191,11 +280,13 @@
     <Folder Include="src\components\Buttons\ModernButtonRow\" />
     <Folder Include="src\components\Buttons\ModernButton\" />
     <Folder Include="src\components\Buttons\ModernPrimaryButton\" />
+    <Folder Include="src\components\Buttons\ModernActionButtonRow\" />
+    <Folder Include="src\components\Buttons\ModernLinkButton\" />
     <Folder Include="src\components\Fields\ModernDisplayField\" />
     <Folder Include="src\components\Fields\ModernEditField\" />
     <Folder Include="src\components\Fields\ModernNumberField\" />
     <Folder Include="src\components\Fields\ModernTextField\" />
-    <Folder Include="src\components\Fields\ModernEditFieldLabel\" />
+    <Folder Include="src\components\Fields\ModernFieldLabel\" />
     <Folder Include="src\components\Fields\ModernDateField\" />
     <Folder Include="src\components\Fields\ModernEmailField\" />
     <Folder Include="src\components\Fields\ModernPhoneField\" />
@@ -211,17 +302,26 @@
     <Folder Include="src\components\Fields\ModernColorField\" />
     <Folder Include="src\components\Fields\ModernImageField\" />
     <Folder Include="src\components\Fields\ModernDatePicker\" />
+    <Folder Include="src\components\Fields\ModernChoiceField\" />
+    <Folder Include="src\components\Fields\ModernBooleanField\" />
     <Folder Include="src\components\ModernOfficeList\" />
     <Folder Include="src\components\ModernCommandBar\" />
-    <Folder Include="src\components\ModernNewFormPanel\" />
+    <Folder Include="src\components\ModernNewItemPanel\" />
     <Folder Include="src\components\Fields\" />
     <Folder Include="src\components\ModernDetailsList\" />
     <Folder Include="src\components\ModernSpinner\" />
-    <Folder Include="src\components\ModernEditForm\" />
+    <Folder Include="src\components\ModernForm\" />
     <Folder Include="src\components\Buttons\" />
     <Folder Include="src\components\ModernDeleteDialog\" />
     <Folder Include="src\components\ModernLink\" />
+    <Folder Include="src\components\ModernItemPanel\" />
+    <Folder Include="src\components\ModernViewItemPanel\" />
+    <Folder Include="src\components\ModernEditItemPanel\" />
+    <Folder Include="src\components\ModernTileList\" />
+    <Folder Include="src\components\ModernFilterPanel\" />
+    <Folder Include="src\components\ModernRedirectDialog\" />
     <Folder Include="src\utilities\" />
+    <Folder Include="src\utilities\images\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

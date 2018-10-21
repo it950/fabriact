@@ -22,7 +22,6 @@ export class ModernMetadataButtonField extends React.Component<IModernMetadataBu
         const html = this.props.checked ? <ModernPrimaryButton id={this.props.id} label={this.props.label} onClick={this.updateItem} />
             : <ModernButton id={this.props.id} label={this.props.label} onClick={this.updateItem} />;
 
-        //onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage}
         return (
             <span>
                 {html}

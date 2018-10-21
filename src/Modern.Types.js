@@ -23,4 +23,9 @@ var ModernFieldType;
     ModernFieldType[ModernFieldType["color"] = 18] = "color";
     ModernFieldType[ModernFieldType["login"] = 19] = "login";
 })(ModernFieldType = exports.ModernFieldType || (exports.ModernFieldType = {}));
+var ModernActionType;
+(function (ModernActionType) {
+    ModernActionType[ModernActionType["form"] = 0] = "form";
+    ModernActionType[ModernActionType["custom"] = 1] = "custom";
+})(ModernActionType = exports.ModernActionType || (exports.ModernActionType = {}));
 //# sourceMappingURL=Modern.Types.js.map

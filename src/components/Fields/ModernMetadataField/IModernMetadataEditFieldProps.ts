@@ -7,4 +7,8 @@ export interface IModernMetadataEditFieldProps {
     validate: any;
     errorMessage?: string;
     icon?: string;
+
+    language: string;
+
+    onNewOption: any;
 }

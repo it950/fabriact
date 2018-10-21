@@ -7,4 +7,6 @@ __export(require("./ModernPrimaryButton/index"));
 __export(require("./ModernButton/index"));
 __export(require("./ModernActionButton/index"));
 __export(require("./ModernButtonRow/index"));
+__export(require("./ModernActionButtonRow/index"));
+__export(require("./ModernLinkButton/index"));
 //# sourceMappingURL=index.js.map

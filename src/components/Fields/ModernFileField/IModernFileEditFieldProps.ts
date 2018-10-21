@@ -6,5 +6,4 @@ export interface IModernFileEditFieldProps {
     onChange: any;
     validate: any;
     errorMessage?: string;
-    domain: string;
 }

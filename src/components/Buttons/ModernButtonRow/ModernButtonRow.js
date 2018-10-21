@@ -9,16 +9,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const mobx_react_1 = require("mobx-react");
 const __1 = require("..");
+require("./ModernButtonRow.module.css");
 let ModernButtonRow = class ModernButtonRow extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
-        //className={styles.psaButtonMargin}
         const buttonsHtml = this.props.buttons ? this.props.buttons.map(b => {
             const buttonHtml = b.isPrimary ? React.createElement(__1.ModernPrimaryButton, { label: b.text, id: b.id, onClick: this.props.onClick })
                 : React.createElement(__1.ModernButton, { label: b.text, id: b.id, onClick: this.props.onClick });
-            return React.createElement("span", { key: b.id }, buttonHtml);
+            return React.createElement("span", { key: b.id, className: "modernButtonRowPadding" }, buttonHtml);
         }) : React.createElement("span", null);
         return (React.createElement("span", null, buttonsHtml));
     }

@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernLoginEditFieldProps } from './IModernLoginEditFieldProps';
-import { ModernEditFieldLabel } from '../ModernEditFieldLabel/ModernEditFieldLabel';
+import { ModernFieldLabel } from '..';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 
 @observer
@@ -27,7 +27,7 @@ export class ModernLoginEditField extends React.Component<IModernLoginEditFieldP
         //onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage}
         return (
             <span>
-                <ModernEditFieldLabel required={this.props.field.required} label={this.props.field.name} />
+                <ModernFieldLabel required={this.props.field.required} label={this.props.field.name} />
 
                 <TextField suffix={this.props.domain} description={this.props.field.description}
                     onChanged={this.updateItem} value={value}

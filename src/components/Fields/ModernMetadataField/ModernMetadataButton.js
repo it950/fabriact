@@ -20,7 +20,6 @@ let ModernMetadataButtonField = class ModernMetadataButtonField extends React.Co
     render() {
         const html = this.props.checked ? React.createElement(Buttons_1.ModernPrimaryButton, { id: this.props.id, label: this.props.label, onClick: this.updateItem })
             : React.createElement(Buttons_1.ModernButton, { id: this.props.id, label: this.props.label, onClick: this.updateItem });
-        //onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage}
         return (React.createElement("span", null, html));
     }
 };

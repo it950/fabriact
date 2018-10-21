@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernMultiLineEditFieldProps } from './IModernMultiLineEditFieldProps';
-import { ModernEditFieldLabel } from '../ModernEditFieldLabel/ModernEditFieldLabel';
+import { ModernFieldLabel } from '..';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 
 @observer
@@ -26,7 +26,7 @@ export class ModernMultiLineEditField extends React.Component<IModernMultiLineEd
 
         return (
             <span>
-                <ModernEditFieldLabel required={this.props.field.required} label={this.props.field.name} />
+                <ModernFieldLabel required={this.props.field.required} label={this.props.field.name} />
 
                 <TextField description={this.props.field.description} onChanged={this.updateItem} value={value} autoAdjustHeight multiline
                     validateOnLoad={false} validateOnFocusOut onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage} />

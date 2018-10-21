@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernDateEditFieldProps } from './IModernDateEditFieldProps';
-import { ModernEditFieldLabel } from '../ModernEditFieldLabel/ModernEditFieldLabel';
+import { ModernFieldLabel } from '..';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
 import { ModernDatePicker } from '..';
@@ -38,7 +38,7 @@ export class ModernDateEditField extends React.Component<IModernDateEditFieldPro
 
         return (
             <span>
-                <ModernEditFieldLabel required={this.props.field.required} label={this.props.field.name} />
+                <ModernFieldLabel required={this.props.field.required} label={this.props.field.name} />
 
                 <div className={"ms-Grid-row"}>
                     <div className={"ms-Grid-col ms-sm11"}>

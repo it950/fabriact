@@ -11,7 +11,28 @@ export default class locales {
                 previous: "Back",
                 next: "Next",
                 new: "New",
+                edit: "Edit",
+                save: "Save",
+                search: "Search",
+                back: "Back",
+                more: "more...",
                 delete: "Delete",
+                add: "Add",
+                apply: "Apply",
+                export: "Export",
+                filterBy: "Filter by",
+                itemCreated: "Item created",
+                askRedirect: "Would you like to view the item now?",
+                clearFilters: "Clear filters",
+                clearAll: "Clear all",
+                loading: "Loading...",
+                modifiedByLabel: "Modified {0} by {1}",
+                createdByLabel: "Created {0} by {1}",
+                sortOnTextAscending: "A to Z",
+                sortOnTextDescending: "Z to A",
+                sortOnDateAscending: "Older to newer",
+                sortOnDateDescending: "Newer to older",
+                loadingView: "Loading {0}...",
                 cancel: "Cancel",
                 yes: "Yes",
                 no: "No",
@@ -29,8 +50,29 @@ export default class locales {
             nl: {
                 newItem: "Nieuw item",
                 new: "Nieuw",
+                edit: "Wijzig",
+                more: "meer...",
+                apply: "Toepassen",
+                add: "Toevoegen",
+                back: "Terug",
+                itemCreated: "Item gemaakt",
+                askRedirect: "Wil je het item nu bekijken?",
+                filterBy: "Filteren op",
+                clearFilters: "Filters wissen",
+                clearAll: "Alles wissen",
+                export: "Export",
+                sortOnTextAscending: "A tot Z",
+                sortOnTextDescending: "Z tot A",
+                sortOnDateAscending: "Oud naar nieuw",
+                sortOnDateDescending: "Nieuw naar oud",
+                search: "Zoeken",
+                save: "Opslaan",
                 delete: "Verwijderen",
+                modifiedByLabel: "{0} gewijzigd door {1}",
+                createdByLabel: "{0} gemaakt door {1}",
                 cancel: "Annuleren",
+                loading: "Laden...",
+                loadingView: "{0} laden...",
                 confirmDeleteTitle: "Verwijder {0} item(s)",
                 confirmDeleteText: "{0} item(s) worden verwijderd. Weet je het zeker?",
                 yes: "Ja",
@@ -49,6 +91,10 @@ export default class locales {
 
         if (language == "nl-NL") {
             this.strings.setLanguage("nl");
+        }
+        else {
+            this.strings.setLanguage("en");
+
         }
     }
 

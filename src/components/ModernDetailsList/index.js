@@ -4,5 +4,4 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./ModernDetailsList"));
-__export(require("./ModernDetailsListConfig"));
 //# sourceMappingURL=index.js.map

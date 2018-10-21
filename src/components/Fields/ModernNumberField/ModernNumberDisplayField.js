@@ -13,7 +13,8 @@ let ModernNumberDisplayField = class ModernNumberDisplayField extends React.Comp
         super(props);
     }
     render() {
-        return (React.createElement("span", null));
+        var result = this.props.value != null ? `${this.props.value.toLocaleString("nl-NL")}` : null;
+        return (React.createElement("span", null, result));
     }
 };
 ModernNumberDisplayField = __decorate([

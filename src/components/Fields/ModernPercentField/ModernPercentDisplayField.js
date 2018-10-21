@@ -15,7 +15,7 @@ let ModernPercentDisplayField = class ModernPercentDisplayField extends React.Co
     render() {
         var decimals = this.props.decimals != null ? this.props.decimals : 1;
         var result = this.props.value != null ? `${(this.props.value * 100).toFixed(decimals)}%` : null;
-        return (React.createElement("span", null));
+        return (React.createElement("span", null, result));
     }
 };
 ModernPercentDisplayField = __decorate([

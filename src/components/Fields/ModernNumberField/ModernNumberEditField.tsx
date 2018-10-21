@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernNumberEditFieldProps } from './IModernNumberEditFieldProps';
-import { ModernEditFieldLabel } from '../ModernEditFieldLabel/ModernEditFieldLabel';
+import { ModernFieldLabel } from '..';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 
 @observer
@@ -37,7 +37,7 @@ export class ModernNumberEditField extends React.Component<IModernNumberEditFiel
 
         return (
             <span>
-                <ModernEditFieldLabel required={this.props.field.required} label={this.props.field.name} />
+                <ModernFieldLabel required={this.props.field.required} label={this.props.field.name} />
 
                 <TextField description={this.props.field.description} onChanged={this.updateItem} value={value}
                     validateOnLoad={false} validateOnFocusOut onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage} />

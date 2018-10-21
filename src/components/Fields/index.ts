@@ -1,6 +1,6 @@
 ﻿export * from './ModernTextField/index';
 export * from './ModernNumberField/index';
-export * from './ModernEditFieldLabel/index';
+export * from './ModernFieldLabel/index';
 export * from './ModernEditField/index';
 export * from './ModernEmailField/index';
 export * from './ModernPhoneField/index';
@@ -14,5 +14,12 @@ export * from './ModernLoginField/index';
 export * from './ModernImageField/index';
 export * from './ModernDisplayField/index';
 export * from './ModernFileField/index';
+export * from './ModernColorField/index';
+export * from './ModernLookupField/index';
+export * from './ModernChoiceField/index';
+export * from './ModernUserField/index';
+export * from './ModernUrlField/index';
+export * from './ModernBooleanField/index';
+
 
 

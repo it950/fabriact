@@ -1,0 +1,8 @@
+﻿.modernInputFieldText {
+    text-align: center;
+}
+.modernDropZone div:first-child {
+    width: auto !important;
+    height: auto !important;
+}
+

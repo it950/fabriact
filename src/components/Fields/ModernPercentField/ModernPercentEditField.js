@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const mobx_react_1 = require("mobx-react");
-const ModernEditFieldLabel_1 = require("../ModernEditFieldLabel/ModernEditFieldLabel");
 const TextField_1 = require("office-ui-fabric-react/lib/TextField");
+const __1 = require("..");
 let ModernPercentEditField = class ModernPercentEditField extends React.Component {
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ let ModernPercentEditField = class ModernPercentEditField extends React.Componen
     render() {
         const value = this.props.value != null ? (this.props.value * 100).toString() : "";
         return (React.createElement("span", null,
-            React.createElement(ModernEditFieldLabel_1.ModernEditFieldLabel, { required: this.props.field.required, label: this.props.field.name }),
+            React.createElement(__1.ModernFieldLabel, { required: this.props.field.required, label: this.props.field.name }),
             React.createElement(TextField_1.TextField, { description: this.props.field.description, onChanged: this.updateItem, value: value, suffix: '%', validateOnLoad: false, validateOnFocusOut: true, onGetErrorMessage: this.getErrorMessage, errorMessage: this.props.errorMessage })));
     }
 };

@@ -1,0 +1,45 @@
+﻿
+.msListGridExample {
+    overflow: hidden;
+    font-size: 0;
+}
+
+
+.msListGridExampleTile {
+    text-align: center;
+    outline: none;
+    position: relative;
+    float: left;
+}
+
+.msListGridExampleSizer {
+    padding-bottom: 100%;
+}
+
+.msListGridExamplePadder {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+}
+
+
+.msListGridExampleLabel {
+    background: rgba(0,0,0,.3);
+    color: #ffffff;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.msListGridExampleImage {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}

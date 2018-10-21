@@ -2,5 +2,8 @@
 
 export interface IModernDisplayFieldProps {
     field: IModernField;
-    value: any;
+//    value: any;
+    item: any;
+    onGetFieldValue: any;
+    language: string;
 }

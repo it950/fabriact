@@ -1,7 +1,10 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernEditFieldProps } from './IModernEditFieldProps';
-import { ModernNumberEditField, ModernTextEditField, ModernEmailEditField, ModernPhoneEditField, ModernPercentEditField, ModernMultiLineEditField, ModernMetadataEditField, ModernCurrencyEditField, ModernDateEditField, ModernLoginEditField } from '..';
+import {
+    ModernNumberEditField, ModernTextEditField, ModernEmailEditField, ModernPhoneEditField, ModernPercentEditField, ModernFileEditField,
+    ModernMultiLineEditField, ModernMetadataEditField, ModernCurrencyEditField, ModernDateEditField, ModernLoginEditField, ModernLookupEditField, ModernChoiceEditField, ModernBooleanEditField
+} from '..';
 import { ModernFieldType } from '../../..';
 
 @observer
@@ -12,6 +15,15 @@ export class ModernEditField extends React.Component<IModernEditFieldProps, any>
         super(props);
     }
 
+
+    private resolveSuggestions = () => {
+        return this.props.resolveSuggestions(this.props.field.key);
+    }
+
+    private resolveLookup = (search) => {
+        return this.props.resolveLookup(this.props.field.key, search);
+    }
+
     render() {
 
         let html = null;
@@ -19,8 +31,16 @@ export class ModernEditField extends React.Component<IModernEditFieldProps, any>
         switch (this.props.field.type) {
 
             case ModernFieldType.text:
+            case ModernFieldType.url:
                 html = <ModernTextEditField field={this.props.field} value={this.props.value}
                     validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
+
+                break;
+            case ModernFieldType.lookup:
+            case ModernFieldType.user:
+                html = <ModernLookupEditField field={this.props.field} value={this.props.value} resolveLookup={this.resolveLookup}
+                    resolveSuggestions={this.resolveSuggestions} validate={this.props.validate} onChange={this.props.onChange}
+                    errorMessage={this.props.errorMessage} />;
 
                 break;
             case ModernFieldType.login:
@@ -28,8 +48,13 @@ export class ModernEditField extends React.Component<IModernEditFieldProps, any>
                     validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
 
                 break;
+            case ModernFieldType.choice:
+                html = <ModernChoiceEditField field={this.props.field} value={this.props.value} 
+                    validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
+
+                break;
             case ModernFieldType.file:
-                html = <ModernFileInputField field={this.props.field} value={this.props.value}
+                html = <ModernFileEditField field={this.props.field} value={this.props.value}
                     validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
 
                 break;
@@ -43,8 +68,13 @@ export class ModernEditField extends React.Component<IModernEditFieldProps, any>
                     validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
 
                 break;
+            case ModernFieldType.boolean:
+                html = <ModernBooleanEditField field={this.props.field} value={this.props.value}
+                    validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
+
+                break;
             case ModernFieldType.managedMetadata:
-                html = <ModernMetadataEditField field={this.props.field} value={this.props.value}
+                html = <ModernMetadataEditField field={this.props.field} value={this.props.value} language={this.props.language} onNewOption={this.props.onNewOption}
                     validate={this.props.validate} onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
 
                 break;
@@ -75,7 +105,7 @@ export class ModernEditField extends React.Component<IModernEditFieldProps, any>
                     onChange={this.props.onChange} errorMessage={this.props.errorMessage} />;
                 break;
             default:
-                console.warn("FieldType missing");
+                console.warn(`FieldType ${this.props.field.type} missing`);
                 break;
         }
 

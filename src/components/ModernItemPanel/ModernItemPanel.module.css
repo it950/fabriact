@@ -1,0 +1,34 @@
+﻿.modernHeaderGrid {
+    padding: 8px 20px 8px 20px !important;
+}
+
+.modernHeader {
+    height: 88px;
+    color: white;
+}
+
+
+.modernfont15 {
+    font-size: 15px;
+}
+
+.modernfont13 {
+    font-size: 13px;
+}
+
+
+.modernCloseButton {
+    padding-right: 40px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+.modernInnnerContentActions .ms-Panel-contentInner {
+    top: 155px !important;
+}
+
+.modernInnnerContent .ms-Panel-contentInner {
+      top: 95px !important;
+
+}

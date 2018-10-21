@@ -1,7 +1,6 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernImageDisplayFieldProps } from './IModernImageDisplayFieldProps';
-import { ModernEditFieldLabel } from '../ModernEditFieldLabel/ModernEditFieldLabel';
 import { Image, ImageFit } from 'office-ui-fabric-react/lib/Image';
 
 @observer

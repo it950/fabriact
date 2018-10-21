@@ -1,4 +1,4 @@
 ﻿export interface IModernMetadataDisplayFieldProps {
-    value: string;
+    value: any;
    
 }

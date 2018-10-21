@@ -1,4 +1,6 @@
-﻿export enum ModernFieldType {
+﻿import { SelectionMode } from "office-ui-fabric-react/lib/DetailsList";
+
+export enum ModernFieldType {
     text = 0,
     url = 1,
     email = 2,
@@ -21,38 +23,85 @@
     login = 19
 }
 
+export enum ModernActionType {
+    form = 0,
+    custom = 1
+}
+
 export interface IModernAction {
     key: string;
+    type: ModernActionType;
+    selectionMode?: SelectionMode;
     name?: string;
     icon?: string;
+    redirectUrl?: string;
 }
 
 export interface IModernField {
     type: ModernFieldType;
     key: string;
     name?: string;
-    isArray?: boolean;
+    multiSelect?: boolean;
     errorMessage?: string;
     description?: string;
     icon?: string;
+    domain?: string;
+    asyncValue?: boolean;
     required?: boolean;
     sortable?: boolean;
+    readOnly?: boolean;
+    hideInViewForm?: boolean;
+    editGroupTrigger?: boolean;
+    asTimeAgo?: boolean;
+    newOptionItems?: boolean;
     filterable?: boolean;
     options?: IModernLookup[];
+    embeddedFields?: IModernField[];
+    action?: IModernAction;
 }
 
 export interface IModernLookup {
     id: string;
     title: string;
+    description?: string;
+}
+
+export interface IModernFile {
+    id: string;
+    title: string;
+    link?: string;
+    // base64?: string;
+    file?: File;
+}
+
+export interface IModernFilter {
+    field: string;
+    values: any[];
+}
+
+export interface IModernSort {
+    field: string;
+    ascending: boolean;
 }
 
 export interface IModernFieldGroup {
     fields: IModernField[];
+    id: string;
+    description: string;
 }
 
 export interface IModernView {
+    actions?: IModernAction[];
     fields: IModernField[];
     key: string;
     name?: string;
     isDynamicView?: boolean;
+}
+
+
+export interface IModernLookup {
+    id: string;
+    title: string;
+    image?: string;
+    secondaryText?: string;
 }

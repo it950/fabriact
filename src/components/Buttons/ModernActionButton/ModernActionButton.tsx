@@ -2,6 +2,7 @@
 import { observer } from 'mobx-react';
 import { IModernActionButtonProps } from './IModernActionButtonProps';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
+import './ModernActionButton.module.css';
 
 @observer
 export class ModernActionButton extends React.Component<IModernActionButtonProps, any> {
@@ -18,7 +19,7 @@ export class ModernActionButton extends React.Component<IModernActionButtonProps
 
     render() {
         return (
-            <ActionButton onClick={this.onClick} iconProps={{ iconName: this.props.icon }}>
+            <ActionButton className={"actionButton"} onClick={this.onClick} iconProps={{ iconName: this.props.icon }}>
                 {this.props.label}
             </ActionButton>
         );

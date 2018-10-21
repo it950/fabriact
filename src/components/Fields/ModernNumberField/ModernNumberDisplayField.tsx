@@ -11,8 +11,10 @@ export class ModernNumberDisplayField extends React.Component<IModernNumberDispl
     }
 
     render() {
+        var result = this.props.value != null ? `${this.props.value.toLocaleString("nl-NL")}` : null;
+
         return (
-            <span></span>
+            <span>{result}</span>
         );
     }
 }

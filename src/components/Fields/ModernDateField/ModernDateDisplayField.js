@@ -8,12 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const mobx_react_1 = require("mobx-react");
+const moment = require("moment");
 let ModernDateDisplayField = class ModernDateDisplayField extends React.Component {
     constructor(props) {
         super(props);
+        if (this.props.language == "nl-NL") {
+            moment.locale('nl');
+        }
     }
     render() {
-        var result = this.props.value != null ? `€ ${this.props.value.toLocaleString("nl-NL")}` : React.createElement("span", null);
+        var result = React.createElement("span", null);
+        if (this.props.value) {
+            let tooltip = moment(this.props.value).format("ddd D MMM YYYY");
+            if (this.props.asTimeAgo) {
+                //   result = <TimeAgo date={new Date(this.props.value)} title={tooltip} />;
+                result = React.createElement("span", null, moment(this.props.value).fromNow());
+            }
+            else {
+                result = React.createElement("span", null, moment(this.props.value).format("ddd D MMM YYYY"));
+            }
+        }
         return (React.createElement("span", null, result));
     }
 };

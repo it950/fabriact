@@ -15,7 +15,7 @@ export class ModernPercentDisplayField extends React.Component<IModernPercentDis
         var result = this.props.value != null ? `${(this.props.value * 100).toFixed(decimals)}%` : null;
 
         return (
-            <span></span>
+            <span>{result}</span>
         );
     }
 }

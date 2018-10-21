@@ -4,5 +4,4 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./ModernCommandBar"));
-__export(require("./ModernCommandBarConfig"));
 //# sourceMappingURL=index.js.map

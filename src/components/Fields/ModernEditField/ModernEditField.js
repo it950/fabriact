@@ -13,12 +13,32 @@ const __2 = require("../../..");
 let ModernEditField = class ModernEditField extends React.Component {
     constructor(props) {
         super(props);
+        this.resolveSuggestions = () => {
+            return this.props.resolveSuggestions(this.props.field.key);
+        };
+        this.resolveLookup = (search) => {
+            return this.props.resolveLookup(this.props.field.key, search);
+        };
     }
     render() {
         let html = null;
         switch (this.props.field.type) {
             case __2.ModernFieldType.text:
+            case __2.ModernFieldType.url:
                 html = React.createElement(__1.ModernTextEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
+                break;
+            case __2.ModernFieldType.lookup:
+            case __2.ModernFieldType.user:
+                html = React.createElement(__1.ModernLookupEditField, { field: this.props.field, value: this.props.value, resolveLookup: this.resolveLookup, resolveSuggestions: this.resolveSuggestions, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
+                break;
+            case __2.ModernFieldType.login:
+                html = React.createElement(__1.ModernLoginEditField, { field: this.props.field, value: this.props.value, domain: "", validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
+                break;
+            case __2.ModernFieldType.choice:
+                html = React.createElement(__1.ModernChoiceEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
+                break;
+            case __2.ModernFieldType.file:
+                html = React.createElement(__1.ModernFileEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
                 break;
             case __2.ModernFieldType.multiLine:
                 html = React.createElement(__1.ModernMultiLineEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
@@ -26,8 +46,11 @@ let ModernEditField = class ModernEditField extends React.Component {
             case __2.ModernFieldType.email:
                 html = React.createElement(__1.ModernEmailEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
                 break;
+            case __2.ModernFieldType.boolean:
+                html = React.createElement(__1.ModernBooleanEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
+                break;
             case __2.ModernFieldType.managedMetadata:
-                html = React.createElement(__1.ModernMetadataEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
+                html = React.createElement(__1.ModernMetadataEditField, { field: this.props.field, value: this.props.value, language: this.props.language, onNewOption: this.props.onNewOption, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
                 break;
             case __2.ModernFieldType.phone:
                 html = React.createElement(__1.ModernPhoneEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
@@ -48,7 +71,7 @@ let ModernEditField = class ModernEditField extends React.Component {
                 html = React.createElement(__1.ModernNumberEditField, { field: this.props.field, value: this.props.value, validate: this.props.validate, onChange: this.props.onChange, errorMessage: this.props.errorMessage });
                 break;
             default:
-                console.warn("FieldType missing");
+                console.warn(`FieldType ${this.props.field.type} missing`);
                 break;
         }
         return (React.createElement("span", null, html));

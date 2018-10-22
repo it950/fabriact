@@ -1,7 +1,7 @@
 {
   "name": "fabriact",
-  "version": "0.0.1",
-  "description": "Office 365 and SharePoint inspired list and form React components built on top of Office UI Fabric React",
+  "version": "0.0.2",
+  "description": "Office 365 and SharePoint inspired React list and form components built on top of Office UI Fabric React",
   "main": "server.js",
   "author": {
     "name": ""

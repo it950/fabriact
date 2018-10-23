@@ -222,6 +222,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="server.js" />
+    <Content Include=".npmignore">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="dist\app-bundle.js.map" />
     <Content Include="index.html">
       <SubType>Code</SubType>

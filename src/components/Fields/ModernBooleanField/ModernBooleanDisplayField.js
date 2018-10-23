@@ -15,6 +15,7 @@ let ModernBooleanDisplayField = class ModernBooleanDisplayField extends React.Co
         this.locale = new locales_1.default(this.props.language);
     }
     render() {
+        let test = null;
         const result = this.props.value != null ?
             this.props.value == true ?
                 this.locale.strings.yes : this.locale.strings.no : "";

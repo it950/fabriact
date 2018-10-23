@@ -1,10 +1,16 @@
 {
   "name": "fabriact",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Office 365 and SharePoint inspired React list and form components built on top of Office UI Fabric React",
-  "main": "server.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "author": {
-    "name": ""
+    "name": "Arthur Bleij",
+    "url": "http://www.achappey.nl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achappey/fabriact.git"
   },
   "dependencies": {
     "@uifabric/experiments": "5.45.1",

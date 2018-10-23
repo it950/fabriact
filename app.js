@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6,37 +19,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const ReactDom = require("react-dom");
+var React = require("react");
+var ReactDom = require("react-dom");
 //import { ModernOfficeList } from './src/components/ModernOfficeList/ModernOfficeList';
-const src_1 = require("./src");
-const Icons_1 = require("office-ui-fabric-react/lib/Icons");
+var src_1 = require("./src");
+var Icons_1 = require("office-ui-fabric-react/lib/Icons");
 require("office-ui-fabric-react/dist/css/fabric.css");
-const ExampleData_1 = require("./ExampleData");
-const timers_1 = require("timers");
-const mobx_react_1 = require("mobx-react");
-const mobx_1 = require("mobx");
+var ExampleData_1 = require("./ExampleData");
+var timers_1 = require("timers");
+var mobx_react_1 = require("mobx-react");
+var mobx_1 = require("mobx");
 Icons_1.initializeIcons( /* optional base url */);
-let Demo = class Demo extends React.Component {
-    constructor(props) {
-        super(props);
-        this.currentPage = 1;
-        this.delay = (callback) => {
-            timers_1.setTimeout(() => {
+var Demo = /** @class */ (function (_super) {
+    __extends(Demo, _super);
+    function Demo(props) {
+        var _this = _super.call(this, props) || this;
+        _this.currentPage = 1;
+        _this.delay = function (callback) {
+            timers_1.setTimeout(function () {
                 callback();
             }, 1200);
         };
-        this.getNewActionItem = (fieldId) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.newActionItem());
+        _this.getNewActionItem = function (fieldId) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.newActionItem());
                     //resolve(this.exampleData.newItem());
                 });
             });
         };
-        this.getNewActionFieldGroups = (fieldId) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
+        _this.getNewActionFieldGroups = function (fieldId) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
                     resolve([{
                             id: "1",
                             description: "",
@@ -60,24 +74,24 @@ let Demo = class Demo extends React.Component {
                 });
             });
         };
-        this.onSaveNewAction = (item) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(mobx_1.toJS(this.exampleData.saveAction(item)));
+        _this.onSaveNewAction = function (item) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(mobx_1.toJS(_this.exampleData.saveAction(item)));
                 });
             });
         };
-        this.getNewOptionItem = (fieldId) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.newOptionItem());
+        _this.getNewOptionItem = function (fieldId) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.newOptionItem());
                     //resolve(this.exampleData.newItem());
                 });
             });
         };
-        this.getNewOptionFieldGroups = (fieldId) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
+        _this.getNewOptionFieldGroups = function (fieldId) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
                     resolve([{
                             id: "1",
                             description: "",
@@ -97,53 +111,53 @@ let Demo = class Demo extends React.Component {
                 });
             });
         };
-        this.onSaveNewOption = (item) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    this.exampleData.saveOption(item);
-                    resolve(mobx_1.toJS(this.exampleData.metadataMulti));
+        _this.onSaveNewOption = function (item) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    _this.exampleData.saveOption(item);
+                    resolve(mobx_1.toJS(_this.exampleData.metadataMulti));
                 });
             });
         };
-        this.onNewItem = () => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.newItem());
+        _this.onNewItem = function () {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.newItem());
                 });
             });
         };
-        this.onSaveNewItem = (newItem) => {
-            return new Promise((resolve, reject) => {
+        _this.onSaveNewItem = function (newItem) {
+            return new Promise(function (resolve, reject) {
                 console.log(newItem);
-                this.delay(() => {
-                    this.exampleData.saveItem(newItem);
+                _this.delay(function () {
+                    _this.exampleData.saveItem(newItem);
                     resolve();
                 });
             });
         };
-        this.itemActions = [];
-        this.onGetItem = (item) => {
-            return new Promise((resolve, reject) => {
+        _this.itemActions = [];
+        _this.onGetItem = function (item) {
+            return new Promise(function (resolve, reject) {
                 console.log(item);
-                this.delay(() => {
-                    this.itemActions = item.email && item.email.indexOf("hotmail.com") > -1 ? this.exampleData.viewItemActions : [this.exampleData.viewItemActions[0]];
-                    resolve(mobx_1.toJS(this.exampleData.getItem(item.id)));
+                _this.delay(function () {
+                    _this.itemActions = item.email && item.email.indexOf("hotmail.com") > -1 ? _this.exampleData.viewItemActions : [_this.exampleData.viewItemActions[0]];
+                    resolve(mobx_1.toJS(_this.exampleData.getItem(item.id)));
                 });
             });
         };
-        this.onSortChanged = (column, ascending) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.getItemsSorted(column, ascending));
+        _this.onSortChanged = function (column, ascending) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.getItemsSorted(column, ascending));
                 });
             });
         };
-        this.onUpdateItem = (item) => {
-            return new Promise((resolve, reject) => {
+        _this.onUpdateItem = function (item) {
+            return new Promise(function (resolve, reject) {
                 console.log(item);
                 //this.exampleData.items.push(newItem);
-                this.delay(() => {
-                    this.exampleData.updateItem(item);
+                _this.delay(function () {
+                    _this.exampleData.updateItem(item);
                     resolve();
                     //  this.config.detailsListConfig.items = this.exampleData.items;
                     //    this.config.detailsListConfig.items = toJS(this.exampleData.items);
@@ -151,138 +165,144 @@ let Demo = class Demo extends React.Component {
                 });
             });
         };
-        this.resolveLookup = (key, search) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.searchLookup(search));
+        _this.resolveLookup = function (key, search) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.searchLookup(search));
                 });
             });
         };
-        this.resolveSuggestions = (key) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.getLookups());
+        _this.resolveSuggestions = function (key) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.getLookups());
                 });
             });
         };
-        this.getFilterOptions = (key) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.getFilterOptions());
+        _this.getFilterOptions = function (key) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.getFilterOptions());
                 });
             });
         };
-        this.onFilterChanged = (filters) => {
+        _this.onFilterChanged = function (filters) {
             console.log(filters);
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
                     if (filters && filters.length > 0) {
-                        resolve(this.exampleData.getFiltered(filters[0].values));
+                        resolve(_this.exampleData.getFiltered(filters[0].values));
                     }
                     else {
-                        resolve(this.exampleData.getView("1"));
+                        resolve(_this.exampleData.getView("1"));
                     }
                 });
             });
         };
-        this.onViewChange = (key) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    const items = key == "4" ? this.exampleData.getDynamicView(0) : this.exampleData.getView(key);
-                    this.currentPage = 1;
+        _this.onViewChange = function (key) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    var items = key == "4" ? _this.exampleData.getDynamicView(0) : _this.exampleData.getView(key);
+                    _this.currentPage = 1;
                     resolve(items);
                     //   resolve(this.exampleData.getView(key));
                 });
             });
         };
-        this.onViewOffsetChange = (offset) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    const items = this.exampleData.getDynamicView(offset);
-                    this.currentPage = 1;
+        _this.onViewOffsetChange = function (offset) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    var items = _this.exampleData.getDynamicView(offset);
+                    _this.currentPage = 1;
                     resolve(mobx_1.toJS(items));
                     //   resolve(this.exampleData.getView(key));
                 });
             });
         };
-        this.getFieldValue = (field, item) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.getFieldValue(field, item.id));
+        _this.getFieldValue = function (field, item) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.getFieldValue(field, item.id));
                 });
             });
         };
-        this.onExport = () => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(mobx_1.toJS(this.exampleData.items));
+        _this.onExport = function () {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(mobx_1.toJS(_this.exampleData.items));
                 });
             });
         };
-        this.onNextPage = () => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    const items = this.exampleData.getNextPage(this.currentPage + 1);
-                    this.currentPage++;
+        _this.onNextPage = function () {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    var items = _this.exampleData.getNextPage(_this.currentPage + 1);
+                    _this.currentPage++;
                     resolve(items);
                 });
             });
         };
-        this.onActionClicked = (id) => {
-            return new Promise((resolve, reject) => {
+        _this.onActionClicked = function (id) {
+            return new Promise(function (resolve, reject) {
                 alert("Action " + id + " clicked.");
                 console.log(id);
                 resolve();
                 //     resolve(this.exampleData.search(search));
             });
         };
-        this.onSearch = (search) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    resolve(this.exampleData.search(search));
+        _this.onSearch = function (search) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    resolve(_this.exampleData.search(search));
                 });
             });
         };
-        this.onDelete = (item) => {
-            return new Promise((resolve, reject) => {
-                this.delay(() => {
-                    this.exampleData.deleteItem(item);
+        _this.onDelete = function (item) {
+            return new Promise(function (resolve, reject) {
+                _this.delay(function () {
+                    _this.exampleData.deleteItem(item);
                     resolve();
                 });
             });
         };
-        this.exampleData = new ExampleData_1.default();
-        this.itemActions = this.exampleData.viewItemActions;
+        _this.exampleData = new ExampleData_1.default();
+        _this.itemActions = _this.exampleData.viewItemActions;
+        return _this;
     }
-    get hasNextPage() {
-        //  return this.currentPage < 2;
-        return false;
-    }
-    render() {
+    Object.defineProperty(Demo.prototype, "hasNextPage", {
+        get: function () {
+            //  return this.currentPage < 2;
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Demo.prototype.render = function () {
         return (React.createElement("div", null,
             React.createElement(src_1.ModernOfficeList, { views: this.exampleData.views, defaultView: "1", onSearch: this.onSearch, onViewChange: this.onViewChange, newItemGroups: this.exampleData.demoNewFieldGroupsData, viewItemActions: this.itemActions, onExport: this.onExport, getNewOptionFieldGroups: this.getNewOptionFieldGroups, getNewOptionItem: this.getNewOptionItem, onSaveNewOption: this.onSaveNewOption, viewItemGroups: this.exampleData.demoViewFieldGroupsData, onGetFieldValue: this.getFieldValue, onNextPage: this.onNextPage, hasNextPage: this.hasNextPage, itemIdProperty: "id", onSaveNewItem: this.onSaveNewItem, onDeleteItem: this.onDelete, resolveLookup: this.resolveLookup, resolveSuggestions: this.resolveSuggestions, language: "nl-NL", onUpdateItem: this.onUpdateItem, itemTitleProperty: "name", itemSecondaryDescriptionProperty: "jobTitle", onFilterChanged: this.onFilterChanged, onSortChanged: this.onSortChanged, getFilterOptions: this.getFilterOptions, itemColorProperty: "color", onSaveNewAction: this.onSaveNewAction, getNewActionFieldGroups: this.getNewActionFieldGroups, getNewActionItem: this.getNewActionItem, onViewOffsetChange: this.onViewOffsetChange, onGetItem: this.onGetItem, onActionClicked: this.onActionClicked, itemDescriptionProperty: "jobType", itemImageProperty: "image", itemAuthorProperty: "author", itemModifiedProperty: "modified", itemCreatedProperty: "created", itemEditorProperty: "editor", onNewItem: this.onNewItem })));
-    }
-};
-__decorate([
-    mobx_1.observable
-], Demo.prototype, "currentPage", void 0);
-__decorate([
-    mobx_1.computed
-], Demo.prototype, "hasNextPage", null);
-__decorate([
-    mobx_1.observable
-], Demo.prototype, "itemActions", void 0);
-__decorate([
-    mobx_1.action
-], Demo.prototype, "onGetItem", void 0);
-__decorate([
-    mobx_1.action
-], Demo.prototype, "onExport", void 0);
-__decorate([
-    mobx_1.action
-], Demo.prototype, "onNextPage", void 0);
-Demo = __decorate([
-    mobx_react_1.observer
-], Demo);
+    };
+    __decorate([
+        mobx_1.observable
+    ], Demo.prototype, "currentPage", void 0);
+    __decorate([
+        mobx_1.computed
+    ], Demo.prototype, "hasNextPage", null);
+    __decorate([
+        mobx_1.observable
+    ], Demo.prototype, "itemActions", void 0);
+    __decorate([
+        mobx_1.action
+    ], Demo.prototype, "onGetItem", void 0);
+    __decorate([
+        mobx_1.action
+    ], Demo.prototype, "onExport", void 0);
+    __decorate([
+        mobx_1.action
+    ], Demo.prototype, "onNextPage", void 0);
+    Demo = __decorate([
+        mobx_react_1.observer
+    ], Demo);
+    return Demo;
+}(React.Component));
 ReactDom.render(React.createElement(Demo, null), document.getElementById('root'));
 //# sourceMappingURL=app.js.map

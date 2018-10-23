@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_localization_1 = require("react-localization");
-class locales {
-    constructor(language = null) {
+var react_localization_1 = require("react-localization");
+var locales = /** @class */ (function () {
+    function locales(language) {
+        if (language === void 0) { language = null; }
         this.strings = new react_localization_1.default({
             en: {
                 previous: "Back",
@@ -92,6 +93,7 @@ class locales {
             this.strings.setLanguage("en");
         }
     }
-}
+    return locales;
+}());
 exports.default = locales;
 //# sourceMappingURL=locales.js.map

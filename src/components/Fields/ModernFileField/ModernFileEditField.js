@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6,16 +19,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const mobx_react_1 = require("mobx-react");
-const Pickers_1 = require("office-ui-fabric-react/lib/Pickers");
-const react_dropzone_1 = require("react-dropzone");
-const rxjs_1 = require("rxjs");
-const __1 = require("..");
+var React = require("react");
+var mobx_react_1 = require("mobx-react");
+var Pickers_1 = require("office-ui-fabric-react/lib/Pickers");
+var react_dropzone_1 = require("react-dropzone");
+var rxjs_1 = require("rxjs");
+var __1 = require("..");
 require("./ModernFileEditField.module.css");
-let ModernFileEditField = class ModernFileEditField extends React.Component {
-    constructor(props) {
-        super(props);
+var ModernFileEditField = /** @class */ (function (_super) {
+    __extends(ModernFileEditField, _super);
+    function ModernFileEditField(props) {
+        var _this = _super.call(this, props) || this;
         //private onChange = (items) => {
         //    this.updateItem(items.map(t => {
         //        return {
@@ -23,8 +37,8 @@ let ModernFileEditField = class ModernFileEditField extends React.Component {
         //        };
         //    }));
         //}
-        this.onRemove = (items) => {
-            this.updateItem(items.map(t => {
+        _this.onRemove = function (items) {
+            _this.updateItem(items.map(function (t) {
                 return {
                     id: t.id,
                     title: t.text,
@@ -38,25 +52,25 @@ let ModernFileEditField = class ModernFileEditField extends React.Component {
             //    };
             //}));
         };
-        this.addFiles = (files) => {
-            let newValue = this.props.value ? this.props.value.concat(files) : files;
-            this.updateItem(newValue);
+        _this.addFiles = function (files) {
+            var newValue = _this.props.value ? _this.props.value.concat(files) : files;
+            _this.updateItem(newValue);
             //this.props.onChange(this.props.field.key, value);
             //return value;
         };
-        this.updateItem = (value) => {
-            this.props.onChange(this.props.field.key, value);
+        _this.updateItem = function (value) {
+            _this.props.onChange(_this.props.field.key, value);
             return value;
         };
-        this.getErrorMessage = (value) => {
-            return this.props.validate(this.props.field, value);
+        _this.getErrorMessage = function (value) {
+            return _this.props.validate(_this.props.field, value);
         };
-        this.readFile = (file) => {
-            return new rxjs_1.Observable((obs) => {
+        _this.readFile = function (file) {
+            return new rxjs_1.Observable(function (obs) {
                 console.log(file);
-                const reader = new FileReader();
-                reader.onload = () => {
-                    const fileAsBinaryString = reader.result;
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var fileAsBinaryString = reader.result;
                     console.log(fileAsBinaryString);
                     obs.next({ base64: fileAsBinaryString, id: file.name, title: file.name });
                     obs.complete();
@@ -64,22 +78,22 @@ let ModernFileEditField = class ModernFileEditField extends React.Component {
                 reader.readAsDataURL(file);
             });
         };
-        this.readFiles = (files) => {
-            return new rxjs_1.Observable((obs) => {
+        _this.readFiles = function (files) {
+            return new rxjs_1.Observable(function (obs) {
                 var results = [];
-                var item = files.map(d => this.readFile(d));
-                rxjs_1.concat(...item).subscribe((data) => {
+                var item = files.map(function (d) { return _this.readFile(d); });
+                rxjs_1.concat.apply(void 0, item).subscribe(function (data) {
                     results.push(data);
-                }, (error) => {
+                }, function (error) {
                     console.error(error);
-                }, () => {
+                }, function () {
                     obs.next(results);
                     obs.complete();
                 });
             });
         };
-        this.onDrop = (files) => {
-            this.addFiles(files.map(v => {
+        _this.onDrop = function (files) {
+            _this.addFiles(files.map(function (v) {
                 return {
                     id: v.name,
                     title: v.name,
@@ -87,10 +101,10 @@ let ModernFileEditField = class ModernFileEditField extends React.Component {
                 };
             }));
         };
-        this.onDrop2 = (files) => {
-            this.readFiles(files).subscribe((d) => {
-                this.addFiles(d);
-                if (this.props.value != null) {
+        _this.onDrop2 = function (files) {
+            _this.readFiles(files).subscribe(function (d) {
+                _this.addFiles(d);
+                if (_this.props.value != null) {
                     //   this.onChange(this.props.value.concat(d));
                 }
                 else {
@@ -98,11 +112,12 @@ let ModernFileEditField = class ModernFileEditField extends React.Component {
                 }
             });
         };
+        return _this;
     }
-    render() {
+    ModernFileEditField.prototype.render = function () {
         var selectedFiles = React.createElement("span", null);
         if (this.props.value && this.props.value.length > 0) {
-            var selectedItems = this.props.value.map(t => {
+            var selectedItems = this.props.value.map(function (t) {
                 return {
                     //      base64: t.base64,
                     file: t.file,
@@ -110,7 +125,7 @@ let ModernFileEditField = class ModernFileEditField extends React.Component {
                     id: t.id
                 };
             });
-            selectedFiles = this.props.value ? React.createElement(Pickers_1.NormalPeoplePicker, { itemLimit: selectedItems.length, selectedItems: selectedItems, onChange: this.onRemove, onResolveSuggestions: () => {
+            selectedFiles = this.props.value ? React.createElement(Pickers_1.NormalPeoplePicker, { itemLimit: selectedItems.length, selectedItems: selectedItems, onChange: this.onRemove, onResolveSuggestions: function () {
                     return [];
                 } }) : React.createElement("span", null);
         }
@@ -125,10 +140,11 @@ let ModernFileEditField = class ModernFileEditField extends React.Component {
         return (React.createElement("span", null,
             React.createElement(__1.ModernFieldLabel, { required: this.props.field.required, label: this.props.field.name }),
             field));
-    }
-};
-ModernFileEditField = __decorate([
-    mobx_react_1.observer
-], ModernFileEditField);
+    };
+    ModernFileEditField = __decorate([
+        mobx_react_1.observer
+    ], ModernFileEditField);
+    return ModernFileEditField;
+}(React.Component));
 exports.ModernFileEditField = ModernFileEditField;
 //# sourceMappingURL=ModernFileEditField.js.map

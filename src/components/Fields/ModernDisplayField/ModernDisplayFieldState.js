@@ -6,16 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mobx_1 = require("mobx");
-const rxjs_1 = require("rxjs");
-const operators_1 = require("rxjs/operators");
-class ModernDisplayFieldState {
-    constructor(item, field, onGetFieldValueEvent) {
+var mobx_1 = require("mobx");
+var rxjs_1 = require("rxjs");
+var operators_1 = require("rxjs/operators");
+var ModernDisplayFieldState = /** @class */ (function () {
+    function ModernDisplayFieldState(item, field, onGetFieldValueEvent) {
+        var _this = this;
         this.onGetFieldValueEvent = onGetFieldValueEvent;
-        this.init = () => {
-            return rxjs_1.from(this.onGetFieldValueEvent(this.field.key, mobx_1.toJS(this.item))).pipe(operators_1.map(g => {
-                this.value = g;
-                this.isLoading = false;
+        this.init = function () {
+            return rxjs_1.from(_this.onGetFieldValueEvent(_this.field.key, mobx_1.toJS(_this.item))).pipe(operators_1.map(function (g) {
+                _this.value = g;
+                _this.isLoading = false;
             })).toPromise();
         };
         this.field = field;
@@ -27,30 +28,35 @@ class ModernDisplayFieldState {
             this.isLoading = true;
         }
     }
-    get item() {
-        return this._item;
-    }
-    set item(value) {
-        this._item = value;
-        if (!this.field.asyncValue) {
-            this.value = value[this.field.key];
-        }
-    }
-}
-__decorate([
-    mobx_1.observable
-], ModernDisplayFieldState.prototype, "field", void 0);
-__decorate([
-    mobx_1.observable
-], ModernDisplayFieldState.prototype, "value", void 0);
-__decorate([
-    mobx_1.observable
-], ModernDisplayFieldState.prototype, "isLoading", void 0);
-__decorate([
-    mobx_1.computed
-], ModernDisplayFieldState.prototype, "item", null);
-__decorate([
-    mobx_1.action
-], ModernDisplayFieldState.prototype, "init", void 0);
+    Object.defineProperty(ModernDisplayFieldState.prototype, "item", {
+        get: function () {
+            return this._item;
+        },
+        set: function (value) {
+            this._item = value;
+            if (!this.field.asyncValue) {
+                this.value = value[this.field.key];
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        mobx_1.observable
+    ], ModernDisplayFieldState.prototype, "field", void 0);
+    __decorate([
+        mobx_1.observable
+    ], ModernDisplayFieldState.prototype, "value", void 0);
+    __decorate([
+        mobx_1.observable
+    ], ModernDisplayFieldState.prototype, "isLoading", void 0);
+    __decorate([
+        mobx_1.computed
+    ], ModernDisplayFieldState.prototype, "item", null);
+    __decorate([
+        mobx_1.action
+    ], ModernDisplayFieldState.prototype, "init", void 0);
+    return ModernDisplayFieldState;
+}());
 exports.default = ModernDisplayFieldState;
 //# sourceMappingURL=ModernDisplayFieldState.js.map

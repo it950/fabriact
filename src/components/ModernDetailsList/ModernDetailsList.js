@@ -1,4 +1,28 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6,60 +30,63 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const mobx_react_1 = require("mobx-react");
-const DetailsList_1 = require("office-ui-fabric-react/lib/DetailsList");
-const ModernSpinner_1 = require("../ModernSpinner");
-const ModernDetailsListState_1 = require("./ModernDetailsListState");
-const mobx_1 = require("mobx");
-const Fields_1 = require("../Fields");
-const Spinner_1 = require("office-ui-fabric-react/lib/Spinner");
-const rxjs_1 = require("rxjs");
-const Tooltip_1 = require("office-ui-fabric-react/lib/Tooltip");
-const Sticky_1 = require("office-ui-fabric-react/lib/Sticky");
-const ContextualMenu_1 = require("office-ui-fabric-react/lib/ContextualMenu");
-const ModernFilterPanel_1 = require("../ModernFilterPanel");
-const ModernViewItemPanel_1 = require("../ModernViewItemPanel");
-let ModernDetailsList = class ModernDetailsList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.renderMissingItem = (index, rowProps) => {
-            this.nextPageSubscription = rxjs_1.from(this.props.onNextPage()).subscribe();
+var React = require("react");
+var mobx_react_1 = require("mobx-react");
+var DetailsList_1 = require("office-ui-fabric-react/lib/DetailsList");
+var ModernSpinner_1 = require("../ModernSpinner");
+var ModernDetailsListState_1 = require("./ModernDetailsListState");
+var mobx_1 = require("mobx");
+var Fields_1 = require("../Fields");
+var Spinner_1 = require("office-ui-fabric-react/lib/Spinner");
+var rxjs_1 = require("rxjs");
+var Tooltip_1 = require("office-ui-fabric-react/lib/Tooltip");
+var Sticky_1 = require("office-ui-fabric-react/lib/Sticky");
+var ContextualMenu_1 = require("office-ui-fabric-react/lib/ContextualMenu");
+var ModernFilterPanel_1 = require("../ModernFilterPanel");
+var ModernViewItemPanel_1 = require("../ModernViewItemPanel");
+var ModernDetailsList = /** @class */ (function (_super) {
+    __extends(ModernDetailsList, _super);
+    function ModernDetailsList(props) {
+        var _this = _super.call(this, props) || this;
+        _this.renderMissingItem = function (index, rowProps) {
+            _this.nextPageSubscription = rxjs_1.from(_this.props.onNextPage()).subscribe();
             return (React.createElement(ModernSpinner_1.ModernSpinner, { size: Spinner_1.SpinnerSize.small }));
         };
-        this.config = new ModernDetailsListState_1.default(this.props.items, this.props.currentViewItem, this.props.hasNextPage, this.props.fields, this.props.viewName, this.props.onSelectionChanged, this.props.onSortChanged, this.props.onFilterChanged, this.props.language);
-        mobx_1.reaction(() => this.props.items, (items) => {
-            this.config.items = items;
+        _this.config = new ModernDetailsListState_1.default(_this.props.items, _this.props.currentViewItem, _this.props.hasNextPage, _this.props.fields, _this.props.viewName, _this.props.onSelectionChanged, _this.props.onSortChanged, _this.props.onFilterChanged, _this.props.language);
+        mobx_1.reaction(function () { return _this.props.items; }, function (items) {
+            _this.config.items = items;
         });
-        mobx_1.reaction(() => this.props.currentViewItem, (currentViewItem) => {
-            this.config.currentViewItem = currentViewItem;
+        mobx_1.reaction(function () { return _this.props.currentViewItem; }, function (currentViewItem) {
+            _this.config.currentViewItem = currentViewItem;
         });
-        mobx_1.reaction(() => this.props.viewName, (viewName) => {
-            this.config.viewName = viewName;
-            this.config.currentFilters = [];
+        mobx_1.reaction(function () { return _this.props.viewName; }, function (viewName) {
+            _this.config.viewName = viewName;
+            _this.config.currentFilters = [];
         });
-        mobx_1.reaction(() => this.props.hasNextPage, (hasNextPage) => {
-            this.config.hasNextPage = hasNextPage;
+        mobx_1.reaction(function () { return _this.props.hasNextPage; }, function (hasNextPage) {
+            _this.config.hasNextPage = hasNextPage;
         });
-        mobx_1.reaction(() => this.props.fields, (fields) => {
-            this.config.fields = fields;
+        mobx_1.reaction(function () { return _this.props.fields; }, function (fields) {
+            _this.config.fields = fields;
         });
+        return _this;
     }
-    componentWillUnmount() {
+    ModernDetailsList.prototype.componentWillUnmount = function () {
         if (this.nextPageSubscription) {
             this.nextPageSubscription.unsubscribe();
         }
-    }
-    render() {
-        const result = this.config.items ? React.createElement("span", null,
-            React.createElement(DetailsList_1.DetailsList, { items: this.config.listItems, selection: this.props.selection, columns: this.config.columns, selectionPreservedOnEmptyClick: true, setKey: this.props.idProperty, onColumnHeaderClick: this.config.columnClick, onRenderMissingItem: this.renderMissingItem, onRenderDetailsHeader: (detailsHeaderProps, defaultRender) => (React.createElement(Sticky_1.Sticky, { stickyPosition: Sticky_1.StickyPositionType.Header }, defaultRender(Object.assign({}, detailsHeaderProps, { onRenderColumnHeaderTooltip: (tooltipHostProps) => (React.createElement(Tooltip_1.TooltipHost, Object.assign({}, tooltipHostProps))) })))), onRenderItemColumn: (item, index, column) => {
+    };
+    ModernDetailsList.prototype.render = function () {
+        var _this = this;
+        var result = this.config.items ? React.createElement("span", null,
+            React.createElement(DetailsList_1.DetailsList, { items: this.config.listItems, selection: this.props.selection, columns: this.config.columns, selectionPreservedOnEmptyClick: true, setKey: this.props.idProperty, onColumnHeaderClick: this.config.columnClick, onRenderMissingItem: this.renderMissingItem, onRenderDetailsHeader: function (detailsHeaderProps, defaultRender) { return (React.createElement(Sticky_1.Sticky, { stickyPosition: Sticky_1.StickyPositionType.Header }, defaultRender(__assign({}, detailsHeaderProps, { onRenderColumnHeaderTooltip: function (tooltipHostProps) { return (React.createElement(Tooltip_1.TooltipHost, __assign({}, tooltipHostProps))); } })))); }, onRenderItemColumn: function (item, index, column) {
                     //   if (item) {
                     //   const fieldContent = item[column.fieldName];
-                    const schema = this.config.fields.find(a => a.key == column.key);
+                    var schema = _this.config.fields.find(function (a) { return a.key == column.key; });
                     //    console.log(fieldContent);
                     //   console.log("wooshj");
                     // value = { fieldContent }
-                    return (React.createElement(Fields_1.ModernDisplayField, { language: this.props.language, field: schema, item: item, onGetFieldValue: this.props.onGetFieldValue }));
+                    return (React.createElement(Fields_1.ModernDisplayField, { language: _this.props.language, field: schema, item: item, onGetFieldValue: _this.props.onGetFieldValue }));
                     //}
                     //else {
                     //    return (
@@ -67,7 +94,7 @@ let ModernDetailsList = class ModernDetailsList extends React.Component {
                     //    );
                     //}
                 } }),
-            this.config.contextualHeaderMenuProps && (React.createElement(ContextualMenu_1.ContextualMenu, Object.assign({}, this.config.contextualHeaderMenuProps))))
+            this.config.contextualHeaderMenuProps && (React.createElement(ContextualMenu_1.ContextualMenu, __assign({}, this.config.contextualHeaderMenuProps))))
             : React.createElement("span", null,
                 React.createElement("br", null),
                 React.createElement(ModernSpinner_1.ModernSpinner, { description: this.config.loadingText }));
@@ -75,10 +102,11 @@ let ModernDetailsList = class ModernDetailsList extends React.Component {
             result,
             React.createElement(ModernViewItemPanel_1.ModernViewItemPanel, { item: this.config.currentViewItem, isVisible: this.config.currentViewItem, imageProperty: this.props.itemImageProperty, onDismiss: this.config.onDismissViewItemPanel, groups: this.props.viewItemGroups, authorProperty: this.props.itemAuthorProperty, onGetItem: this.props.onGetItem, language: this.props.language, colorProperty: this.props.itemColorProperty, onActionClick: this.props.onActionClicked, editorProperty: this.props.itemEditorProperty, onGetFieldValue: this.props.onGetFieldValue, actions: this.props.viewItemActions, onSaveNewAction: this.props.onSaveNewAction, getNewActionFieldGroups: this.props.getNewActionFieldGroups, getNewActionItem: this.props.getNewActionItem, getNewOptionFieldGroups: this.props.getNewOptionFieldGroups, onSaveNewOption: this.props.onSaveNewOption, getNewOptionItem: this.props.getNewOptionItem, createdProperty: this.props.itemCreatedProperty, modifiedProperty: this.props.itemModifiedProperty, onDeleteItem: this.props.onDeleteItem, resolveLookup: this.props.resolveLookup, resolveSuggestions: this.props.resolveSuggestions, onUpdateItem: this.props.onUpdateItem, titleProperty: this.props.itemTitleProperty, descriptionProperty: this.props.itemDescriptionProperty, secondaryDescriptionProperty: this.props.itemSecondaryDescriptionProperty }),
             React.createElement(ModernFilterPanel_1.ModernFilterPanel, { isVisible: this.config.currentFilterField != null, getFilterOptions: this.props.getFilterOptions, currentFilters: this.config.currentFilterPanelValues, language: this.props.language, field: this.config.currentFilterField, onDismiss: this.config.filterDismissed, onApply: this.config.onFilterApplied })));
-    }
-};
-ModernDetailsList = __decorate([
-    mobx_react_1.observer
-], ModernDetailsList);
+    };
+    ModernDetailsList = __decorate([
+        mobx_react_1.observer
+    ], ModernDetailsList);
+    return ModernDetailsList;
+}(React.Component));
 exports.ModernDetailsList = ModernDetailsList;
 //# sourceMappingURL=ModernDetailsList.js.map

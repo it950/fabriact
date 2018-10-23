@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6,35 +19,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const mobx_react_1 = require("mobx-react");
-const __1 = require("../../..");
-const ModernImageField_1 = require("../ModernImageField");
-const __2 = require("..");
-const ModernDisplayFieldState_1 = require("./ModernDisplayFieldState");
-const rxjs_1 = require("rxjs");
-const Shimmer_1 = require("office-ui-fabric-react/lib/Shimmer");
-const mobx_1 = require("mobx");
-let ModernDisplayField = class ModernDisplayField extends React.Component {
-    constructor(props) {
-        super(props);
-        this.config = new ModernDisplayFieldState_1.default(this.props.item, this.props.field, this.props.onGetFieldValue);
-        mobx_1.reaction(() => this.props.item, (item) => {
-            this.config.item = item;
+var React = require("react");
+var mobx_react_1 = require("mobx-react");
+var __1 = require("../../..");
+var ModernImageField_1 = require("../ModernImageField");
+var __2 = require("..");
+var ModernDisplayFieldState_1 = require("./ModernDisplayFieldState");
+var rxjs_1 = require("rxjs");
+var Shimmer_1 = require("office-ui-fabric-react/lib/Shimmer");
+var mobx_1 = require("mobx");
+var ModernDisplayField = /** @class */ (function (_super) {
+    __extends(ModernDisplayField, _super);
+    function ModernDisplayField(props) {
+        var _this = _super.call(this, props) || this;
+        _this.config = new ModernDisplayFieldState_1.default(_this.props.item, _this.props.field, _this.props.onGetFieldValue);
+        mobx_1.reaction(function () { return _this.props.item; }, function (item) {
+            _this.config.item = item;
         });
+        return _this;
     }
-    componentWillUnmount() {
+    ModernDisplayField.prototype.componentWillUnmount = function () {
         if (this.asyncSubscription) {
             this.asyncSubscription.unsubscribe();
         }
-    }
-    componentDidMount() {
+    };
+    ModernDisplayField.prototype.componentDidMount = function () {
         if (this.config.field.asyncValue) {
             this.asyncSubscription = rxjs_1.from(this.config.init()).subscribe();
         }
-    }
-    render() {
-        let html = null;
+    };
+    ModernDisplayField.prototype.render = function () {
+        var html = null;
         if (!this.config.isLoading) {
             switch (this.props.field.type) {
                 case __1.ModernFieldType.image:
@@ -86,7 +101,7 @@ let ModernDisplayField = class ModernDisplayField extends React.Component {
                     html = React.createElement(__2.ModernUrlDisplayField, { value: this.config.value });
                     break;
                 default:
-                    console.warn(`FieldType ${this.props.field.type} missing`);
+                    console.warn("FieldType " + this.props.field.type + " missing");
                     break;
             }
         }
@@ -95,10 +110,11 @@ let ModernDisplayField = class ModernDisplayField extends React.Component {
             html = React.createElement(Shimmer_1.Shimmer, null);
         }
         return (React.createElement("span", null, html));
-    }
-};
-ModernDisplayField = __decorate([
-    mobx_react_1.observer
-], ModernDisplayField);
+    };
+    ModernDisplayField = __decorate([
+        mobx_react_1.observer
+    ], ModernDisplayField);
+    return ModernDisplayField;
+}(React.Component));
 exports.ModernDisplayField = ModernDisplayField;
 //# sourceMappingURL=ModernDisplayField.js.map

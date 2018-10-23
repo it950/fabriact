@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6,81 +19,88 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mobx_1 = require("mobx");
-const rxjs_1 = require("rxjs");
-const operators_1 = require("rxjs/operators");
-const ModernState_1 = require("../../utilities/ModernState");
-const ModernFormValidator_1 = require("../ModernForm/ModernFormValidator");
-class ModernEditItemPanelState extends ModernState_1.default {
-    constructor(item, fields, onDismissEvent, onUpdateItem, language) {
-        super(language);
-        this.onDismissEvent = onDismissEvent;
-        this.onUpdateItem = onUpdateItem;
-        this.onDismiss = () => {
-            this.item = null;
-            this.onDismissEvent();
+var mobx_1 = require("mobx");
+var rxjs_1 = require("rxjs");
+var operators_1 = require("rxjs/operators");
+var ModernState_1 = require("../../utilities/ModernState");
+var ModernFormValidator_1 = require("../ModernForm/ModernFormValidator");
+var ModernEditItemPanelState = /** @class */ (function (_super) {
+    __extends(ModernEditItemPanelState, _super);
+    function ModernEditItemPanelState(item, fields, onDismissEvent, onUpdateItem, language) {
+        var _this = _super.call(this, language) || this;
+        _this.onDismissEvent = onDismissEvent;
+        _this.onUpdateItem = onUpdateItem;
+        _this.onDismiss = function () {
+            _this.item = null;
+            _this.onDismissEvent();
         };
-        this.onFooterButtonClick = (key) => {
+        _this.onFooterButtonClick = function (key) {
             switch (key) {
                 case "Save":
-                    if (this.validator.validateForm()) {
-                        console.log(mobx_1.toJS(this.item));
-                        this.isSaving = true;
-                        rxjs_1.from(this.onUpdateItem(mobx_1.toJS(this.item)))
-                            .pipe(operators_1.map(y => {
-                            this.isSaving = false;
-                            this.item = null;
-                            this.validator = new ModernFormValidator_1.default(this.strings);
+                    if (_this.validator.validateForm()) {
+                        console.log(mobx_1.toJS(_this.item));
+                        _this.isSaving = true;
+                        rxjs_1.from(_this.onUpdateItem(mobx_1.toJS(_this.item)))
+                            .pipe(operators_1.map(function (y) {
+                            _this.isSaving = false;
+                            _this.item = null;
+                            _this.validator = new ModernFormValidator_1.default(_this.strings);
                         })).subscribe();
                     }
                     break;
                 case "Cancel":
-                    this.onDismiss();
+                    _this.onDismiss();
                     break;
             }
         };
-        this.item = item;
-        this.fields = fields;
-        this.validator = new ModernFormValidator_1.default(this.strings);
+        _this.item = item;
+        _this.fields = fields;
+        _this.validator = new ModernFormValidator_1.default(_this.strings);
+        return _this;
     }
-    get footerButtons() {
-        if (!this.item || this.isSaving || !this.fields) {
-            return [];
-        }
-        var items = [
-            {
-                text: this.strings.save,
-                id: "Save",
-                isPrimary: true
-            },
-            {
-                text: this.strings.cancel,
-                id: "Cancel"
+    Object.defineProperty(ModernEditItemPanelState.prototype, "footerButtons", {
+        get: function () {
+            if (!this.item || this.isSaving || !this.fields) {
+                return [];
             }
-        ];
-        return items;
-    }
-}
-__decorate([
-    mobx_1.observable
-], ModernEditItemPanelState.prototype, "item", void 0);
-__decorate([
-    mobx_1.observable
-], ModernEditItemPanelState.prototype, "actions", void 0);
-__decorate([
-    mobx_1.observable
-], ModernEditItemPanelState.prototype, "isSaving", void 0);
-__decorate([
-    mobx_1.observable
-], ModernEditItemPanelState.prototype, "fields", void 0);
-__decorate([
-    mobx_1.computed
-], ModernEditItemPanelState.prototype, "footerButtons", null);
-__decorate([
-    mobx_1.action
-], ModernEditItemPanelState.prototype, "onDismiss", void 0);
-__decorate([
-    mobx_1.action
-], ModernEditItemPanelState.prototype, "onFooterButtonClick", void 0);
+            var items = [
+                {
+                    text: this.strings.save,
+                    id: "Save",
+                    isPrimary: true
+                },
+                {
+                    text: this.strings.cancel,
+                    id: "Cancel"
+                }
+            ];
+            return items;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        mobx_1.observable
+    ], ModernEditItemPanelState.prototype, "item", void 0);
+    __decorate([
+        mobx_1.observable
+    ], ModernEditItemPanelState.prototype, "actions", void 0);
+    __decorate([
+        mobx_1.observable
+    ], ModernEditItemPanelState.prototype, "isSaving", void 0);
+    __decorate([
+        mobx_1.observable
+    ], ModernEditItemPanelState.prototype, "fields", void 0);
+    __decorate([
+        mobx_1.computed
+    ], ModernEditItemPanelState.prototype, "footerButtons", null);
+    __decorate([
+        mobx_1.action
+    ], ModernEditItemPanelState.prototype, "onDismiss", void 0);
+    __decorate([
+        mobx_1.action
+    ], ModernEditItemPanelState.prototype, "onFooterButtonClick", void 0);
+    return ModernEditItemPanelState;
+}(ModernState_1.default));
 exports.default = ModernEditItemPanelState;
 //# sourceMappingURL=ModernEditItemPanelState.js.map

@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6,27 +19,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const mobx_react_1 = require("mobx-react");
-const __1 = require("..");
-const Button_1 = require("office-ui-fabric-react/lib/Button");
-const __2 = require("..");
-let ModernDateEditField = class ModernDateEditField extends React.Component {
-    constructor(props) {
-        super(props);
-        this.updateItem = (value) => {
+var React = require("react");
+var mobx_react_1 = require("mobx-react");
+var __1 = require("..");
+var Button_1 = require("office-ui-fabric-react/lib/Button");
+var __2 = require("..");
+var ModernDateEditField = /** @class */ (function (_super) {
+    __extends(ModernDateEditField, _super);
+    function ModernDateEditField(props) {
+        var _this = _super.call(this, props) || this;
+        _this.updateItem = function (value) {
             console.log(value);
-            this.props.onChange(this.props.field.key, value);
+            _this.props.onChange(_this.props.field.key, value);
             return value;
         };
-        this.getErrorMessage = (value) => {
-            return this.props.validate(this.props.field, value);
+        _this.getErrorMessage = function (value) {
+            return _this.props.validate(_this.props.field, value);
         };
-        this.onClear = () => {
-            this.props.onChange(this.props.field.key, null);
+        _this.onClear = function () {
+            _this.props.onChange(_this.props.field.key, null);
         };
+        return _this;
     }
-    render() {
+    ModernDateEditField.prototype.render = function () {
         var clearButton = !this.props.field.required && this.props.value != null ?
             React.createElement(Button_1.IconButton, { onClick: this.onClear, iconProps: { iconName: 'Clear' } })
             : React.createElement("span", null);
@@ -38,10 +53,11 @@ let ModernDateEditField = class ModernDateEditField extends React.Component {
                 React.createElement("div", { className: "ms-Grid-col ms-sm11" }, field),
                 React.createElement("div", { className: "ms-Grid-col ms-sm1" },
                     React.createElement("div", { className: "ms-textAlignRight" }, clearButton)))));
-    }
-};
-ModernDateEditField = __decorate([
-    mobx_react_1.observer
-], ModernDateEditField);
+    };
+    ModernDateEditField = __decorate([
+        mobx_react_1.observer
+    ], ModernDateEditField);
+    return ModernDateEditField;
+}(React.Component));
 exports.ModernDateEditField = ModernDateEditField;
 //# sourceMappingURL=ModernDateEditField.js.map

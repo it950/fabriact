@@ -7,8 +7,9 @@
     "removeComments": false,
     "sourceMap": true,
     "skipLibCheck": true,
-    "target": "es6",
-    "jsx": "react"
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["es6", "dom"]
   },
   "exclude": [
     "node_modules"
@@ -19,6 +20,5 @@
     "custom.d.ts",
     "./src/*",
     "./src/**/**/*"
-  ],
-  "lib": [ "es2017", "dom", "es6" ]
+  ]
 }

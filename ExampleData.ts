@@ -1,6 +1,6 @@
 ﻿import { observable, computed, action } from "mobx";
 import { IModernView, IModernField, ModernFieldType, IModernFieldGroup, IModernAction, ModernActionType } from "./src";
-var faker = require('faker');
+import * as faker from 'faker/locale/nl';
 import * as moment from 'moment';
 import { SelectionMode } from "office-ui-fabric-react/lib/DetailsList";
 
@@ -9,7 +9,7 @@ export default class ExampleData {
 
     constructor() {
 
-        faker.locale = "nl";
+        //faker.locale = "nl";
 
         this.lookups = this.getInitialLookupDemoData();
         this.metadata = this.getInitialMetadataDemoData();

@@ -6,24 +6,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mobx_1 = require("mobx");
-const locales_1 = require("./locales");
-class ModernState {
-    constructor(language) {
+var mobx_1 = require("mobx");
+var locales_1 = require("./locales");
+var ModernState = /** @class */ (function () {
+    function ModernState(language) {
         this.locale = new locales_1.default(language);
     }
-    get strings() {
-        if (this.locale) {
-            return this.locale.strings;
-        }
-        return {};
-    }
-}
-__decorate([
-    mobx_1.observable
-], ModernState.prototype, "locale", void 0);
-__decorate([
-    mobx_1.computed
-], ModernState.prototype, "strings", null);
+    Object.defineProperty(ModernState.prototype, "strings", {
+        get: function () {
+            if (this.locale) {
+                return this.locale.strings;
+            }
+            return {};
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        mobx_1.observable
+    ], ModernState.prototype, "locale", void 0);
+    __decorate([
+        mobx_1.computed
+    ], ModernState.prototype, "strings", null);
+    return ModernState;
+}());
 exports.default = ModernState;
 //# sourceMappingURL=ModernState.js.map

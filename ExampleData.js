@@ -15,6 +15,7 @@ var ExampleData = /** @class */ (function () {
     function ExampleData() {
         //faker.locale = "nl";
         var _this = this;
+        this.placeholder = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
         this.newItem = function () {
             return {
                 id: faker.random.uuid(),
@@ -47,7 +48,7 @@ var ExampleData = /** @class */ (function () {
                     color: faker.internet.color(),
                     multiline: faker.lorem.sentences(),
                     login: faker.internet.userName(),
-                    image: faker.image.people(),
+                    //image: faker.image.people(),
                     date: faker.date.past(),
                     boolean: faker.random.boolean(),
                     created: faker.date.past(),

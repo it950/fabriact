@@ -43,7 +43,7 @@ var ModernViewGroup = /** @class */ (function (_super) {
                     React.createElement(ModernFieldLabel_1.ModernFieldLabel, { label: field.name })),
                 React.createElement("div", { className: "ms-Grid-col ms-sm6" },
                     React.createElement(Label_1.Label, null,
-                        React.createElement(Fields_1.ModernDisplayField, { item: _this.props.item, field: field, onGetFieldValue: _this.props.onGetFieldValue, language: _this.props.language }))),
+                        React.createElement(Fields_1.ModernDisplayField, { item: _this.props.item, field: field, placeholderImage: _this.props.placeholderImage, onGetFieldValue: _this.props.onGetFieldValue, language: _this.props.language }))),
                 React.createElement("div", { className: "ms-Grid-col ms-sm2" },
                     React.createElement(ModernViewGroupFieldButton_1.ModernViewGroupFieldButton, { field: field, onActionClicked: _this.props.onActionClicked, language: _this.props.language, onEditClicked: _this.onGroupEdit, onMoreClicked: _this.props.onMoreClicked })));
         }) : React.createElement("span", null);

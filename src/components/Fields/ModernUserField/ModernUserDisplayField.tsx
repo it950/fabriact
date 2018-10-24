@@ -56,7 +56,7 @@ export class ModernUserDisplayField extends React.Component<IModernUserDisplayFi
                 var users = this.props.value.map(t => {
                     return {
                         personaName: t.title,
-                        imageUrl: t.image
+                        imageUrl: t.image ? t.image : this.props.placeholderImage
                     };
                 });
 
@@ -64,11 +64,13 @@ export class ModernUserDisplayField extends React.Component<IModernUserDisplayFi
 
             }
             else {
+                const image = this.props.value.image ? this.props.value.image : this.props.placeholderImage;
+
                 html = <Persona
                     text={this.props.value.title}
                     secondaryText={this.props.value.description}
                     showSecondaryText={this.props.value.description != null}
-                    imageUrl={this.props.value.image}
+                    imageUrl={image}
                     size={PersonaSize.size32}
                 />
             }

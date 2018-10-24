@@ -51,7 +51,7 @@ var ModernViewItemPanel = /** @class */ (function (_super) {
     ModernViewItemPanel.prototype.render = function () {
         var _this = this;
         var groups = this.config.itemGroups ? this.config.itemGroups.map(function (group) {
-            return React.createElement(ModernViewGroup_1.ModernViewGroup, { key: group.id, id: group.id, fields: group.fields, onMoreClicked: _this.config.onMoreClicked, onActionClicked: _this.config.onActionClicked, onEditClicked: _this.config.onEditClicked, language: _this.props.language, item: _this.config.item, onGetFieldValue: _this.props.onGetFieldValue });
+            return React.createElement(ModernViewGroup_1.ModernViewGroup, { key: group.id, id: group.id, fields: group.fields, onMoreClicked: _this.config.onMoreClicked, placeholderImage: _this.props.placeholderImage, onActionClicked: _this.config.onActionClicked, onEditClicked: _this.config.onEditClicked, language: _this.props.language, item: _this.config.item, onGetFieldValue: _this.props.onGetFieldValue });
         }) : React.createElement("span", null);
         var form = this.config.isLoading ? React.createElement(ModernSpinner_1.ModernSpinner, null) :
             React.createElement("div", { className: "ms-Grid" }, groups);
@@ -60,7 +60,7 @@ var ModernViewItemPanel = /** @class */ (function (_super) {
                 React.createElement(ModernViewItemDetail_1.ModernViewItemDetail, { item: this.config.item, authorProperty: this.props.authorProperty, editorProperty: this.props.editorProperty, createdProperty: this.props.createdProperty, modifiedProperty: this.props.modifiedProperty, language: this.props.language })
                 : React.createElement("span", null);
         return (React.createElement("span", null,
-            React.createElement(ModernItemPanel_1.ModernItemPanel, { item: this.config.item, isVisible: this.props.isVisible, titleProperty: this.props.titleProperty, descriptionProperty: this.props.descriptionProperty, onDismiss: this.props.onDismiss, actions: this.config.itemActions, secondaryDescriptionProperty: this.props.secondaryDescriptionProperty, onActionClick: this.config.onPanelActionClicked, colorProperty: this.props.colorProperty, imageProperty: this.props.imageProperty },
+            React.createElement(ModernItemPanel_1.ModernItemPanel, { item: this.config.item, isVisible: this.props.isVisible, titleProperty: this.props.titleProperty, placeholderImage: this.props.placeholderImage, descriptionProperty: this.props.descriptionProperty, onDismiss: this.props.onDismiss, actions: this.config.itemActions, secondaryDescriptionProperty: this.props.secondaryDescriptionProperty, onActionClick: this.config.onPanelActionClicked, colorProperty: this.props.colorProperty, imageProperty: this.props.imageProperty },
                 form,
                 detail,
                 React.createElement(ModernDeleteDialog_1.ModernDeleteDialog, { isVisible: this.config.showDeleteConfirmation, onConfirmed: this.config.onDeleteConfirmed, itemCount: 1, onCanceled: this.config.onDeleteCanceled, language: this.props.language })),

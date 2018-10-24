@@ -234,7 +234,7 @@
     <Content Include="src\components\Buttons\ModernButtonRow\ModernButtonRow.module.css" />
     <Content Include="src\components\Fields\ModernFieldLabel\ModernFieldLabel.module.css" />
     <Content Include="src\components\Fields\ModernFileField\ModernFileEditField.module.css" />
-    <Content Include="src\components\Fields\ModernImageField\ModernImageDisplayField.module.scss" />
+    <Content Include="src\components\Fields\ModernImageField\ModernImageDisplayField.module.css" />
     <Content Include="src\components\Fields\ModernMetadataField\ModernMetadataButton.module.css" />
     <Content Include="src\components\ModernCommandBar\ModernCommandBar.module.css">
       <SubType>Code</SubType>
@@ -242,7 +242,6 @@
     <Content Include="src\components\ModernFilterPanel\ModernFilterPanel.module.css" />
     <Content Include="src\components\ModernItemPanel\ModernItemPanel.module.css" />
     <Content Include="src\components\ModernOfficeList\ModernOfficeList.module.css" />
-    <Content Include="src\utilities\images\placeholder.svg" />
     <Content Include="src\components\ModernTileList\ModernTileList.module.css" />
     <Content Include="src\components\ModernViewItemPanel\ModernViewGroup.module.css" />
     <Content Include="tsconfig.json" />
@@ -324,7 +323,6 @@
     <Folder Include="src\components\ModernFilterPanel\" />
     <Folder Include="src\components\ModernRedirectDialog\" />
     <Folder Include="src\utilities\" />
-    <Folder Include="src\utilities\images\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

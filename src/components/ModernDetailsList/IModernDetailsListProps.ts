@@ -13,6 +13,7 @@ export interface IModernDetailsListProps {
     language?: string;
     hasNextPage?: boolean;
     onGetFieldValue: any;
+    placeholderImage?: string;
 
     idProperty: string;
     selection: Selection;

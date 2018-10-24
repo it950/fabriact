@@ -26,12 +26,7 @@ var Buttons_1 = require("../Buttons");
 var Persona_1 = require("office-ui-fabric-react/lib/Persona");
 require("./ModernItemPanel.module.css");
 var ModernItemPanelState_1 = require("./ModernItemPanelState");
-//import PlaceholderImage from './placeholder.svg';
-//const logo: any = require('./placeholder.svg');
-//import PlaceholderImage from 'react-svg-loader!./placeholder.svg';
-//import PlaceholderImage from '../../utilities/images/placeholder.svg';
 var mobx_1 = require("mobx");
-//import PlaceholderImage from 'react-svg-loader!./placeholder.svg';
 var ModernItemPanel = /** @class */ (function (_super) {
     __extends(ModernItemPanel, _super);
     function ModernItemPanel(props) {
@@ -60,7 +55,7 @@ var ModernItemPanel = /** @class */ (function (_super) {
                         React.createElement("div", { className: "ms-Grid modernHeaderGrid" },
                             React.createElement("div", { className: "ms-Grid-row" },
                                 React.createElement("div", { className: "ms-Grid-col ms-sm3 ms-md3 ms-lg2" },
-                                    React.createElement(Persona_1.Persona, { imageUrl: _this.config.imageError || !_this.config.image ? null : _this.config.image, onPhotoLoadingStateChange: _this.config.imageStateChanged, size: Persona_1.PersonaSize.size72, hidePersonaDetails: true })),
+                                    React.createElement(Persona_1.Persona, { imageUrl: _this.config.imageError || !_this.config.image ? _this.props.placeholderImage : _this.config.image, onPhotoLoadingStateChange: _this.config.imageStateChanged, size: Persona_1.PersonaSize.size72, hidePersonaDetails: true })),
                                 React.createElement("div", { className: "ms-Grid-col ms-sm8 ms-md8 ms-lg9" },
                                     React.createElement("div", { className: "ms-Grid" },
                                         React.createElement("div", { className: "ms-Grid-row" },

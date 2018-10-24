@@ -331,6 +331,7 @@ class Demo extends React.Component {
                     viewItemActions={this.itemActions} onExport={this.onExport}
                     getNewOptionFieldGroups={this.getNewOptionFieldGroups} getNewOptionItem={this.getNewOptionItem}
                     onSaveNewOption={this.onSaveNewOption}
+                    placeholderImage={this.exampleData.placeholder}
                     viewItemGroups={this.exampleData.demoViewFieldGroupsData} onGetFieldValue={this.getFieldValue}
                     onNextPage={this.onNextPage} hasNextPage={this.hasNextPage} itemIdProperty={"id"}
                     onSaveNewItem={this.onSaveNewItem} onDeleteItem={this.onDelete} resolveLookup={this.resolveLookup}

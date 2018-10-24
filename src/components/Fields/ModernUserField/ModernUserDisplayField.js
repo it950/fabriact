@@ -38,6 +38,7 @@ var ModernUserDisplayField = /** @class */ (function (_super) {
         //                    imageUrl: a.PsaImage
         //                };
         //            });
+        var _this = this;
         //            return (
         //                <Label>
         //                    <Facepile personas={users} personaSize={PersonaSize.size32} />
@@ -65,13 +66,14 @@ var ModernUserDisplayField = /** @class */ (function (_super) {
                 var users = this.props.value.map(function (t) {
                     return {
                         personaName: t.title,
-                        imageUrl: t.image
+                        imageUrl: t.image ? t.image : _this.props.placeholderImage
                     };
                 });
                 html = React.createElement(Facepile_1.Facepile, { personas: users, personaSize: Persona_1.PersonaSize.size32 });
             }
             else {
-                html = React.createElement(Persona_1.Persona, { text: this.props.value.title, secondaryText: this.props.value.description, showSecondaryText: this.props.value.description != null, imageUrl: this.props.value.image, size: Persona_1.PersonaSize.size32 });
+                var image = this.props.value.image ? this.props.value.image : this.props.placeholderImage;
+                html = React.createElement(Persona_1.Persona, { text: this.props.value.title, secondaryText: this.props.value.description, showSecondaryText: this.props.value.description != null, imageUrl: image, size: Persona_1.PersonaSize.size32 });
             }
         }
         return (React.createElement("span", null, html));

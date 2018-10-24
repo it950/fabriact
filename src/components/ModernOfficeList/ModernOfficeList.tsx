@@ -60,6 +60,7 @@ export class ModernOfficeList extends React.Component<IModernOfficeListProps, an
                     <ModernDetailsList items={this.config.items} onSelectionChanged={this.config.onSelectionChanged} selection={this.config.selection}
                         onActionClicked={this.props.onActionClicked} onDeleteItem={this.config.onDeleteItem} onGetItem={this.props.onGetItem}
                         currentViewItem={this.config.currentViewItem}
+                        placeholderImage={this.props.placeholderImage}
                         getNewActionFieldGroups={this.props.getNewActionFieldGroups} getNewActionItem={this.props.getNewActionItem} onSaveNewAction={this.props.onSaveNewAction}
                         onSaveNewOption={this.props.onSaveNewOption} onUpdateItem={this.config.onUpdateItem} getNewOptionFieldGroups={this.props.getNewOptionFieldGroups}
                         getNewOptionItem={this.props.getNewOptionItem} itemAuthorProperty={this.props.itemAuthorProperty} itemColorProperty={this.props.itemColorProperty}

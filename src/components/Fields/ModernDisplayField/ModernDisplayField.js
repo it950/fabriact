@@ -95,7 +95,7 @@ var ModernDisplayField = /** @class */ (function (_super) {
                     html = React.createElement(__2.ModernEmailDisplayField, { value: this.config.value });
                     break;
                 case __1.ModernFieldType.user:
-                    html = React.createElement(__2.ModernUserDisplayField, { value: this.config.value });
+                    html = React.createElement(__2.ModernUserDisplayField, { value: this.config.value, placeholderImage: this.props.placeholderImage });
                     break;
                 case __1.ModernFieldType.url:
                     html = React.createElement(__2.ModernUrlDisplayField, { value: this.config.value });

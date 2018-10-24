@@ -28,7 +28,8 @@ export class ModernViewGroup extends React.Component<IModernViewGroupProps, any>
                 </div>
                 <div className={"ms-Grid-col ms-sm6"}>
                     <Label>
-                        <ModernDisplayField item={this.props.item} field={field} onGetFieldValue={this.props.onGetFieldValue} language={this.props.language} />
+                        <ModernDisplayField item={this.props.item} field={field} placeholderImage={this.props.placeholderImage}
+                            onGetFieldValue={this.props.onGetFieldValue} language={this.props.language} />
                     </Label>
                 </div>
                 <div className={"ms-Grid-col ms-sm2"}>

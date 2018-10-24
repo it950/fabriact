@@ -22,6 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var mobx_react_1 = require("mobx-react");
 var Image_1 = require("office-ui-fabric-react/lib/Image");
+require("./ModernImageDisplayField.module.css");
 var ModernImageDisplayField = /** @class */ (function (_super) {
     __extends(ModernImageDisplayField, _super);
     function ModernImageDisplayField(props) {
@@ -29,7 +30,7 @@ var ModernImageDisplayField = /** @class */ (function (_super) {
     }
     ModernImageDisplayField.prototype.render = function () {
         var result = this.props.value != null ? this.props.value : this.props.placeholder;
-        return (React.createElement(Image_1.Image, { className: "psaLogoImage", src: result, imageFit: Image_1.ImageFit.none }));
+        return (React.createElement(Image_1.Image, { className: "modernLogoImage", src: result, imageFit: Image_1.ImageFit.none }));
     };
     ModernImageDisplayField = __decorate([
         mobx_react_1.observer

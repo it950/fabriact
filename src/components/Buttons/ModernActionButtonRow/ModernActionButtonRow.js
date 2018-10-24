@@ -32,7 +32,6 @@ var ModernActionButtonRow = /** @class */ (function (_super) {
         var _this = this;
         var actions = this.props.buttons != null ? this.props.buttons.map(function (g) {
             return React.createElement("span", { key: g.key, className: "actionButtonContainer" },
-                " ",
                 React.createElement(__1.ModernActionButton, { label: g.name, icon: g.icon, id: g.key, onClick: _this.props.onClick }));
         }) : React.createElement("span", null);
         return (React.createElement("div", { className: "actionsRow" },

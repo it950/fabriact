@@ -40,7 +40,7 @@ export class ModernViewItemPanel extends React.Component<IModernViewItemPanelPro
 
     render() {
         const groups = this.config.itemGroups ? this.config.itemGroups.map((group) => {
-            return <ModernViewGroup key={group.id} id={group.id} fields={group.fields} onMoreClicked={this.config.onMoreClicked}
+            return <ModernViewGroup key={group.id} id={group.id} fields={group.fields} onMoreClicked={this.config.onMoreClicked} placeholderImage={this.props.placeholderImage}
                 onActionClicked={this.config.onActionClicked} onEditClicked={this.config.onEditClicked} language={this.props.language}
                 item={this.config.item} onGetFieldValue={this.props.onGetFieldValue} />;
         }) : <span></span>;
@@ -59,7 +59,8 @@ export class ModernViewItemPanel extends React.Component<IModernViewItemPanelPro
 
         return (
             <span>
-            <ModernItemPanel item={this.config.item} isVisible={this.props.isVisible} titleProperty={this.props.titleProperty}
+                <ModernItemPanel item={this.config.item} isVisible={this.props.isVisible} titleProperty={this.props.titleProperty}
+                    placeholderImage={this.props.placeholderImage}
                 descriptionProperty={this.props.descriptionProperty} onDismiss={this.props.onDismiss} actions={this.config.itemActions}
                 secondaryDescriptionProperty={this.props.secondaryDescriptionProperty} onActionClick={this.config.onPanelActionClicked}
                 colorProperty={this.props.colorProperty} imageProperty={this.props.imageProperty} >

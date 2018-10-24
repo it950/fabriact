@@ -36,4 +36,6 @@ export interface IModernViewItemPanelProps {
     getNewActionFieldGroups: (fieldId) => Promise<IModernFieldGroup[]>;
     getNewActionItem: (fieldId) => Promise<any>;
     onSaveNewAction: (item) => Promise<any>;
+
+    placeholderImage?: string;
 }

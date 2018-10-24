@@ -5,8 +5,9 @@ export interface IModernViewGroupProps {
     fields: IModernField[];
     item: any;
     onGetFieldValue: any;
-    onEditClicked: any;
-    onMoreClicked: any;
-    onActionClicked: any;
-    language: string;
+    onEditClicked?: any;
+    onMoreClicked?: any;
+    onActionClicked?: any;
+    language?: string;
+    placeholderImage?: string;
 }

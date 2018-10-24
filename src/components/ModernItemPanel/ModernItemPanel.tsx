@@ -6,13 +6,7 @@ import { ModernActionButtonRow } from '../Buttons';
 import { Persona, PersonaSize } from 'office-ui-fabric-react/lib/Persona';
 import './ModernItemPanel.module.css';
 import ModernItemPanelState from './ModernItemPanelState';
-//import PlaceholderImage from './placeholder.svg';
-//const logo: any = require('./placeholder.svg');
-//import PlaceholderImage from 'react-svg-loader!./placeholder.svg';
-//import PlaceholderImage from '../../utilities/images/placeholder.svg';
 import { reaction } from 'mobx';
-
-//import PlaceholderImage from 'react-svg-loader!./placeholder.svg';
 
 @observer
 export class ModernItemPanel extends React.Component<IModernItemPanelProps, any> {
@@ -68,7 +62,7 @@ export class ModernItemPanel extends React.Component<IModernItemPanelProps, any>
                                 <div className={"ms-Grid modernHeaderGrid"}>
                                     <div className={"ms-Grid-row"}>
                                         <div className={"ms-Grid-col ms-sm3 ms-md3 ms-lg2"}>
-                                            <Persona imageUrl={this.config.imageError || !this.config.image ? null : this.config.image}
+                                            <Persona imageUrl={this.config.imageError || !this.config.image ? this.props.placeholderImage : this.config.image}
                                                 onPhotoLoadingStateChange={this.config.imageStateChanged} size={PersonaSize.size72} hidePersonaDetails={true} />
                                         </div>
                                         <div className={"ms-Grid-col ms-sm8 ms-md8 ms-lg9"}>

@@ -16,9 +16,9 @@ export class ModernActionButtonRow extends React.Component<IModernActionButtonRo
 
         const actions = this.props.buttons != null ? this.props.buttons.map(g => {
 
-            return <span key={g.key} className={"actionButtonContainer"}> <ModernActionButton
-                label={g.name} icon={g.icon} id={g.key}
-                onClick={this.props.onClick} /></span>;
+            return <span key={g.key} className={"actionButtonContainer"}>
+                <ModernActionButton label={g.name} icon={g.icon} id={g.key} onClick={this.props.onClick} />
+            </span>;
         }) : <span></span>;
 
 

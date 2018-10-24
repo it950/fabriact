@@ -106,7 +106,7 @@ export class ModernDisplayField extends React.Component<IModernDisplayFieldProps
 
                     break;
                 case ModernFieldType.user:
-                    html = <ModernUserDisplayField value={this.config.value} />;
+                    html = <ModernUserDisplayField value={this.config.value} placeholderImage={this.props.placeholderImage} />;
 
                     break;
                 case ModernFieldType.url:

@@ -80,19 +80,8 @@ var ModernDetailsList = /** @class */ (function (_super) {
         var _this = this;
         var result = this.config.items ? React.createElement("span", null,
             React.createElement(DetailsList_1.DetailsList, { items: this.config.listItems, selection: this.props.selection, columns: this.config.columns, selectionPreservedOnEmptyClick: true, setKey: this.props.idProperty, onColumnHeaderClick: this.config.columnClick, onRenderMissingItem: this.renderMissingItem, onRenderDetailsHeader: function (detailsHeaderProps, defaultRender) { return (React.createElement(Sticky_1.Sticky, { stickyPosition: Sticky_1.StickyPositionType.Header }, defaultRender(__assign({}, detailsHeaderProps, { onRenderColumnHeaderTooltip: function (tooltipHostProps) { return (React.createElement(Tooltip_1.TooltipHost, __assign({}, tooltipHostProps))); } })))); }, onRenderItemColumn: function (item, index, column) {
-                    //   if (item) {
-                    //   const fieldContent = item[column.fieldName];
                     var schema = _this.config.fields.find(function (a) { return a.key == column.key; });
-                    //    console.log(fieldContent);
-                    //   console.log("wooshj");
-                    // value = { fieldContent }
-                    return (React.createElement(Fields_1.ModernDisplayField, { language: _this.props.language, field: schema, item: item, onGetFieldValue: _this.props.onGetFieldValue }));
-                    //}
-                    //else {
-                    //    return (
-                    //        <div></div>
-                    //    );
-                    //}
+                    return (React.createElement(Fields_1.ModernDisplayField, { language: _this.props.language, field: schema, item: item, placeholderImage: _this.props.placeholderImage, onGetFieldValue: _this.props.onGetFieldValue }));
                 } }),
             this.config.contextualHeaderMenuProps && (React.createElement(ContextualMenu_1.ContextualMenu, __assign({}, this.config.contextualHeaderMenuProps))))
             : React.createElement("span", null,
@@ -100,7 +89,7 @@ var ModernDetailsList = /** @class */ (function (_super) {
                 React.createElement(ModernSpinner_1.ModernSpinner, { description: this.config.loadingText }));
         return (React.createElement("span", null,
             result,
-            React.createElement(ModernViewItemPanel_1.ModernViewItemPanel, { item: this.config.currentViewItem, isVisible: this.config.currentViewItem, imageProperty: this.props.itemImageProperty, onDismiss: this.config.onDismissViewItemPanel, groups: this.props.viewItemGroups, authorProperty: this.props.itemAuthorProperty, onGetItem: this.props.onGetItem, language: this.props.language, colorProperty: this.props.itemColorProperty, onActionClick: this.props.onActionClicked, editorProperty: this.props.itemEditorProperty, onGetFieldValue: this.props.onGetFieldValue, actions: this.props.viewItemActions, onSaveNewAction: this.props.onSaveNewAction, getNewActionFieldGroups: this.props.getNewActionFieldGroups, getNewActionItem: this.props.getNewActionItem, getNewOptionFieldGroups: this.props.getNewOptionFieldGroups, onSaveNewOption: this.props.onSaveNewOption, getNewOptionItem: this.props.getNewOptionItem, createdProperty: this.props.itemCreatedProperty, modifiedProperty: this.props.itemModifiedProperty, onDeleteItem: this.props.onDeleteItem, resolveLookup: this.props.resolveLookup, resolveSuggestions: this.props.resolveSuggestions, onUpdateItem: this.props.onUpdateItem, titleProperty: this.props.itemTitleProperty, descriptionProperty: this.props.itemDescriptionProperty, secondaryDescriptionProperty: this.props.itemSecondaryDescriptionProperty }),
+            React.createElement(ModernViewItemPanel_1.ModernViewItemPanel, { item: this.config.currentViewItem, isVisible: this.config.currentViewItem, imageProperty: this.props.itemImageProperty, onDismiss: this.config.onDismissViewItemPanel, groups: this.props.viewItemGroups, authorProperty: this.props.itemAuthorProperty, onGetItem: this.props.onGetItem, language: this.props.language, colorProperty: this.props.itemColorProperty, onActionClick: this.props.onActionClicked, editorProperty: this.props.itemEditorProperty, onGetFieldValue: this.props.onGetFieldValue, actions: this.props.viewItemActions, placeholderImage: this.props.placeholderImage, onSaveNewAction: this.props.onSaveNewAction, getNewActionFieldGroups: this.props.getNewActionFieldGroups, getNewActionItem: this.props.getNewActionItem, getNewOptionFieldGroups: this.props.getNewOptionFieldGroups, onSaveNewOption: this.props.onSaveNewOption, getNewOptionItem: this.props.getNewOptionItem, createdProperty: this.props.itemCreatedProperty, modifiedProperty: this.props.itemModifiedProperty, onDeleteItem: this.props.onDeleteItem, resolveLookup: this.props.resolveLookup, resolveSuggestions: this.props.resolveSuggestions, onUpdateItem: this.props.onUpdateItem, titleProperty: this.props.itemTitleProperty, descriptionProperty: this.props.itemDescriptionProperty, secondaryDescriptionProperty: this.props.itemSecondaryDescriptionProperty }),
             React.createElement(ModernFilterPanel_1.ModernFilterPanel, { isVisible: this.config.currentFilterField != null, getFilterOptions: this.props.getFilterOptions, currentFilters: this.config.currentFilterPanelValues, language: this.props.language, field: this.config.currentFilterField, onDismiss: this.config.filterDismissed, onApply: this.config.onFilterApplied })));
     };
     ModernDetailsList = __decorate([

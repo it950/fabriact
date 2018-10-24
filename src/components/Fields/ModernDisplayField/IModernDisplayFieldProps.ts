@@ -4,6 +4,7 @@ export interface IModernDisplayFieldProps {
     field: IModernField;
 //    value: any;
     item: any;
-    onGetFieldValue: any;
-    language: string;
+    onGetFieldValue?: any;
+    language?: string;
+    placeholderImage?: string;
 }

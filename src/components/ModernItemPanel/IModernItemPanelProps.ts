@@ -18,6 +18,7 @@ export interface IModernItemPanelProps {
     language?: string;
     renderFooter?: any;
     onActionClick?: any;
+    placeholderImage?: string;
 
   //  onRenderFooterContent: any;
 

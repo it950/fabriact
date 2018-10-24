@@ -13,7 +13,7 @@ export interface IModernOfficeListProps {
     language?: string;
     hideDelete?: boolean;
     hideNew?: boolean;
-
+    placeholderImage?: string;
     newItemTitle?: string;
 
     itemTitleProperty?: string;

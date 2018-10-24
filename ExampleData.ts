@@ -7,6 +7,8 @@ import { SelectionMode } from "office-ui-fabric-react/lib/DetailsList";
 export default class ExampleData {
 
 
+    placeholder = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+
     constructor() {
 
         //faker.locale = "nl";
@@ -58,7 +60,7 @@ export default class ExampleData {
                 color: faker.internet.color(),
                 multiline: faker.lorem.sentences(),
                 login: faker.internet.userName(),
-                image: faker.image.people(),
+                //image: faker.image.people(),
                 date: faker.date.past(),
                 boolean: faker.random.boolean(),
                 created: faker.date.past(),

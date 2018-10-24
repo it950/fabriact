@@ -126,7 +126,8 @@ export default class ModernOfficeListState extends ModernState {
 
     constructor(items, hasNextPage, views, itemIdProperty, hideDelete,
         protected onNextPageEvent, protected onSearchEvent, protected onViewChangeEvent, protected onNewItemEvent, protected onSaveNewItemEvent,
-        protected onDeleteItemEvent, protected onUpdateItemEvent, protected onViewOffsetChangeEvent, protected onSortChangedEvent, protected onFilterChangedEvent, defaultViewId, language) {
+        protected onDeleteItemEvent, protected onUpdateItemEvent, protected onViewOffsetChangeEvent, protected onSortChangedEvent,
+        protected onFilterChangedEvent, protected onActionClickedEvent, protected getNewActionFieldGroupsEvent, protected getNewActionItemEvent, defaultViewId, language) {
         super(language);
 
         this.selection = new Selection({ onSelectionChanged: this.onSelectionChanged });
@@ -282,5 +283,21 @@ export default class ModernOfficeListState extends ModernState {
             .pipe(map((y: any) => {
                 this.items = y;
             })).toPromise();
+    }
+
+
+    @action
+    public getNewActionItem = (action) => {
+        return this.getNewActionItemEvent(action, toJS(this.selectedItems));
+    }
+
+    @action
+    public getNewActionFieldGroups = (action) => {
+        return this.getNewActionFieldGroupsEvent(action, toJS(this.selectedItems));
+    }
+
+    @action
+    public onActionClicked = (action) => {
+        return this.onActionClickedEvent(action, toJS(this.selectedItems));
     }
 }

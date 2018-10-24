@@ -45,11 +45,8 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
     "ts-loader": "~4.5.0",
-    "url-loader": "1.1.2",
     "typescript": "~2.9.2",
     "webpack": "~4.17.1",
-    "webpack-cli": "~2.1.5",
-    "react-svg-loader": "2.1.0",
-    "svg-inline-loader": "0.8.0"
+    "webpack-cli": "~2.1.5"
   }
 }

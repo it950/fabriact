@@ -22,11 +22,11 @@ class Demo extends React.Component {
 
     @computed
     get hasNextPage() {
-      //  return this.currentPage < 2;
-
         return false;
     }
 
+    @observable
+    itemActions = [];
 
     constructor(props) {
         super(props);
@@ -43,8 +43,8 @@ class Demo extends React.Component {
     }
 
 
-    private getNewActionItem = (fieldId): Promise<any> => {
-
+    private getNewActionItem = (fieldId, items): Promise<any> => {
+        console.log(items);
         return new Promise((resolve, reject) => {
             this.delay(() => {
                 resolve(this.exampleData.newActionItem());
@@ -53,8 +53,7 @@ class Demo extends React.Component {
         });
     }
 
-    private getNewActionFieldGroups = (fieldId): Promise<IModernFieldGroup[]> => {
-
+    private getNewActionFieldGroups = (fieldId, items): Promise<IModernFieldGroup[]> => {
         return new Promise((resolve, reject) => {
             this.delay(() => {
                 resolve([{
@@ -157,8 +156,6 @@ class Demo extends React.Component {
     
     }
 
-    @observable
-    itemActions = [];
 
     @action
     private onGetItem = (item): Promise<any> => {
@@ -294,12 +291,27 @@ class Demo extends React.Component {
     }
 
 
-    private onActionClicked = (id): Promise<void> => {
+    //private onViewActionClicked = (id, items): Promise<void> => {
+    //    return new Promise((resolve, reject) => {
+    //        alert("Action " + id + " clicked.");
+    //        console.log(id);
+    //        console.log(items);
+    //        resolve();
+    //       //     resolve(this.exampleData.search(search));
+    //    });
+    //}
+
+
+
+
+    private onActionClicked = (id, items): Promise<void> => {
         return new Promise((resolve, reject) => {
-            alert("Action " + id + " clicked.");
+        
             console.log(id);
+            console.log(items);
             resolve();
-           //     resolve(this.exampleData.search(search));
+            alert("Action " + id + " clicked.");
+            //     resolve(this.exampleData.search(search));
         });
     }
 

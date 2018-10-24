@@ -22,7 +22,7 @@ export class ModernOfficeList extends React.Component<IModernOfficeListProps, an
             this.props.onNextPage,
             this.props.onSearch,
             this.props.onViewChange, this.props.onNewItem, this.props.onSaveNewItem, this.props.onDeleteItem, this.props.onUpdateItem, this.props.onViewOffsetChange,
-            this.props.onSortChanged, this.props.onFilterChanged,
+            this.props.onSortChanged, this.props.onFilterChanged, this.props.onActionClicked, this.props.getNewActionFieldGroups, this.props.getNewActionItem,
             this.props.defaultView, this.props.language);
 
         reaction(() => this.props.views, (views) => {
@@ -46,10 +46,10 @@ export class ModernOfficeList extends React.Component<IModernOfficeListProps, an
             <div>
                 <ScrollablePane className={"modernScrollableHeader"} >
                     <Sticky stickyPosition={StickyPositionType.Header}>
-                        <ModernCommandBar hideDelete={!this.config.showDeleteButton} onActionClicked={this.props.onActionClicked} selectedItemCount={this.config.selectedItemCount}
+                        <ModernCommandBar hideDelete={!this.config.showDeleteButton} onActionClicked={this.config.onActionClicked} selectedItemCount={this.config.selectedItemCount}
                             selectedViewId={this.config.currentViewId} onDeleteConfirmed={this.config.onDeleteConfirmed} onViewOffsetChanged={this.config.onViewOffsetChange}
                             onNewItem={this.props.onNewItem} onSaveNewItem={this.props.onSaveNewItem}
-                            onSaveNewAction={this.props.onSaveNewAction} getNewActionFieldGroups={this.props.getNewActionFieldGroups} getNewActionItem={this.props.getNewActionItem}
+                            onSaveNewAction={this.props.onSaveNewAction} getNewActionFieldGroups={this.config.getNewActionFieldGroups} getNewActionItem={this.config.getNewActionItem}
                             getNewOptionFieldGroups={this.props.getNewOptionFieldGroups} onSaveNewOption={this.props.onSaveNewOption} getNewOptionItem={this.props.getNewOptionItem}
                             newItemGroups={this.props.newItemGroups} newItemTitle={this.props.newItemTitle}
                             onViewClicked={this.config.onViewChange} onSearch={this.config.onSearch} onExport={this.props.onExport}

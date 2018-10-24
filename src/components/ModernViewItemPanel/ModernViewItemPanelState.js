@@ -117,17 +117,19 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
                     break;
                 default:
                     var act = _this.itemActions.find(function (g) { return g.key == id; });
+                    var items = [mobx_1.toJS(_this.item)];
                     switch (act.type) {
                         case Modern_Types_1.ModernActionType.form:
                             _this.newActionItemFormVisible = true;
                             _this.redirectUrl = act.redirectUrl;
-                            rxjs_1.zip(rxjs_1.from(_this.getNewActionFieldsEvent(mobx_1.action)), rxjs_1.from(_this.getNewActionItemEvent(mobx_1.action))).pipe(operators_1.map(function (g) {
+                            rxjs_1.zip(rxjs_1.from(_this.getNewActionFieldsEvent(act.key, items)), rxjs_1.from(_this.getNewActionItemEvent(act.key, items))).pipe(operators_1.map(function (g) {
                                 _this.newActionFields = g[0];
                                 _this.newActionItem = g[1];
                             })).subscribe();
                             break;
                         case Modern_Types_1.ModernActionType.custom:
-                            _this.onActionClickedEvent(id);
+                            rxjs_1.from(_this.onActionClickedEvent(act.key, items)).subscribe();
+                            //     this.onActionClickedEvent(id, toJS(this.item));
                             break;
                     }
                     break;

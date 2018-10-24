@@ -40,7 +40,8 @@ var Demo = /** @class */ (function (_super) {
                 callback();
             }, 1200);
         };
-        _this.getNewActionItem = function (fieldId) {
+        _this.getNewActionItem = function (fieldId, items) {
+            console.log(items);
             return new Promise(function (resolve, reject) {
                 _this.delay(function () {
                     resolve(_this.exampleData.newActionItem());
@@ -48,7 +49,8 @@ var Demo = /** @class */ (function (_super) {
                 });
             });
         };
-        _this.getNewActionFieldGroups = function (fieldId) {
+        _this.getNewActionFieldGroups = function (fieldId, items) {
+            console.log(items);
             return new Promise(function (resolve, reject) {
                 _this.delay(function () {
                     resolve([{
@@ -242,11 +244,21 @@ var Demo = /** @class */ (function (_super) {
                 });
             });
         };
-        _this.onActionClicked = function (id) {
+        //private onViewActionClicked = (id, items): Promise<void> => {
+        //    return new Promise((resolve, reject) => {
+        //        alert("Action " + id + " clicked.");
+        //        console.log(id);
+        //        console.log(items);
+        //        resolve();
+        //       //     resolve(this.exampleData.search(search));
+        //    });
+        //}
+        _this.onActionClicked = function (id, items) {
             return new Promise(function (resolve, reject) {
-                alert("Action " + id + " clicked.");
                 console.log(id);
+                console.log(items);
                 resolve();
+                alert("Action " + id + " clicked.");
                 //     resolve(this.exampleData.search(search));
             });
         };

@@ -26,7 +26,7 @@ var DetailsList_1 = require("office-ui-fabric-react/lib/DetailsList");
 var ModernState_1 = require("../../utilities/ModernState");
 var ModernOfficeListState = /** @class */ (function (_super) {
     __extends(ModernOfficeListState, _super);
-    function ModernOfficeListState(items, hasNextPage, views, itemIdProperty, hideDelete, onNextPageEvent, onSearchEvent, onViewChangeEvent, onNewItemEvent, onSaveNewItemEvent, onDeleteItemEvent, onUpdateItemEvent, onViewOffsetChangeEvent, onSortChangedEvent, onFilterChangedEvent, defaultViewId, language) {
+    function ModernOfficeListState(items, hasNextPage, views, itemIdProperty, hideDelete, onNextPageEvent, onSearchEvent, onViewChangeEvent, onNewItemEvent, onSaveNewItemEvent, onDeleteItemEvent, onUpdateItemEvent, onViewOffsetChangeEvent, onSortChangedEvent, onFilterChangedEvent, onActionClickedEvent, getNewActionFieldGroupsEvent, getNewActionItemEvent, defaultViewId, language) {
         var _this = _super.call(this, language) || this;
         _this.onNextPageEvent = onNextPageEvent;
         _this.onSearchEvent = onSearchEvent;
@@ -38,6 +38,9 @@ var ModernOfficeListState = /** @class */ (function (_super) {
         _this.onViewOffsetChangeEvent = onViewOffsetChangeEvent;
         _this.onSortChangedEvent = onSortChangedEvent;
         _this.onFilterChangedEvent = onFilterChangedEvent;
+        _this.onActionClickedEvent = onActionClickedEvent;
+        _this.getNewActionFieldGroupsEvent = getNewActionFieldGroupsEvent;
+        _this.getNewActionItemEvent = getNewActionItemEvent;
         _this.selectedItems = [];
         _this.currentViewType = 0;
         _this.onSortChanged = function (column, ascending) {
@@ -135,6 +138,15 @@ var ModernOfficeListState = /** @class */ (function (_super) {
                 .pipe(operators_1.map(function (y) {
                 _this.items = y;
             })).toPromise();
+        };
+        _this.getNewActionItem = function (action) {
+            return _this.getNewActionItemEvent(action, mobx_1.toJS(_this.selectedItems));
+        };
+        _this.getNewActionFieldGroups = function (action) {
+            return _this.getNewActionFieldGroupsEvent(action, mobx_1.toJS(_this.selectedItems));
+        };
+        _this.onActionClicked = function (action) {
+            return _this.onActionClickedEvent(action, mobx_1.toJS(_this.selectedItems));
         };
         _this.selection = new DetailsList_1.Selection({ onSelectionChanged: _this.onSelectionChanged });
         _this.items = items;
@@ -322,6 +334,15 @@ var ModernOfficeListState = /** @class */ (function (_super) {
     __decorate([
         mobx_1.action
     ], ModernOfficeListState.prototype, "onSearch", void 0);
+    __decorate([
+        mobx_1.action
+    ], ModernOfficeListState.prototype, "getNewActionItem", void 0);
+    __decorate([
+        mobx_1.action
+    ], ModernOfficeListState.prototype, "getNewActionFieldGroups", void 0);
+    __decorate([
+        mobx_1.action
+    ], ModernOfficeListState.prototype, "onActionClicked", void 0);
     return ModernOfficeListState;
 }(ModernState_1.default));
 exports.default = ModernOfficeListState;

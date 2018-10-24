@@ -42,15 +42,15 @@ export interface IModernDetailsListProps {
     onSaveNewOption: (item) => Promise<IModernLookup[]>;
 
     onGetItem?: (item) => Promise<any>;
-    onActionClicked?: (id) => Promise<void>;
+    onActionClicked?: (id, items) => Promise<void>;
 
     resolveSuggestions?: (fieldId) => Promise<IModernLookup[]>;
     resolveLookup?: (fieldId, search) => Promise<IModernLookup[]>;
 
     viewItemActions?: IModernAction[];
 
-    getNewActionFieldGroups: (fieldId) => Promise<IModernFieldGroup[]>;
-    getNewActionItem: (fieldId) => Promise<any>;
+    getNewActionFieldGroups: (fieldId, items) => Promise<IModernFieldGroup[]>;
+    getNewActionItem: (fieldId, items) => Promise<any>;
     onSaveNewAction: (item) => Promise<any>;
 
 

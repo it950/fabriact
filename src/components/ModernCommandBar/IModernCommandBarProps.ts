@@ -10,7 +10,7 @@ export interface IModernCommandBarProps {
     searchValue?: string;
     selectedViewId?: string;
     selectedItemCount: number;
-    onActionClicked?: (actionId) => void;
+    onActionClicked?: (actionId, items) => void;
     onViewClicked?: (viewId) => Promise<void>;
     onViewTypeSwitch?: (viewType) => void;
    // onNewClicked?: () => void;
@@ -31,8 +31,8 @@ export interface IModernCommandBarProps {
     getNewOptionItem: (fieldId) => Promise<any>;
     onSaveNewOption: (item) => Promise<IModernLookup[]>;
 
-    getNewActionFieldGroups: (fieldId) => Promise<IModernFieldGroup[]>;
-    getNewActionItem: (fieldId) => Promise<any>;
+    getNewActionFieldGroups: (actionId, items) => Promise<IModernFieldGroup[]>;
+    getNewActionItem: (actionId, items) => Promise<any>;
     onSaveNewAction: (item) => Promise<any>;
 
 

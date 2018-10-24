@@ -36,7 +36,9 @@ export interface IModernOfficeListProps {
     onFilterChanged?: (column, ascending) => Promise<any[]>;
     onGetItem?: (item) => Promise<any>;
     onSaveNewItem?: (newItem) => Promise<void>;
-    onActionClicked?: (id) => Promise<void>;
+    onActionClicked?: (id, items) => Promise<void>;
+  //  onViewActionClicked?: (id, items) => Promise<void>;
+   // onFormActionClicked?: (id, item) => Promise<void>;
     onExport?: () => Promise<any[]>;
     onNewItem?: () => Promise<any>;
     onUpdateItem?: (item) => Promise<void>;
@@ -47,8 +49,8 @@ export interface IModernOfficeListProps {
     getNewOptionItem: (fieldId) => Promise<any>;
     onSaveNewOption: (item) => Promise<IModernLookup[]>;
 
-    getNewActionFieldGroups: (fieldId) => Promise<IModernFieldGroup[]>;
-    getNewActionItem: (fieldId) => Promise<any>;
+    getNewActionFieldGroups: (fieldId, items) => Promise<IModernFieldGroup[]>;
+    getNewActionItem: (fieldId, items) => Promise<any>;
     onSaveNewAction: (item) => Promise<any>;
 
 

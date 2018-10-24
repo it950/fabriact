@@ -33,8 +33,8 @@ export interface IModernViewItemPanelProps {
     getNewOptionItem: (fieldId) => Promise<any>;
     onSaveNewOption: (item) => Promise<IModernLookup[]>;
 
-    getNewActionFieldGroups: (fieldId) => Promise<IModernFieldGroup[]>;
-    getNewActionItem: (fieldId) => Promise<any>;
+    getNewActionFieldGroups: (fieldId, items) => Promise<IModernFieldGroup[]>;
+    getNewActionItem: (fieldId, items) => Promise<any>;
     onSaveNewAction: (item) => Promise<any>;
 
     placeholderImage?: string;

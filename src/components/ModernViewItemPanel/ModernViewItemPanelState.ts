@@ -346,17 +346,19 @@ export default class ModernViewItemPanelState extends ModernState {
                 break;
             default:
                 const act: IModernAction = this.itemActions.find((g: IModernAction) => g.key == id);
+                const items = [ toJS(this.item) ];
                 switch (act.type) {
                     case ModernActionType.form:
                         this.newActionItemFormVisible = true;
                         this.redirectUrl = act.redirectUrl;
-                        zip(from(this.getNewActionFieldsEvent(action)), from(this.getNewActionItemEvent(action))).pipe(map(g => {
+                        zip(from(this.getNewActionFieldsEvent(act.key, items)), from(this.getNewActionItemEvent(act.key, items))).pipe(map(g => {
                             this.newActionFields = g[0];
                             this.newActionItem = g[1];
                         })).subscribe();
                         break;
                     case ModernActionType.custom:
-                        this.onActionClickedEvent(id);
+                        from(this.onActionClickedEvent(act.key, items)).subscribe();
+                   //     this.onActionClickedEvent(id, toJS(this.item));
                         break;
                 }
 

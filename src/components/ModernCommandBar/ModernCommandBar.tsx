@@ -52,7 +52,7 @@ export class ModernCommandBar extends React.Component<IModernCommandBarProps, an
     }
 
     render() {
-
+        
         const items = this.config.items.map(s => {
             if (s.key == "search") {
                 s.onRender = this.renderSearch;

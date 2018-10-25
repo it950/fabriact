@@ -1,6 +1,6 @@
 ﻿import { observable, action, computed, toJS } from "mobx";
 import { from, concat, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, concatMap, switchMap } from 'rxjs/operators';
 import { Selection,  } from "office-ui-fabric-react/lib/DetailsList";
 import { IModernView, IModernFilter } from "../../Modern.Types";
 import ModernState from "../../utilities/ModernState";
@@ -50,10 +50,19 @@ export default class ModernOfficeListState extends ModernState {
     public itemIdProperty: any;
 
     @observable
+    public itemTitleProperty: any;
+
+    
+
+    @observable
     public currentViewType: number = 0;
 
     @observable
     public hideDelete: boolean;
+
+
+    @observable
+    public processProgress: any;
 
     @computed
     get selectedItemCount() {
@@ -113,6 +122,11 @@ export default class ModernOfficeListState extends ModernState {
     }
 
     @computed
+    get showProgress() {
+        return this.processProgress != null;
+    }
+
+    @computed
     get currentViewName() {
         const currentView = this.currentView;
 
@@ -123,11 +137,19 @@ export default class ModernOfficeListState extends ModernState {
         return null;
     }
 
+    @computed
+    get currentProgress() {
+        if (this.processProgress) {
+            return this.processProgress.current / this.processProgress.total;
+        }
 
-    constructor(items, hasNextPage, views, itemIdProperty, hideDelete,
+        return 0;
+    }
+
+    constructor(items, hasNextPage, views, itemIdProperty, hideDelete, itemTitleProperty,
         protected onNextPageEvent, protected onSearchEvent, protected onViewChangeEvent, protected onNewItemEvent, protected onSaveNewItemEvent,
         protected onDeleteItemEvent, protected onUpdateItemEvent, protected onViewOffsetChangeEvent, protected onSortChangedEvent,
-        protected onFilterChangedEvent, protected onActionClickedEvent, protected getNewActionFieldGroupsEvent, protected getNewActionItemEvent, defaultViewId, language) {
+        protected onFilterChangedEvent, protected onActionClickedEvent, protected getNewActionFieldGroupsEvent, protected getNewActionItemEvent, protected onActionSavedEvent, defaultViewId, language) {
         super(language);
 
         this.selection = new Selection({ onSelectionChanged: this.onSelectionChanged });
@@ -137,6 +159,7 @@ export default class ModernOfficeListState extends ModernState {
         this.views = views;
         this.hasNextPage = hasNextPage;
         this.itemIdProperty = itemIdProperty;
+        this.itemTitleProperty = itemTitleProperty;
         this.hideDelete = hideDelete;
 
     }
@@ -297,7 +320,56 @@ export default class ModernOfficeListState extends ModernState {
     }
 
     @action
+    public initProgress = (total, title) => {
+        this.processProgress = {
+            current: 0,
+            total: total,
+            title: title
+        };
+    }
+
+    @action
     public onActionClicked = (action) => {
-        return this.onActionClickedEvent(action, toJS(this.selectedItems));
+        const actionItem = this.actions.find(c => c.key == action);
+        if (this.selectedItems.length > 0) {
+
+            this.initProgress(this.selectedItems.length, actionItem.description);
+
+            return from(from(this.selectedItems).pipe(
+                concatMap(id => {
+                    this.processProgress.description = this.selectedItems[this.processProgress.current][this.itemTitleProperty];
+                    this.processProgress.current++;
+                    
+                    return this.onActionClickedEvent(action, toJS(id));
+                })
+            ).toPromise()).pipe(switchMap(c => {
+                this.processProgress = null;
+
+                    return this.onViewChange(this.currentViewId);
+            })).toPromise();
+        }
+        else {
+            this.initProgress(1, actionItem.description);
+            return from(this.onActionClickedEvent(action, null)).pipe(switchMap(c => {
+                this.processProgress = null;
+                return this.onViewChange(this.currentViewId);
+            })).toPromise();
+        }
+    }
+
+    @action
+    public onActionSaved = (actionId, form) => {
+        if (this.selectedItems.length > 0) {
+            return from(from(this.selectedItems).pipe(
+                concatMap(id => this.onActionSavedEvent(actionId, form, toJS(id)))
+            ).toPromise()).pipe(switchMap(c => {
+                return this.onViewChange(this.currentViewId);
+                })).toPromise();
+        }
+        else {
+            return from(this.onActionSavedEvent(actionId, form, null)).pipe(switchMap(c => {
+                return this.onViewChange(this.currentViewId);
+            })).toPromise();
+        }
     }
 }

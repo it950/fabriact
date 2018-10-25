@@ -90,21 +90,27 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
         //}
         _this.onActionClicked = function (id) {
             console.log(id);
-            _this.onActionClickedEvent(id);
+            _this.isLoading = true;
+            rxjs_1.from(_this.onActionClickedEvent(id, [mobx_1.toJS(_this.item)])).pipe(operators_1.map(function (x) {
+                _this.getItem();
+            })).subscribe();
+            //   this.onActionClickedEvent(id);
         };
         _this.onSaveNewActionItem = function (item) {
-            return rxjs_1.from(_this.onSaveActionItemEvent(item)).pipe(operators_1.map(function (o) {
-                _this.newActionItemFormVisible = false;
+            return rxjs_1.from(_this.onSaveActionItemEvent(_this.currentActionId, item, [_this.item])).pipe(operators_1.map(function (o) {
+                _this.currentActionId = null;
                 if (_this.redirectUrl) {
                     _this.requestRedirect = true;
                 }
+                _this.getItem();
             })).toPromise();
         };
         _this.cancelRedirect = function () {
             _this.requestRedirect = false;
         };
         _this.onNewActionItemDismiss = function () {
-            _this.newActionItemFormVisible = false;
+            _this.currentActionId = null;
+            //  this.newActionItemFormVisible = false;
         };
         _this.onPanelActionClicked = function (id) {
             console.log(id);
@@ -120,7 +126,8 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
                     var items = [mobx_1.toJS(_this.item)];
                     switch (act.type) {
                         case Modern_Types_1.ModernActionType.form:
-                            _this.newActionItemFormVisible = true;
+                            _this.currentActionId = act.key;
+                            //                        this.newActionItemFormVisible = true;
                             _this.redirectUrl = act.redirectUrl;
                             rxjs_1.zip(rxjs_1.from(_this.getNewActionFieldsEvent(act.key, items)), rxjs_1.from(_this.getNewActionItemEvent(act.key, items))).pipe(operators_1.map(function (g) {
                                 _this.newActionFields = g[0];
@@ -128,7 +135,10 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
                             })).subscribe();
                             break;
                         case Modern_Types_1.ModernActionType.custom:
-                            rxjs_1.from(_this.onActionClickedEvent(act.key, items)).subscribe();
+                            _this.isLoading = true;
+                            rxjs_1.from(_this.onActionClickedEvent(act.key, items)).pipe(operators_1.map(function (x) {
+                                _this.getItem();
+                            })).subscribe();
                             //     this.onActionClickedEvent(id, toJS(this.item));
                             break;
                     }
@@ -268,6 +278,24 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(ModernViewItemPanelState.prototype, "newActionItemFormVisible", {
+        get: function () {
+            return this.currentActionId != null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ModernViewItemPanelState.prototype, "currentAction", {
+        get: function () {
+            var _this = this;
+            if (this.currentActionId) {
+                return this.itemActions.find(function (v) { return v.key == _this.currentActionId; });
+            }
+            return null;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         mobx_1.observable
     ], ModernViewItemPanelState.prototype, "item", void 0);
@@ -354,7 +382,13 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
     ], ModernViewItemPanelState.prototype, "onActionClicked", void 0);
     __decorate([
         mobx_1.observable
-    ], ModernViewItemPanelState.prototype, "newActionItemFormVisible", void 0);
+    ], ModernViewItemPanelState.prototype, "currentActionId", void 0);
+    __decorate([
+        mobx_1.computed
+    ], ModernViewItemPanelState.prototype, "newActionItemFormVisible", null);
+    __decorate([
+        mobx_1.computed
+    ], ModernViewItemPanelState.prototype, "currentAction", null);
     __decorate([
         mobx_1.observable
     ], ModernViewItemPanelState.prototype, "newActionFields", void 0);

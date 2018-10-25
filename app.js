@@ -35,6 +35,7 @@ var Demo = /** @class */ (function (_super) {
     function Demo(props) {
         var _this = _super.call(this, props) || this;
         _this.currentPage = 1;
+        _this.itemActions = [];
         _this.delay = function (callback) {
             timers_1.setTimeout(function () {
                 callback();
@@ -45,12 +46,10 @@ var Demo = /** @class */ (function (_super) {
             return new Promise(function (resolve, reject) {
                 _this.delay(function () {
                     resolve(_this.exampleData.newActionItem());
-                    //resolve(this.exampleData.newItem());
                 });
             });
         };
         _this.getNewActionFieldGroups = function (fieldId, items) {
-            console.log(items);
             return new Promise(function (resolve, reject) {
                 _this.delay(function () {
                     resolve([{
@@ -72,14 +71,17 @@ var Demo = /** @class */ (function (_super) {
                                     type: src_1.ModernFieldType.text
                                 }]
                         }]);
-                    //resolve(this.exampleData.newItem());
                 });
             });
         };
-        _this.onSaveNewAction = function (item) {
+        _this.onSaveNewAction = function (actionId, item, selection) {
             return new Promise(function (resolve, reject) {
                 _this.delay(function () {
-                    resolve(mobx_1.toJS(_this.exampleData.saveAction(item)));
+                    console.log(actionId);
+                    console.log(item);
+                    console.log(selection);
+                    //  resolve(toJS(this.exampleData.saveAction(item)));
+                    resolve({});
                 });
             });
         };
@@ -109,7 +111,6 @@ var Demo = /** @class */ (function (_super) {
                                     required: true,
                                 }]
                         }]);
-                    //resolve(this.exampleData.newItem());
                 });
             });
         };
@@ -137,7 +138,6 @@ var Demo = /** @class */ (function (_super) {
                 });
             });
         };
-        _this.itemActions = [];
         _this.onGetItem = function (item) {
             return new Promise(function (resolve, reject) {
                 console.log(item);
@@ -157,13 +157,9 @@ var Demo = /** @class */ (function (_super) {
         _this.onUpdateItem = function (item) {
             return new Promise(function (resolve, reject) {
                 console.log(item);
-                //this.exampleData.items.push(newItem);
                 _this.delay(function () {
                     _this.exampleData.updateItem(item);
                     resolve();
-                    //  this.config.detailsListConfig.items = this.exampleData.items;
-                    //    this.config.detailsListConfig.items = toJS(this.exampleData.items);
-                    //resolve();
                 });
             });
         };
@@ -207,7 +203,6 @@ var Demo = /** @class */ (function (_super) {
                     var items = key == "4" ? _this.exampleData.getDynamicView(0) : _this.exampleData.getView(key);
                     _this.currentPage = 1;
                     resolve(items);
-                    //   resolve(this.exampleData.getView(key));
                 });
             });
         };
@@ -244,22 +239,17 @@ var Demo = /** @class */ (function (_super) {
                 });
             });
         };
-        //private onViewActionClicked = (id, items): Promise<void> => {
-        //    return new Promise((resolve, reject) => {
-        //        alert("Action " + id + " clicked.");
-        //        console.log(id);
-        //        console.log(items);
-        //        resolve();
-        //       //     resolve(this.exampleData.search(search));
-        //    });
-        //}
         _this.onActionClicked = function (id, items) {
             return new Promise(function (resolve, reject) {
-                console.log(id);
-                console.log(items);
-                resolve();
-                alert("Action " + id + " clicked.");
-                //     resolve(this.exampleData.search(search));
+                _this.delay(function () {
+                    console.log(id);
+                    console.log(items);
+                    //if (id == "Custom") {
+                    //    this.item = items[0];
+                    //    this.relatedPanel = true;
+                    //}
+                    resolve();
+                });
             });
         };
         _this.onSearch = function (search) {
@@ -283,13 +273,21 @@ var Demo = /** @class */ (function (_super) {
     }
     Object.defineProperty(Demo.prototype, "hasNextPage", {
         get: function () {
-            //  return this.currentPage < 2;
             return false;
         },
         enumerable: true,
         configurable: true
     });
     Demo.prototype.render = function () {
+        //<ModernItemPanel isVisible={this.relatedPanel != null} item={this.item} descriptionProperty={"jobType"} imageProperty={"image"}
+        //    secondaryDescriptionProperty={"jobTitle"} titleProperty={"name"} colorProperty={"color"} >
+        //    <ModernOfficeList getNewOptionFieldGroups={this.getNewOptionFieldGroups}
+        //        getNewOptionItem={this.getNewOptionItem}
+        //        onSaveNewOption={this.onSaveNewOption}
+        //        onSaveNewAction={this.onSaveNewAction}
+        //        getNewActionFieldGroups={this.getNewActionFieldGroups}
+        //        getNewActionItem={this.getNewActionItem} />
+        //</ModernItemPanel>
         return (React.createElement("div", null,
             React.createElement(src_1.ModernOfficeList, { views: this.exampleData.views, defaultView: "1", onSearch: this.onSearch, onViewChange: this.onViewChange, newItemGroups: this.exampleData.demoNewFieldGroupsData, viewItemActions: this.itemActions, onExport: this.onExport, getNewOptionFieldGroups: this.getNewOptionFieldGroups, getNewOptionItem: this.getNewOptionItem, onSaveNewOption: this.onSaveNewOption, placeholderImage: this.exampleData.placeholder, viewItemGroups: this.exampleData.demoViewFieldGroupsData, onGetFieldValue: this.getFieldValue, onNextPage: this.onNextPage, hasNextPage: this.hasNextPage, itemIdProperty: "id", onSaveNewItem: this.onSaveNewItem, onDeleteItem: this.onDelete, resolveLookup: this.resolveLookup, resolveSuggestions: this.resolveSuggestions, language: "nl-NL", onUpdateItem: this.onUpdateItem, itemTitleProperty: "name", itemSecondaryDescriptionProperty: "jobTitle", onFilterChanged: this.onFilterChanged, onSortChanged: this.onSortChanged, getFilterOptions: this.getFilterOptions, itemColorProperty: "color", onSaveNewAction: this.onSaveNewAction, getNewActionFieldGroups: this.getNewActionFieldGroups, getNewActionItem: this.getNewActionItem, onViewOffsetChange: this.onViewOffsetChange, onGetItem: this.onGetItem, onActionClicked: this.onActionClicked, itemDescriptionProperty: "jobType", itemImageProperty: "image", itemAuthorProperty: "author", itemModifiedProperty: "modified", itemCreatedProperty: "created", itemEditorProperty: "editor", onNewItem: this.onNewItem })));
     };
@@ -302,6 +300,12 @@ var Demo = /** @class */ (function (_super) {
     __decorate([
         mobx_1.observable
     ], Demo.prototype, "itemActions", void 0);
+    __decorate([
+        mobx_1.observable
+    ], Demo.prototype, "item", void 0);
+    __decorate([
+        mobx_1.observable
+    ], Demo.prototype, "relatedPanel", void 0);
     __decorate([
         mobx_1.action
     ], Demo.prototype, "onGetItem", void 0);

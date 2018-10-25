@@ -26,7 +26,7 @@ var DetailsList_1 = require("office-ui-fabric-react/lib/DetailsList");
 var ModernState_1 = require("../../utilities/ModernState");
 var ModernOfficeListState = /** @class */ (function (_super) {
     __extends(ModernOfficeListState, _super);
-    function ModernOfficeListState(items, hasNextPage, views, itemIdProperty, hideDelete, onNextPageEvent, onSearchEvent, onViewChangeEvent, onNewItemEvent, onSaveNewItemEvent, onDeleteItemEvent, onUpdateItemEvent, onViewOffsetChangeEvent, onSortChangedEvent, onFilterChangedEvent, onActionClickedEvent, getNewActionFieldGroupsEvent, getNewActionItemEvent, defaultViewId, language) {
+    function ModernOfficeListState(items, hasNextPage, views, itemIdProperty, hideDelete, itemTitleProperty, onNextPageEvent, onSearchEvent, onViewChangeEvent, onNewItemEvent, onSaveNewItemEvent, onDeleteItemEvent, onUpdateItemEvent, onViewOffsetChangeEvent, onSortChangedEvent, onFilterChangedEvent, onActionClickedEvent, getNewActionFieldGroupsEvent, getNewActionItemEvent, onActionSavedEvent, defaultViewId, language) {
         var _this = _super.call(this, language) || this;
         _this.onNextPageEvent = onNextPageEvent;
         _this.onSearchEvent = onSearchEvent;
@@ -41,6 +41,7 @@ var ModernOfficeListState = /** @class */ (function (_super) {
         _this.onActionClickedEvent = onActionClickedEvent;
         _this.getNewActionFieldGroupsEvent = getNewActionFieldGroupsEvent;
         _this.getNewActionItemEvent = getNewActionItemEvent;
+        _this.onActionSavedEvent = onActionSavedEvent;
         _this.selectedItems = [];
         _this.currentViewType = 0;
         _this.onSortChanged = function (column, ascending) {
@@ -145,8 +146,45 @@ var ModernOfficeListState = /** @class */ (function (_super) {
         _this.getNewActionFieldGroups = function (action) {
             return _this.getNewActionFieldGroupsEvent(action, mobx_1.toJS(_this.selectedItems));
         };
+        _this.initProgress = function (total, title) {
+            _this.processProgress = {
+                current: 0,
+                total: total,
+                title: title
+            };
+        };
         _this.onActionClicked = function (action) {
-            return _this.onActionClickedEvent(action, mobx_1.toJS(_this.selectedItems));
+            var actionItem = _this.actions.find(function (c) { return c.key == action; });
+            if (_this.selectedItems.length > 0) {
+                _this.initProgress(_this.selectedItems.length, actionItem.description);
+                return rxjs_1.from(rxjs_1.from(_this.selectedItems).pipe(operators_1.concatMap(function (id) {
+                    _this.processProgress.description = _this.selectedItems[_this.processProgress.current][_this.itemTitleProperty];
+                    _this.processProgress.current++;
+                    return _this.onActionClickedEvent(action, mobx_1.toJS(id));
+                })).toPromise()).pipe(operators_1.switchMap(function (c) {
+                    _this.processProgress = null;
+                    return _this.onViewChange(_this.currentViewId);
+                })).toPromise();
+            }
+            else {
+                _this.initProgress(1, actionItem.description);
+                return rxjs_1.from(_this.onActionClickedEvent(action, null)).pipe(operators_1.switchMap(function (c) {
+                    _this.processProgress = null;
+                    return _this.onViewChange(_this.currentViewId);
+                })).toPromise();
+            }
+        };
+        _this.onActionSaved = function (actionId, form) {
+            if (_this.selectedItems.length > 0) {
+                return rxjs_1.from(rxjs_1.from(_this.selectedItems).pipe(operators_1.concatMap(function (id) { return _this.onActionSavedEvent(actionId, form, mobx_1.toJS(id)); })).toPromise()).pipe(operators_1.switchMap(function (c) {
+                    return _this.onViewChange(_this.currentViewId);
+                })).toPromise();
+            }
+            else {
+                return rxjs_1.from(_this.onActionSavedEvent(actionId, form, null)).pipe(operators_1.switchMap(function (c) {
+                    return _this.onViewChange(_this.currentViewId);
+                })).toPromise();
+            }
         };
         _this.selection = new DetailsList_1.Selection({ onSelectionChanged: _this.onSelectionChanged });
         _this.items = items;
@@ -154,6 +192,7 @@ var ModernOfficeListState = /** @class */ (function (_super) {
         _this.views = views;
         _this.hasNextPage = hasNextPage;
         _this.itemIdProperty = itemIdProperty;
+        _this.itemTitleProperty = itemTitleProperty;
         _this.hideDelete = hideDelete;
         return _this;
     }
@@ -233,6 +272,13 @@ var ModernOfficeListState = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(ModernOfficeListState.prototype, "showProgress", {
+        get: function () {
+            return this.processProgress != null;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(ModernOfficeListState.prototype, "currentViewName", {
         get: function () {
             var currentView = this.currentView;
@@ -240,6 +286,16 @@ var ModernOfficeListState = /** @class */ (function (_super) {
                 return currentView.name;
             }
             return null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ModernOfficeListState.prototype, "currentProgress", {
+        get: function () {
+            if (this.processProgress) {
+                return this.processProgress.current / this.processProgress.total;
+            }
+            return 0;
         },
         enumerable: true,
         configurable: true
@@ -273,10 +329,16 @@ var ModernOfficeListState = /** @class */ (function (_super) {
     ], ModernOfficeListState.prototype, "itemIdProperty", void 0);
     __decorate([
         mobx_1.observable
+    ], ModernOfficeListState.prototype, "itemTitleProperty", void 0);
+    __decorate([
+        mobx_1.observable
     ], ModernOfficeListState.prototype, "currentViewType", void 0);
     __decorate([
         mobx_1.observable
     ], ModernOfficeListState.prototype, "hideDelete", void 0);
+    __decorate([
+        mobx_1.observable
+    ], ModernOfficeListState.prototype, "processProgress", void 0);
     __decorate([
         mobx_1.computed
     ], ModernOfficeListState.prototype, "selectedItemCount", null);
@@ -297,7 +359,13 @@ var ModernOfficeListState = /** @class */ (function (_super) {
     ], ModernOfficeListState.prototype, "currentView", null);
     __decorate([
         mobx_1.computed
+    ], ModernOfficeListState.prototype, "showProgress", null);
+    __decorate([
+        mobx_1.computed
     ], ModernOfficeListState.prototype, "currentViewName", null);
+    __decorate([
+        mobx_1.computed
+    ], ModernOfficeListState.prototype, "currentProgress", null);
     __decorate([
         mobx_1.action
     ], ModernOfficeListState.prototype, "onSortChanged", void 0);
@@ -342,7 +410,13 @@ var ModernOfficeListState = /** @class */ (function (_super) {
     ], ModernOfficeListState.prototype, "getNewActionFieldGroups", void 0);
     __decorate([
         mobx_1.action
+    ], ModernOfficeListState.prototype, "initProgress", void 0);
+    __decorate([
+        mobx_1.action
     ], ModernOfficeListState.prototype, "onActionClicked", void 0);
+    __decorate([
+        mobx_1.action
+    ], ModernOfficeListState.prototype, "onActionSaved", void 0);
     return ModernOfficeListState;
 }(ModernState_1.default));
 exports.default = ModernOfficeListState;

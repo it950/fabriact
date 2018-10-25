@@ -46,7 +46,25 @@ export default class ModernCommandBarState extends ModernState {
     public viewType: number = 0;
 
     @observable
-    public newActionItemFormVisible: boolean;
+    public currentActionId: string;
+
+    @computed
+    get newActionItemFormVisible() {
+        return this.currentActionId != null;
+    }
+
+    @computed
+    get currentAction() {
+        if (this.currentActionId) {
+            return this.currentView.actions.find(i => i.key == this.currentActionId);
+        }
+
+        return null;
+    }
+
+  //  @observable
+  //  public newActionItemFormVisible: boolean;
+
 
     @observable
     public newActionItem: any;
@@ -211,8 +229,9 @@ export default class ModernCommandBarState extends ModernState {
 
     @action
     public onSaveNewActionItem = (item): Promise<void> => {
-        return from(this.onSaveActionItemEvent(item)).pipe(map((o: any) => {
-            this.newActionItemFormVisible = false;
+        return from(this.onSaveActionItemEvent(this.currentActionId, item)).pipe(map((o: any) => {
+        //    this.newActionItemFormVisible = false;
+            this.currentActionId = null;
         })).toPromise();
     }
 
@@ -220,7 +239,7 @@ export default class ModernCommandBarState extends ModernState {
     @action
     public onNewActionItemDismiss = () => {
 
-        this.newActionItemFormVisible = false;
+        this.currentActionId = null;
     }
 
     @action
@@ -230,7 +249,8 @@ export default class ModernCommandBarState extends ModernState {
 
         switch (act.type) {
             case ModernActionType.form:
-                this.newActionItemFormVisible = true;
+                this.currentActionId = act.key;
+              //  this.newActionItemFormVisible = true;
 
                 zip(from(this.getNewActionFieldsEvent(action)), from(this.getNewActionItemEvent(action))).pipe(map(g => {
                     this.newActionFields = g[0];

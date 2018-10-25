@@ -33,6 +33,7 @@ export interface IModernAction {
     type: ModernActionType;
     selectionMode?: SelectionMode;
     name?: string;
+    description?: string;
     icon?: string;
     redirectUrl?: string;
 }

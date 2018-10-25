@@ -1,13 +1,14 @@
 ﻿import * as React from 'react';
 import * as ReactDom from 'react-dom';
 //import { ModernOfficeList } from './src/components/ModernOfficeList/ModernOfficeList';
-import { ModernOfficeList, IModernFieldGroup, ModernFieldType, IModernLookup } from './src';
+import { ModernOfficeList, IModernFieldGroup, ModernFieldType, IModernLookup, ModernItemPanel } from './src';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import ExampleData from './ExampleData';
 import { setTimeout } from 'timers';
 import { observer } from 'mobx-react';
 import { observable, computed, action, toJS } from 'mobx';
+import { ModernViewItemPanel } from './src/components/ModernViewItemPanel';
 
 initializeIcons(/* optional base url */);
 
@@ -27,6 +28,12 @@ class Demo extends React.Component {
 
     @observable
     itemActions = [];
+
+    @observable
+    item: any;
+
+    @observable
+    public relatedPanel: any;
 
     constructor(props) {
         super(props);
@@ -48,7 +55,6 @@ class Demo extends React.Component {
         return new Promise((resolve, reject) => {
             this.delay(() => {
                 resolve(this.exampleData.newActionItem());
-                //resolve(this.exampleData.newItem());
             });
         });
     }
@@ -75,16 +81,19 @@ class Demo extends React.Component {
                             type: ModernFieldType.text
                         }]
                 }]);
-                //resolve(this.exampleData.newItem());
             });
         });
     }
 
-    private onSaveNewAction = (item): Promise<any> => {
-
+    private onSaveNewAction = (actionId, item, selection): Promise<any> => {
         return new Promise((resolve, reject) => {
             this.delay(() => {
-                resolve(toJS(this.exampleData.saveAction(item)));
+                console.log(actionId);
+                console.log(item);
+                console.log(selection);
+
+              //  resolve(toJS(this.exampleData.saveAction(item)));
+                resolve({});
             });
         });
     }
@@ -120,7 +129,6 @@ class Demo extends React.Component {
                             required: true,
                         }]
                 }]);
-                //resolve(this.exampleData.newItem());
             });
         });
     }
@@ -186,14 +194,9 @@ class Demo extends React.Component {
 
         return new Promise((resolve, reject) => {
             console.log(item);
-            //this.exampleData.items.push(newItem);
             this.delay(() => {
                 this.exampleData.updateItem(item);
                 resolve();
-                //  this.config.detailsListConfig.items = this.exampleData.items;
-
-                //    this.config.detailsListConfig.items = toJS(this.exampleData.items);
-                //resolve();
             });
         });
 
@@ -244,7 +247,6 @@ class Demo extends React.Component {
                 const items = key == "4" ? this.exampleData.getDynamicView(0) : this.exampleData.getView(key);
                 this.currentPage = 1;
                 resolve(items);
-             //   resolve(this.exampleData.getView(key));
             });
         });
     }
@@ -290,28 +292,19 @@ class Demo extends React.Component {
         });
     }
 
-
-    //private onViewActionClicked = (id, items): Promise<void> => {
-    //    return new Promise((resolve, reject) => {
-    //        alert("Action " + id + " clicked.");
-    //        console.log(id);
-    //        console.log(items);
-    //        resolve();
-    //       //     resolve(this.exampleData.search(search));
-    //    });
-    //}
-
-
-
-
     private onActionClicked = (id, items): Promise<void> => {
         return new Promise((resolve, reject) => {
-        
-            console.log(id);
-            console.log(items);
-            resolve();
-            alert("Action " + id + " clicked.");
-            //     resolve(this.exampleData.search(search));
+            this.delay(() => {
+                console.log(id);
+                console.log(items);
+
+                //if (id == "Custom") {
+                //    this.item = items[0];
+                //    this.relatedPanel = true;
+                //}
+
+                resolve();
+            });
         });
     }
 
@@ -335,6 +328,15 @@ class Demo extends React.Component {
 
 
     render() {
+        //<ModernItemPanel isVisible={this.relatedPanel != null} item={this.item} descriptionProperty={"jobType"} imageProperty={"image"}
+        //    secondaryDescriptionProperty={"jobTitle"} titleProperty={"name"} colorProperty={"color"} >
+        //    <ModernOfficeList getNewOptionFieldGroups={this.getNewOptionFieldGroups}
+        //        getNewOptionItem={this.getNewOptionItem}
+        //        onSaveNewOption={this.onSaveNewOption}
+        //        onSaveNewAction={this.onSaveNewAction}
+        //        getNewActionFieldGroups={this.getNewActionFieldGroups}
+        //        getNewActionItem={this.getNewActionItem} />
+        //</ModernItemPanel>
 
         return (
             <div>
@@ -355,6 +357,7 @@ class Demo extends React.Component {
                     itemDescriptionProperty={"jobType"} itemImageProperty={"image"} itemAuthorProperty={"author"} 
                     itemModifiedProperty={"modified"} itemCreatedProperty={"created"} itemEditorProperty={"editor"}
                     onNewItem={this.onNewItem} />
+
             </div>
             
         );

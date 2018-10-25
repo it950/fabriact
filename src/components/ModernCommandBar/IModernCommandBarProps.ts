@@ -33,7 +33,7 @@ export interface IModernCommandBarProps {
 
     getNewActionFieldGroups: (actionId, items) => Promise<IModernFieldGroup[]>;
     getNewActionItem: (actionId, items) => Promise<any>;
-    onSaveNewAction: (item) => Promise<any>;
+    onSaveNewAction: (actionId, item) => Promise<any>;
 
 
 }

@@ -51,7 +51,7 @@ export interface IModernDetailsListProps {
 
     getNewActionFieldGroups: (fieldId, items) => Promise<IModernFieldGroup[]>;
     getNewActionItem: (fieldId, items) => Promise<any>;
-    onSaveNewAction: (item) => Promise<any>;
+    onSaveNewAction: (actionId, form, items) => Promise<any>;
 
 
 }

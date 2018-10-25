@@ -46,19 +46,21 @@ var ModernCommandBarState = /** @class */ (function (_super) {
         _this.viewOffset = 0;
         _this.viewType = 0;
         _this.onSaveNewActionItem = function (item) {
-            return rxjs_1.from(_this.onSaveActionItemEvent(item)).pipe(operators_1.map(function (o) {
-                _this.newActionItemFormVisible = false;
+            return rxjs_1.from(_this.onSaveActionItemEvent(_this.currentActionId, item)).pipe(operators_1.map(function (o) {
+                //    this.newActionItemFormVisible = false;
+                _this.currentActionId = null;
             })).toPromise();
         };
         _this.onNewActionItemDismiss = function () {
-            _this.newActionItemFormVisible = false;
+            _this.currentActionId = null;
         };
         _this.onActionClicked = function (action) {
             console.log(action);
             var act = _this.currentView.actions.find(function (g) { return g.key == action; });
             switch (act.type) {
                 case Modern_Types_1.ModernActionType.form:
-                    _this.newActionItemFormVisible = true;
+                    _this.currentActionId = act.key;
+                    //  this.newActionItemFormVisible = true;
                     rxjs_1.zip(rxjs_1.from(_this.getNewActionFieldsEvent(action)), rxjs_1.from(_this.getNewActionItemEvent(action))).pipe(operators_1.map(function (g) {
                         _this.newActionFields = g[0];
                         _this.newActionItem = g[1];
@@ -146,6 +148,24 @@ var ModernCommandBarState = /** @class */ (function (_super) {
         _this.selectedItemCount = selectedItemCount;
         return _this;
     }
+    Object.defineProperty(ModernCommandBarState.prototype, "newActionItemFormVisible", {
+        get: function () {
+            return this.currentActionId != null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ModernCommandBarState.prototype, "currentAction", {
+        get: function () {
+            var _this = this;
+            if (this.currentActionId) {
+                return this.currentView.actions.find(function (i) { return i.key == _this.currentActionId; });
+            }
+            return null;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(ModernCommandBarState.prototype, "currentViewName", {
         get: function () {
             if (this.currentView) {
@@ -307,7 +327,13 @@ var ModernCommandBarState = /** @class */ (function (_super) {
     ], ModernCommandBarState.prototype, "viewType", void 0);
     __decorate([
         mobx_1.observable
-    ], ModernCommandBarState.prototype, "newActionItemFormVisible", void 0);
+    ], ModernCommandBarState.prototype, "currentActionId", void 0);
+    __decorate([
+        mobx_1.computed
+    ], ModernCommandBarState.prototype, "newActionItemFormVisible", null);
+    __decorate([
+        mobx_1.computed
+    ], ModernCommandBarState.prototype, "currentAction", null);
     __decorate([
         mobx_1.observable
     ], ModernCommandBarState.prototype, "newActionItem", void 0);

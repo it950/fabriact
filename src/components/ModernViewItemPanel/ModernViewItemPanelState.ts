@@ -266,7 +266,12 @@ export default class ModernViewItemPanelState extends ModernState {
     @action
     public onActionClicked = (id) => {
         console.log(id);
-        this.onActionClickedEvent(id);
+        this.isLoading = true;
+        from(this.onActionClickedEvent(id, [toJS(this.item)])).pipe(map(x => {
+            this.getItem();
+        })).subscribe();
+
+     //   this.onActionClickedEvent(id);
     }
 
 
@@ -295,7 +300,24 @@ export default class ModernViewItemPanelState extends ModernState {
     //}
 
     @observable
-    newActionItemFormVisible: boolean;
+    currentActionId: string;
+
+    @computed
+    get newActionItemFormVisible() {
+        return this.currentActionId != null;
+    }
+
+    @computed
+    get currentAction() {
+        if (this.currentActionId) {
+            return this.itemActions.find(v => v.key == this.currentActionId);
+        }
+
+        return null;
+    }
+
+//    @observable
+ //   newActionItemFormVisible: boolean;
 
     @observable
     newActionFields: IModernFieldGroup[];
@@ -311,12 +333,14 @@ export default class ModernViewItemPanelState extends ModernState {
 
     @action
     public onSaveNewActionItem = (item): Promise<void> => {
-        return from(this.onSaveActionItemEvent(item)).pipe(map((o: any) => {
-            this.newActionItemFormVisible = false;
+        return from(this.onSaveActionItemEvent(this.currentActionId, item, [this.item])).pipe(map((o: any) => {
+            this.currentActionId = null;
 
             if (this.redirectUrl) {
                 this.requestRedirect = true;
             }
+
+            this.getItem();
 
         })).toPromise();
     }
@@ -329,8 +353,8 @@ export default class ModernViewItemPanelState extends ModernState {
 
     @action
     public onNewActionItemDismiss = () => {
-
-        this.newActionItemFormVisible = false;
+        this.currentActionId = null;
+      //  this.newActionItemFormVisible = false;
     }
 
 
@@ -349,7 +373,8 @@ export default class ModernViewItemPanelState extends ModernState {
                 const items = [ toJS(this.item) ];
                 switch (act.type) {
                     case ModernActionType.form:
-                        this.newActionItemFormVisible = true;
+                        this.currentActionId = act.key;
+//                        this.newActionItemFormVisible = true;
                         this.redirectUrl = act.redirectUrl;
                         zip(from(this.getNewActionFieldsEvent(act.key, items)), from(this.getNewActionItemEvent(act.key, items))).pipe(map(g => {
                             this.newActionFields = g[0];
@@ -357,7 +382,10 @@ export default class ModernViewItemPanelState extends ModernState {
                         })).subscribe();
                         break;
                     case ModernActionType.custom:
-                        from(this.onActionClickedEvent(act.key, items)).subscribe();
+                        this.isLoading = true;
+                        from(this.onActionClickedEvent(act.key, items)).pipe(map(x => {
+                            this.getItem();
+                        })).subscribe();
                    //     this.onActionClickedEvent(id, toJS(this.item));
                         break;
                 }

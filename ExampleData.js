@@ -234,9 +234,9 @@ var ExampleData = /** @class */ (function () {
                 {
                     key: "1",
                     name: "View 1",
-                    actions: [{ name: "Action 1", key: "1", type: src_1.ModernActionType.custom, selectionMode: DetailsList_1.SelectionMode.none },
-                        { name: "Action 3", key: "3", type: src_1.ModernActionType.custom, selectionMode: DetailsList_1.SelectionMode.single },
-                        { name: "Action 4", key: "4", type: src_1.ModernActionType.custom, selectionMode: DetailsList_1.SelectionMode.multiple },
+                    actions: [{ name: "Action 1", key: "1", type: src_1.ModernActionType.custom, selectionMode: DetailsList_1.SelectionMode.none, description: "Executing action 1..." },
+                        { name: "Action 3", key: "3", type: src_1.ModernActionType.custom, selectionMode: DetailsList_1.SelectionMode.single, description: "Executing action 3..." },
+                        { name: "Action 4", key: "4", type: src_1.ModernActionType.custom, selectionMode: DetailsList_1.SelectionMode.multiple, description: "Executing action 4..." },
                         { name: "Form Action", key: "5", type: src_1.ModernActionType.form, selectionMode: DetailsList_1.SelectionMode.multiple }],
                     fields: [this.demoFieldData[1], this.demoFieldData[2], this.demoFieldData[3], this.demoFieldData[4],
                         this.demoFieldData[11], this.demoFieldData[12], this.demoFieldData[13], this.demoFieldData[20]]

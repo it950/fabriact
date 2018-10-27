@@ -29,37 +29,7 @@ var ModernUserDisplayField = /** @class */ (function (_super) {
         return _super.call(this, props) || this;
     }
     ModernUserDisplayField.prototype.render = function () {
-        //if (props.value != null) {
-        //    if (props.isArray) {
-        //        if (props.value.length > 0) {
-        //            let users = props.value.map(a => {
-        //                return {
-        //                    personaName: a.PsaTitle,
-        //                    imageUrl: a.PsaImage
-        //                };
-        //            });
         var _this = this;
-        //            return (
-        //                <Label>
-        //                    <Facepile personas={users} personaSize={PersonaSize.size32} />
-        //                </Label>
-        //            );
-        //        }
-        //    }
-        //    else {
-        //        return (
-        //            <Label>
-        //                <Persona
-        //                    text={props.value.PsaTitle}
-        //                    secondaryText={props.value.PsaDescription}
-        //                    showSecondaryText={props.value.PsaDescription != null}
-        //                    imageUrl={props.value.PsaImage}
-        //                    size={PersonaSize.size32}
-        //                />
-        //            </Label>
-        //        );
-        //    }
-        //}
         var html = React.createElement("span", null);
         if (this.props.value) {
             if (this.props.value.constructor === Array) {

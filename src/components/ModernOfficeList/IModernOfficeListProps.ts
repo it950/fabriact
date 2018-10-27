@@ -11,7 +11,8 @@ export interface IModernOfficeListProps {
     hasNextPage?: boolean;
     defaultView?: string;
     language?: string;
-    hideDelete?: boolean;
+    hideItemDelete?: boolean;
+    hideListDelete?: boolean;
     hideNew?: boolean;
     placeholderImage?: string;
     newItemTitle?: string;

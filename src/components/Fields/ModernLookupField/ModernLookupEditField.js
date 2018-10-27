@@ -45,7 +45,6 @@ var ModernLookupEditField = /** @class */ (function (_super) {
                     _this.props.onChange(_this.props.field.key, null);
                 }
             }
-            // this.props.validate(this.props.field, items);
         };
         //private updateItem = (value) => {
         //    this.props.onChange(this.props.field.key, value);
@@ -65,23 +64,10 @@ var ModernLookupEditField = /** @class */ (function (_super) {
             return persona;
         };
         _this._onFocus = function (items) {
-            //  console.log(toJS(this.props.value));
-            // console.log(items);
-            ///  console.log(this.props.resolveSuggestions);
             if (_this.props.resolveSuggestions) {
                 return rxjs_1.from(_this.props.resolveSuggestions()).pipe(operators_1.map(function (t) {
-                    console.log(t);
                     return t.filter(function (v) { return _this.props.value == null || _this.props.value.find(function (k) { return k.id == v.id; }) == null; }).map(function (v) {
                         return _this.modernLookupFieldToPersonaMapping(v);
-                        //var description = v.PsaPrimaryDescription ? v.PsaPrimaryDescription : v.PsaDescription;
-                        //return {
-                        //    title: v.PsaTitle,
-                        //    id: v.PsaId,
-                        //    imageUrl: v.PsaImage,
-                        //    secondaryText: description,
-                        //    showSecondaryText: description != null,
-                        //    text: v.PsaTitle
-                        //};
                     });
                 })).toPromise();
             }
@@ -101,8 +87,6 @@ var ModernLookupEditField = /** @class */ (function (_super) {
             }
         };
         _this._onFilterChanged = function (filterText, currentPersonas, limitResults) {
-            console.log("_onFilterChanged");
-            console.log(filterText);
             if (filterText) {
                 return rxjs_1.from(_this.props.resolveLookup(filterText)).pipe(operators_1.map(function (t) {
                     console.log(t);
@@ -123,9 +107,7 @@ var ModernLookupEditField = /** @class */ (function (_super) {
         var values = this.props.field.multiSelect ? (this.props.value != null && this.props.value.length > 0) ? this.props.value.map(function (v) {
             return _this.modernLookupFieldToPersonaMapping(v);
         }) : [] : this.props.value != null ? [this.modernLookupFieldToPersonaMapping(this.props.value)] : [];
-        // className={errorClass}
         var picker = React.createElement(Pickers_1.NormalPeoplePicker, { defaultSelectedItems: values, onValidateInput: this._validateInput, onEmptyInputFocus: this._onFocus, itemLimit: itemLimit, resolveDelay: 500, onResolveSuggestions: this._onFilterChanged, onChange: this.updateItem });
-        //onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage}
         return (React.createElement("span", null,
             React.createElement(__1.ModernFieldLabel, { required: this.props.field.required, label: this.props.field.name }),
             picker));

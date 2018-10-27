@@ -19,7 +19,7 @@ export class ModernOfficeList extends React.Component<IModernOfficeListProps, an
     constructor(props: IModernOfficeListProps) {
         super(props);
 
-        this.config = new ModernOfficeListState(this.props.items, this.props.hasNextPage, this.props.views, this.props.itemIdProperty, this.props.hideDelete, this.props.itemTitleProperty,
+        this.config = new ModernOfficeListState(this.props.items, this.props.hasNextPage, this.props.views, this.props.itemIdProperty, this.props.hideListDelete, this.props.itemTitleProperty,
             this.props.onNextPage,
             this.props.onSearch,
             this.props.onViewChange, this.props.onNewItem, this.props.onSaveNewItem, this.props.onDeleteItem, this.props.onUpdateItem, this.props.onViewOffsetChange,
@@ -31,7 +31,7 @@ export class ModernOfficeList extends React.Component<IModernOfficeListProps, an
         });
 
 
-        reaction(() => this.props.hideDelete, (hideDelete) => {
+        reaction(() => this.props.hideListDelete, (hideDelete) => {
             this.config.hideDelete = hideDelete;
         });
 
@@ -47,7 +47,7 @@ export class ModernOfficeList extends React.Component<IModernOfficeListProps, an
             title={this.config.processProgress.title} /> :
             <ModernDetailsList items={this.config.items} onSelectionChanged={this.config.onSelectionChanged} selection={this.config.selection}
                 onActionClicked={this.props.onActionClicked} onDeleteItem={this.config.onDeleteItem} onGetItem={this.props.onGetItem}
-                currentViewItem={this.config.currentViewItem} hideDelete={this.props.hideDelete}
+                currentViewItem={this.config.currentViewItem} hideDelete={this.props.hideItemDelete}
                 placeholderImage={this.props.placeholderImage}
                 getNewActionFieldGroups={this.props.getNewActionFieldGroups} getNewActionItem={this.props.getNewActionItem} onSaveNewAction={this.props.onSaveNewAction}
                 onSaveNewOption={this.props.onSaveNewOption} onUpdateItem={this.config.onUpdateItem} getNewOptionFieldGroups={this.props.getNewOptionFieldGroups}

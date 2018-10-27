@@ -28,7 +28,6 @@ var ModernBooleanEditField = /** @class */ (function (_super) {
     function ModernBooleanEditField(props) {
         var _this = _super.call(this, props) || this;
         _this.updateItem = function (value, checked) {
-            console.log(checked);
             _this.props.onChange(_this.props.field.key, checked);
             return value;
         };

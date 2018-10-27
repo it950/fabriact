@@ -53,5 +53,6 @@ export interface IModernDetailsListProps {
     getNewActionItem: (fieldId, items) => Promise<any>;
     onSaveNewAction: (actionId, form, items) => Promise<any>;
 
+    hideDelete?: boolean;
 
 }

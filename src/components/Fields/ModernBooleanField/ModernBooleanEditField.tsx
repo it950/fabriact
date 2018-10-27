@@ -12,7 +12,7 @@ export class ModernBooleanEditField extends React.Component<IModernBooleanEditFi
     }
 
     private updateItem = (value, checked) => {
-        console.log(checked);
+
         this.props.onChange(this.props.field.key, checked);
         return value;
     }

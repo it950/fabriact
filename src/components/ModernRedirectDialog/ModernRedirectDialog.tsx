@@ -37,10 +37,7 @@ export class ModernRedirectDialog extends React.Component<IModernRedirectDialogP
 
         return (
             <Dialog
-                hidden={!this.props.isVisible}
-                onDismiss={this.props.onCanceled}
-                dialogContentProps={props}
-                modalProps={options}>
+                hidden={!this.props.isVisible} onDismiss={this.props.onCanceled} dialogContentProps={props} modalProps={options}>
                 <DialogFooter>
                     <ModernPrimaryButton onClick={this.redirect} id={"Yes"} label={this.locale.strings.yes} />
                     <ModernButton onClick={this.props.onCanceled} id={"No"} label={this.locale.strings.no} />

@@ -32,12 +32,18 @@ var ModernFilterPanelState = /** @class */ (function (_super) {
         _this.getFilterOptionsEvent = getFilterOptionsEvent;
         _this.onDismiss = function () {
             _this.options = null;
+            if (_this.optionSubscription) {
+                _this.optionSubscription.unsubscribe();
+            }
             _this.onDismissEvent();
         };
         _this.getOptions = function () {
             if (_this.field) {
-                rxjs_1.from(_this.getFilterOptionsEvent(_this.field.key)).pipe(operators_1.map(function (p) {
+                _this.optionSubscription = rxjs_1.from(_this.getFilterOptionsEvent(_this.field.key)).pipe(operators_1.map(function (p) {
                     _this.options = p.map(function (v) {
+                        if (!v.title || v.title == "") {
+                            v.title = _this.strings.empty;
+                        }
                         v.isChecked = _this.currentFilters && _this.currentFilters.findIndex(function (c) { return c == v.id; }) > -1;
                         return v;
                     });

@@ -2,7 +2,7 @@
 import { observer } from 'mobx-react';
 import { IModernUserDisplayFieldProps } from './IModernUserDisplayFieldProps';
 import { PersonaSize, Persona } from 'office-ui-fabric-react/lib/Persona';
-import { Facepile, IFacepilePersona, IFacepileProps } from 'office-ui-fabric-react/lib/Facepile';
+import { Facepile } from 'office-ui-fabric-react/lib/Facepile';
 
 @observer
 export class ModernUserDisplayField extends React.Component<IModernUserDisplayFieldProps, any> {
@@ -13,41 +13,7 @@ export class ModernUserDisplayField extends React.Component<IModernUserDisplayFi
     }
 
     render() {
-
-        //if (props.value != null) {
-        //    if (props.isArray) {
-        //        if (props.value.length > 0) {
-        //            let users = props.value.map(a => {
-        //                return {
-        //                    personaName: a.PsaTitle,
-        //                    imageUrl: a.PsaImage
-        //                };
-        //            });
-
-        //            return (
-        //                <Label>
-        //                    <Facepile personas={users} personaSize={PersonaSize.size32} />
-        //                </Label>
-        //            );
-        //        }
-        //    }
-        //    else {
-
-        //        return (
-        //            <Label>
-        //                <Persona
-        //                    text={props.value.PsaTitle}
-        //                    secondaryText={props.value.PsaDescription}
-        //                    showSecondaryText={props.value.PsaDescription != null}
-        //                    imageUrl={props.value.PsaImage}
-        //                    size={PersonaSize.size32}
-        //                />
-        //            </Label>
-        //        );
-        //    }
-        //}
-
-
+        
         let html = <span></span>;
 
         if (this.props.value) {

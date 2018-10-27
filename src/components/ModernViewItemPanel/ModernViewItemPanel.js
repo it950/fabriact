@@ -46,6 +46,9 @@ var ModernViewItemPanel = /** @class */ (function (_super) {
         mobx_1.reaction(function () { return _this.props.groups; }, function (groups) {
             _this.config.groups = groups;
         });
+        mobx_1.reaction(function () { return _this.props.hideDelete; }, function (hideDelete) {
+            _this.config.hideDelete = hideDelete;
+        });
         return _this;
     }
     ModernViewItemPanel.prototype.render = function () {

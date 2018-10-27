@@ -35,9 +35,6 @@ export class ModernLookupEditField extends React.Component<IModernLookupEditFiel
                 this.props.onChange(this.props.field.key, null);
             }
         }
-
-        // this.props.validate(this.props.field, items);
-
     }
 
 
@@ -64,24 +61,10 @@ export class ModernLookupEditField extends React.Component<IModernLookupEditFiel
 
 
     private _onFocus = (items) => {
-      //  console.log(toJS(this.props.value));
-       // console.log(items);
-      ///  console.log(this.props.resolveSuggestions);
         if (this.props.resolveSuggestions) {
             return from(this.props.resolveSuggestions()).pipe(map(t => {
-                console.log(t);
                 return t.filter(v => this.props.value == null || this.props.value.find(k => k.id == v.id) == null).map(v => {
                     return this.modernLookupFieldToPersonaMapping(v);
-
-                    //var description = v.PsaPrimaryDescription ? v.PsaPrimaryDescription : v.PsaDescription;
-                    //return {
-                    //    title: v.PsaTitle,
-                    //    id: v.PsaId,
-                    //    imageUrl: v.PsaImage,
-                    //    secondaryText: description,
-                    //    showSecondaryText: description != null,
-                    //    text: v.PsaTitle
-                    //};
                 });
             })).toPromise();
         }
@@ -105,8 +88,6 @@ export class ModernLookupEditField extends React.Component<IModernLookupEditFiel
 
 
     private _onFilterChanged = (filterText: string, currentPersonas: IPersonaProps[], limitResults?: number): IPersonaProps[] | Promise<IPersonaProps[]> => {
-        console.log("_onFilterChanged");
-        console.log(filterText);
         if (filterText) {
 
             return from(this.props.resolveLookup(filterText)).pipe(
@@ -130,14 +111,10 @@ export class ModernLookupEditField extends React.Component<IModernLookupEditFiel
             return this.modernLookupFieldToPersonaMapping(v);
         }) : [] : this.props.value != null ? [ this.modernLookupFieldToPersonaMapping(this.props.value) ] : [];
 
-        // className={errorClass}
-
-        var picker = <NormalPeoplePicker defaultSelectedItems={values}
+        const picker = <NormalPeoplePicker defaultSelectedItems={values}
             onValidateInput={this._validateInput} onEmptyInputFocus={this._onFocus}
-            itemLimit={itemLimit} resolveDelay={500} onResolveSuggestions={this._onFilterChanged} onChange={this.updateItem} ></NormalPeoplePicker>;
+            itemLimit={itemLimit} resolveDelay={500} onResolveSuggestions={this._onFilterChanged} onChange={this.updateItem} />;
 
-
-        //onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage}
         return (
             <span>
                 <ModernFieldLabel required={this.props.field.required} label={this.props.field.name} />

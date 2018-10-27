@@ -12,50 +12,15 @@ export class ModernChoiceEditField extends React.Component<IModernChoiceEditFiel
     }
 
 
-    //private updateItem = (value) => {
-    //    var result = null;
-    //    console.log(value);
-    //    if (!this.props.field.multiSelect) {
-    //        result = value.key;
-    //    }
-    //    else {
-    //        result = this.props.value;
-
-    //        if (value.selected) {
-
-    //            if (this.props.value) {
-    //                result.push(value.key);
-    //            }
-    //            else {
-    //                result = [value.key];
-    //            }
-    //        }
-    //        else {
-    //            result.splice(result.indexOf(value.key), 1);
-    //        }
-    //    }
-    //    console.log("UPDATE WITH");
-    //    console.log(result);
-    //    this.props.onChange(this.props.field.key, result);
-    //}
-
     private updateItem = (value) => {
-        console.log(value);
         if (this.props.field.multiSelect) {
             if (this.props.value && this.props.value.length > 0 && this.props.value.filter(e => e.id == value.key).length > 0) {
-                //this.props.onChange(this.props.field.key, this.props.value.filter(r => r.id != value.key).map(v => {
-                //    return { title: v.text, id: v.key };
-                //}));
                 this.props.onChange(this.props.field.key, this.props.value.filter(r => r.id != value.key));
             }
             else {
                 var results = this.props.value ? this.props.value : [];
 
                 results.push({ title: value.text, id: value.key });
-                //this.props.onChange(this.props.field.key, results.map(v => {
-                //    return { title: v.text, id: v.key };
-                //}));
-
                 this.props.onChange(this.props.field.key, results);
             }
         }
@@ -64,18 +29,10 @@ export class ModernChoiceEditField extends React.Component<IModernChoiceEditFiel
                 this.props.onChange(this.props.field.key, null);
             }
             else {
-                //  var newValue = this.props.values.push(value);
                 this.props.onChange(this.props.field.key, { title: value.text, id: value.key });
             }
         }
 
-        //this.props.updateItem(this.props.fieldName, { id: value.id, title: value.title });
-        //    return value;
-    }
-
-    private updateItem3 = (value) => {
-       // this.props.onChange(this.props.field.key, value);
-        return value;
     }
 
     private getErrorMessage = (value: string): string => {
@@ -84,10 +41,7 @@ export class ModernChoiceEditField extends React.Component<IModernChoiceEditFiel
 
     private modernLookupFieldToDropdownOptionMapping = (modernLookupField) => {
         var persona: IDropdownOption = {
-          //  title: modernLookupField.title,
             key: modernLookupField.id,
-          //  imageUrl: modernLookupField.image,
-           // secondaryText: modernLookupField.secondaryText,
             text: modernLookupField.title,
         };
 
@@ -95,11 +49,7 @@ export class ModernChoiceEditField extends React.Component<IModernChoiceEditFiel
     }
 
     render() {
-        console.log(this.props);
         const options = this.props.field.options.map(c => this.modernLookupFieldToDropdownOptionMapping(c));
-
-        //defaultSelectedKeys={toJS(this.props.value)}
-        // defaultSelectedKey={this.props.value}
 
         let field = <span></span>;
 
@@ -112,9 +62,7 @@ export class ModernChoiceEditField extends React.Component<IModernChoiceEditFiel
             const key = this.props.value ? this.props.value.id : null;
             field = <Dropdown onChanged={this.updateItem} options={options} defaultSelectedKey={key} />;
         }
-//        this.props.value ? this.props.value.map(i => i.id)
 
-        //onGetErrorMessage={this.getErrorMessage} errorMessage={this.props.errorMessage}
         return (
             <span>
                 <ModernFieldLabel required={this.props.field.required} label={this.props.field.name} />

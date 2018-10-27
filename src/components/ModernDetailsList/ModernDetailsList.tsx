@@ -107,7 +107,7 @@ export class ModernDetailsList extends React.Component<IModernDetailsListProps, 
                     onDismiss={this.config.onDismissViewItemPanel} groups={this.props.viewItemGroups} authorProperty={this.props.itemAuthorProperty}
                     onGetItem={this.props.onGetItem} language={this.props.language} colorProperty={this.props.itemColorProperty} onActionClick={this.props.onActionClicked}
                     editorProperty={this.props.itemEditorProperty} onGetFieldValue={this.props.onGetFieldValue} actions={this.props.viewItemActions}
-                    placeholderImage={this.props.placeholderImage}
+                    placeholderImage={this.props.placeholderImage} hideDelete={this.props.hideDelete}
                     onSaveNewAction={this.props.onSaveNewAction} getNewActionFieldGroups={this.props.getNewActionFieldGroups} getNewActionItem={this.props.getNewActionItem}
                     getNewOptionFieldGroups={this.props.getNewOptionFieldGroups} onSaveNewOption={this.props.onSaveNewOption} getNewOptionItem={this.props.getNewOptionItem}
                     createdProperty={this.props.itemCreatedProperty} modifiedProperty={this.props.itemModifiedProperty} onDeleteItem={this.props.onDeleteItem}

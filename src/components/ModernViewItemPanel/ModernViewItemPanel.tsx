@@ -36,6 +36,11 @@ export class ModernViewItemPanel extends React.Component<IModernViewItemPanelPro
         reaction(() => this.props.groups, (groups) => {
             this.config.groups = groups;
         });
+
+        reaction(() => this.props.hideDelete, (hideDelete) => {
+            this.config.hideDelete = hideDelete;
+        });
+
     }
 
     render() {

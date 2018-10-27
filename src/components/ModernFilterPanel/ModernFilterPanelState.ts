@@ -1,6 +1,6 @@
 ﻿import { observable, action, computed, toJS } from "mobx";
 import { IModernField } from "../../Modern.Types";
-import { from } from "rxjs";
+import { from, Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 import ModernState from "../../utilities/ModernState";
 
@@ -14,6 +14,8 @@ export default class ModernFilterPanelState extends ModernState {
 
     @observable
     public field: IModernField;
+
+    private optionSubscription: Subscription;
 
     @computed
     get panelTitle() {
@@ -73,6 +75,11 @@ export default class ModernFilterPanelState extends ModernState {
     @action
     public onDismiss = () => {
         this.options = null;
+
+        if (this.optionSubscription) {
+            this.optionSubscription.unsubscribe();
+        }
+
         this.onDismissEvent();
     }
 
@@ -81,9 +88,15 @@ export default class ModernFilterPanelState extends ModernState {
     @action
     public getOptions = () => {
         if (this.field) {
-            from(this.getFilterOptionsEvent(this.field.key)).pipe(map((p: any) => {
+
+            this.optionSubscription = from(this.getFilterOptionsEvent(this.field.key)).pipe(map((p: any) => {
 
                 this.options = p.map(v => {
+
+                    if (!v.title || v.title == "") {
+                        v.title = this.strings.empty;
+                    }
+
                     v.isChecked = this.currentFilters && this.currentFilters.findIndex(c => c == v.id) > -1;
 
                     return v;

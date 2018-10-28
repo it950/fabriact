@@ -29,7 +29,7 @@ var Papa = require("papaparse");
 var file_saver_1 = require("file-saver");
 var ModernCommandBarState = /** @class */ (function (_super) {
     __extends(ModernCommandBarState, _super);
-    function ModernCommandBarState(views, onSearchEvent, onViewChangeEvent, onDeleteConfirmedEvent, onViewOffsetChanged, onActionClickedEvent, onExportEvent, onNewItemEvent, onSaveNewItemEvent, getNewActionFieldsEvent, getNewActionItemEvent, onSaveActionItemEvent, selectedItemCount, selectedView, hideNew, hideDelete, hideSearch, language) {
+    function ModernCommandBarState(views, compact, onSearchEvent, onViewChangeEvent, onDeleteConfirmedEvent, onViewOffsetChanged, onActionClickedEvent, onExportEvent, onNewItemEvent, onSaveNewItemEvent, getNewActionFieldsEvent, getNewActionItemEvent, onSaveActionItemEvent, selectedItemCount, selectedView, hideNew, hideDelete, hideSearch, language) {
         var _this = _super.call(this, language) || this;
         _this.onSearchEvent = onSearchEvent;
         _this.onViewChangeEvent = onViewChangeEvent;
@@ -144,6 +144,7 @@ var ModernCommandBarState = /** @class */ (function (_super) {
         _this.hideSearch = hideSearch;
         _this.hideNew = hideNew;
         _this.views = views;
+        _this.compact = compact;
         _this.currentViewKey = selectedView;
         _this.selectedItemCount = selectedItemCount;
         return _this;
@@ -208,7 +209,7 @@ var ModernCommandBarState = /** @class */ (function (_super) {
                     name: this.strings.new,
                     onClick: this.onNewItemClicked
                 }].concat(result) : result;
-            result = !this.hideSearch ? [{
+            result = !this.hideSearch && !this.compact ? [{
                     key: "search",
                 }].concat(result) : result;
             result = this.onExportEvent && this.selectedItemCount == 0 ? result.concat([{
@@ -231,6 +232,9 @@ var ModernCommandBarState = /** @class */ (function (_super) {
     Object.defineProperty(ModernCommandBarState.prototype, "farItems", {
         get: function () {
             var _this = this;
+            if (this.compact) {
+                return [];
+            }
             var icon = this.viewType == 0 ? 'List' : 'GridViewMedium';
             //var typeItems: any[] =
             //    [
@@ -316,6 +320,9 @@ var ModernCommandBarState = /** @class */ (function (_super) {
     __decorate([
         mobx_1.observable
     ], ModernCommandBarState.prototype, "hideSearch", void 0);
+    __decorate([
+        mobx_1.observable
+    ], ModernCommandBarState.prototype, "compact", void 0);
     __decorate([
         mobx_1.observable
     ], ModernCommandBarState.prototype, "currentViewKey", void 0);

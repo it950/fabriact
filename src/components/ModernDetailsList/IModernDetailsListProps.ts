@@ -32,6 +32,8 @@ export interface IModernDetailsListProps {
     itemModifiedProperty?: string;
     itemIdProperty?: string;
 
+    compact: boolean;
+
     onUpdateItem: any;
     onDeleteItem: any;
 

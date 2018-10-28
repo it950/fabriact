@@ -5,6 +5,8 @@ export interface IModernCommandBarProps {
     hideSearch?: boolean;
     hideNew?: boolean;
     language?: string;
+
+    compact: boolean;
     hideDelete?: boolean;
     views?: IModernView[];
     searchValue?: string;

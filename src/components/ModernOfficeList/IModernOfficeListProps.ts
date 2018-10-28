@@ -14,6 +14,7 @@ export interface IModernOfficeListProps {
     hideItemDelete?: boolean;
     hideListDelete?: boolean;
     hideNew?: boolean;
+    compact?: boolean;
     placeholderImage?: string;
     newItemTitle?: string;
 
@@ -42,6 +43,7 @@ export interface IModernOfficeListProps {
    // onFormActionClicked?: (id, item) => Promise<void>;
     onExport?: () => Promise<any[]>;
     onNewItem?: () => Promise<any>;
+    
     onUpdateItem?: (item) => Promise<void>;
     onDeleteItem?: (item) => Promise<void>;
     onGetFieldValue?: (fieldId, item) => Promise<any>;

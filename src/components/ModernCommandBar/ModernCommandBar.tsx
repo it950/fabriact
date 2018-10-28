@@ -17,7 +17,7 @@ export class ModernCommandBar extends React.Component<IModernCommandBarProps, an
     constructor(props: IModernCommandBarProps) {
         super(props);
 
-        this.config = new ModernCommandBarState(this.props.views, this.props.onSearch, this.props.onViewClicked, this.props.onDeleteConfirmed, this.props.onViewOffsetChanged,
+        this.config = new ModernCommandBarState(this.props.views, this.props.compact, this.props.onSearch, this.props.onViewClicked, this.props.onDeleteConfirmed, this.props.onViewOffsetChanged,
             this.props.onActionClicked, this.props.onExport, this.props.onNewItem, this.props.onSaveNewItem, this.props.getNewActionFieldGroups, this.props.getNewActionItem,
             this.props.onSaveNewAction, this.props.selectedItemCount,
             this.props.selectedViewId, this.props.hideNew, this.props.hideDelete, this.props.hideSearch, this.props.language);

@@ -37,6 +37,9 @@ export default class ModernCommandBarState extends ModernState {
     public hideSearch: boolean;
 
     @observable
+    public compact: boolean;
+
+    @observable
     public currentViewKey: string;
 
     @observable
@@ -114,7 +117,7 @@ export default class ModernCommandBarState extends ModernState {
             onClick: this.onNewItemClicked
         }].concat(result) : result;
 
-        result = !this.hideSearch ? [{
+        result = !this.hideSearch && !this.compact ? [{
             key: "search",
         }].concat(result) : result;
 
@@ -137,6 +140,10 @@ export default class ModernCommandBarState extends ModernState {
 
     @computed
     get farItems() {
+        if (this.compact) {
+            return [];
+        }
+
         const icon = this.viewType == 0 ? 'List' : 'GridViewMedium';
         //var typeItems: any[] =
         //    [
@@ -208,7 +215,7 @@ export default class ModernCommandBarState extends ModernState {
         return menu;
     }
 
-    constructor(views, protected onSearchEvent, protected onViewChangeEvent,
+    constructor(views, compact, protected onSearchEvent, protected onViewChangeEvent,
         protected onDeleteConfirmedEvent, protected onViewOffsetChanged, protected onActionClickedEvent, protected onExportEvent, protected onNewItemEvent,
         protected onSaveNewItemEvent, protected getNewActionFieldsEvent, protected getNewActionItemEvent, protected onSaveActionItemEvent, selectedItemCount,
         selectedView, hideNew, hideDelete, hideSearch, language) {
@@ -219,6 +226,7 @@ export default class ModernCommandBarState extends ModernState {
         this.hideSearch = hideSearch;
         this.hideNew = hideNew;
         this.views = views;
+        this.compact = compact;
         this.currentViewKey = selectedView;
         this.selectedItemCount = selectedItemCount;
        

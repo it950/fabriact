@@ -21,18 +21,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var mobx_react_1 = require("mobx-react");
-var ModernCustomActionPanelState_1 = require("./ModernCustomActionPanelState");
-var mobx_1 = require("mobx");
 var ModernItemPanel_1 = require("../ModernItemPanel");
 var ModernCustomActionPanel = /** @class */ (function (_super) {
     __extends(ModernCustomActionPanel, _super);
     function ModernCustomActionPanel(props) {
-        var _this = _super.call(this, props) || this;
-        _this.config = new ModernCustomActionPanelState_1.default(_this.props.item, _this.props.onDismiss, _this.props.language);
-        mobx_1.reaction(function () { return _this.props.item; }, function (item) {
-            _this.config.item = item;
-        });
-        return _this;
+        return _super.call(this, props) || this;
     }
     ModernCustomActionPanel.prototype.render = function () {
         var html = this.props.action != null ? this.props.renderCustomAction(this.props.action) : React.createElement("span", null);

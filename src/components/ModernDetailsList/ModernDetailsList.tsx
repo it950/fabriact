@@ -69,6 +69,7 @@ export class ModernDetailsList extends React.Component<IModernDetailsListProps, 
             <DetailsList items={this.config.listItems} selection={this.props.selection} columns={this.config.columns}
                 selectionPreservedOnEmptyClick={true} setKey={this.props.idProperty}
                 onColumnHeaderClick={this.config.columnClick}
+                compact={this.props.compact}
                 onRenderMissingItem={this.renderMissingItem}
                 onRenderDetailsHeader={
                     (detailsHeaderProps: IDetailsHeaderProps, defaultRender: IRenderFunction<IDetailsHeaderProps>) => (

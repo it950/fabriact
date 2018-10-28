@@ -1,7 +1,6 @@
 ﻿import * as React from 'react';
 import { observer } from 'mobx-react';
 import { IModernCustomActionPanelProps } from './IModernCustomActionPanelProps';
-import ModernCustomActionPanelState from './ModernCustomActionPanelState';
 import { ModernItemPanel } from '../ModernItemPanel';
 
 @observer

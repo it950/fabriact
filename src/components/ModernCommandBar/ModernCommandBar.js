@@ -36,7 +36,7 @@ var ModernCommandBar = /** @class */ (function (_super) {
             var searcvhValue = _this.props.searchValue ? _this.props.searchValue : "";
             return (React.createElement(SearchBox_1.SearchBox, { placeholder: _this.config.strings.searchPlaceholder, value: searcvhValue, className: "modernSearchBox", onSearch: _this.props.onSearch, onClear: _this.props.onSearchCleared, onEscape: _this.props.onSearchCleared }));
         };
-        _this.config = new ModernCommandBarState_1.default(_this.props.views, _this.props.onSearch, _this.props.onViewClicked, _this.props.onDeleteConfirmed, _this.props.onViewOffsetChanged, _this.props.onActionClicked, _this.props.onExport, _this.props.onNewItem, _this.props.onSaveNewItem, _this.props.getNewActionFieldGroups, _this.props.getNewActionItem, _this.props.onSaveNewAction, _this.props.selectedItemCount, _this.props.selectedViewId, _this.props.hideNew, _this.props.hideDelete, _this.props.hideSearch, _this.props.language);
+        _this.config = new ModernCommandBarState_1.default(_this.props.views, _this.props.compact, _this.props.onSearch, _this.props.onViewClicked, _this.props.onDeleteConfirmed, _this.props.onViewOffsetChanged, _this.props.onActionClicked, _this.props.onExport, _this.props.onNewItem, _this.props.onSaveNewItem, _this.props.getNewActionFieldGroups, _this.props.getNewActionItem, _this.props.onSaveNewAction, _this.props.selectedItemCount, _this.props.selectedViewId, _this.props.hideNew, _this.props.hideDelete, _this.props.hideSearch, _this.props.language);
         mobx_1.reaction(function () { return _this.props.hideDelete; }, function (hideDelete) {
             _this.config.hideDelete = hideDelete;
         });

@@ -193,7 +193,7 @@ export default class ModernViewItemPanelState extends ModernState {
 
     constructor(item, actions, groups, hideDelete, protected onDismissEvent, protected onUpdateItemEvent, protected onDeleteItemEvent,
         protected onGetItem, protected onActionClickedEvent, protected getNewActionFieldsEvent, protected getNewActionItemEvent,
-        protected onSaveActionItemEvent, language) {
+        protected onSaveActionItemEvent, protected onRenderCustomActionEvent, language) {
         super(language);
 
         this.item = item;
@@ -246,8 +246,6 @@ export default class ModernViewItemPanelState extends ModernState {
         return from(this.onUpdateItemEvent(item)).pipe(map(b => {
             this.item = item;
             this.onDismissEditForm();
-            //this.editGroup = null;
-            //this.editItem = null;
         })).toPromise();
     }
 
@@ -255,15 +253,12 @@ export default class ModernViewItemPanelState extends ModernState {
 
     @action
     public onEditClicked = (groupId) => {
-        //  console.log(groupId);
         this.editItem = toJS(this.item);
         this.editGroup = groupId;
-
     }
 
     @action
     public onMoreClicked = (fieldId) => {
-        console.log(fieldId);
         this.showEmbeddedFieldId = fieldId;
     }
     
@@ -343,9 +338,14 @@ export default class ModernViewItemPanelState extends ModernState {
 
             case ModernActionType.custom:
                 this.currentActionId = act.key;
+//                from(this.onActionClickedEvent(act.key, items)).subscribe();
                 break;
         }
 
+    }
+
+    public onRenderCustomAction = (action) => {
+        return this.onRenderCustomActionEvent(toJS(action), [toJS(this.item)]);
     }
 
     @action

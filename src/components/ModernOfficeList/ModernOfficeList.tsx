@@ -48,6 +48,7 @@ export class ModernOfficeList extends React.Component<IModernOfficeListProps, an
             <ModernDetailsList items={this.config.items} onSelectionChanged={this.config.onSelectionChanged} selection={this.config.selection}
                 onActionClicked={this.props.onActionClicked} onDeleteItem={this.config.onDeleteItem} onGetItem={this.props.onGetItem}
                 currentViewItem={this.config.currentViewItem} hideDelete={this.props.hideItemDelete} 
+                compact={this.props.compact}
                 placeholderImage={this.props.placeholderImage} renderCustomAction={this.props.renderCustomAction}
                 getNewActionFieldGroups={this.props.getNewActionFieldGroups} getNewActionItem={this.props.getNewActionItem} onSaveNewAction={this.props.onSaveNewAction}
                 onSaveNewOption={this.props.onSaveNewOption} onUpdateItem={this.config.onUpdateItem} getNewOptionFieldGroups={this.props.getNewOptionFieldGroups}
@@ -70,7 +71,7 @@ export class ModernOfficeList extends React.Component<IModernOfficeListProps, an
                             onNewItem={this.props.onNewItem} onSaveNewItem={this.props.onSaveNewItem} resolveLookup={this.props.resolveLookup} resolveSuggestions={this.props.resolveSuggestions}
                             onSaveNewAction={this.config.onActionSaved} getNewActionFieldGroups={this.config.getNewActionFieldGroups} getNewActionItem={this.config.getNewActionItem}
                             getNewOptionFieldGroups={this.props.getNewOptionFieldGroups} onSaveNewOption={this.props.onSaveNewOption} getNewOptionItem={this.props.getNewOptionItem}
-                            newItemGroups={this.props.newItemGroups} newItemTitle={this.props.newItemTitle}
+                            newItemGroups={this.props.newItemGroups} newItemTitle={this.props.newItemTitle} compact={this.props.compact}
                             onViewClicked={this.config.onViewChange} onSearch={this.config.onSearch} onExport={this.props.onExport}
                             searchValue={this.config.searchValue} onSearchCleared={this.config.onSearchCleared} language={this.props.language}
                                 hideNew={this.props.hideNew} views={this.config.currentViews} />

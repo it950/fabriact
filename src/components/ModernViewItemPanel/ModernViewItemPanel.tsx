@@ -23,7 +23,7 @@ export class ModernViewItemPanel extends React.Component<IModernViewItemPanelPro
 
         this.config = new ModernViewItemPanelState(this.props.item, this.props.actions, this.props.groups, this.props.hideDelete,
             this.props.onDismiss, this.props.onUpdateItem, this.props.onDeleteItem, this.props.onGetItem, this.props.onActionClick, this.props.getNewActionFieldGroups,
-            this.props.getNewActionItem, this.props.onSaveNewAction, this.props.language);
+            this.props.getNewActionItem, this.props.onSaveNewAction, this.props.renderCustomAction, this.props.language);
 
         reaction(() => this.props.item, (item) => {
             this.config.item = item;
@@ -95,7 +95,7 @@ export class ModernViewItemPanel extends React.Component<IModernViewItemPanelPro
 
                 <ModernCustomActionPanel isVisible={this.config.customActionPanelVisible} item={this.config.item} titleProperty={this.props.titleProperty}
                     action={this.config.currentAction}
-                    descriptionProperty={this.props.descriptionProperty} secondaryDescriptionProperty={this.props.secondaryDescriptionProperty} renderCustomAction={this.props.renderCustomAction}
+                    descriptionProperty={this.props.descriptionProperty} secondaryDescriptionProperty={this.props.secondaryDescriptionProperty} renderCustomAction={this.config.onRenderCustomAction}
                     colorProperty={this.props.colorProperty} imageProperty={this.props.imageProperty} onDismiss={this.config.onCustomActionDismiss} />
 
                 <ModernRedirectDialog isVisible={this.config.requestRedirect} onCanceled={this.config.cancelRedirect}

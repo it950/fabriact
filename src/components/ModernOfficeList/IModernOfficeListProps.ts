@@ -57,4 +57,6 @@ export interface IModernOfficeListProps {
 
     resolveSuggestions?: (fieldId) => Promise<IModernLookup[]>;
     resolveLookup?: (fieldId, search) => Promise<IModernLookup[]>;
+
+    renderCustomAction: any;
 }

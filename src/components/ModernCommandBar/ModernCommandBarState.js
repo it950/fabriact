@@ -66,7 +66,7 @@ var ModernCommandBarState = /** @class */ (function (_super) {
                         _this.newActionItem = g[1];
                     })).subscribe();
                     break;
-                case Modern_Types_1.ModernActionType.custom:
+                case Modern_Types_1.ModernActionType.service:
                     rxjs_1.from(_this.onActionClickedEvent(action)).subscribe();
                     break;
             }

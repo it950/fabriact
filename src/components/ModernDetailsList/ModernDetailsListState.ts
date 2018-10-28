@@ -210,7 +210,7 @@ export default class ModernDetailsListState extends ModernState {
                 isSorted: this.sorting && this.sorting.field == field.key ? true : false,
                 isSortedDescending: this.sorting && this.sorting.field == field.key && !this.sorting.ascending ? true : false,
                 isFiltered: this.currentFilters.findIndex(g => g.field == field.key) > -1,
-                maxWidth: (field.type == ModernFieldType.image || field.type == ModernFieldType.boolean || field.type == ModernFieldType.number || field.type == ModernFieldType.calculated
+                maxWidth: (field.type == ModernFieldType.image || field.type == ModernFieldType.boolean || field.type == ModernFieldType.number
                     || field.type == ModernFieldType.percent || field.type == ModernFieldType.currency || (field.type == ModernFieldType.url && field.icon)) ? 50 : 150,
                 fieldName: field.key
             };

@@ -11,7 +11,7 @@ export class ModernCurrencyDisplayField extends React.Component<IModernCurrencyD
     }
 
     render() {
-        var result = this.props.value != null ? `€ ${this.props.value.toLocaleString("nl-NL")}` : <span></span>;
+        var result = this.props.value != null && this.props.value != 0 ? `€ ${this.props.value.toLocaleString("nl-NL")}` : <span></span>;
 
         return (
             <span>{result}</span>

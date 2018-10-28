@@ -18,7 +18,6 @@ var ModernFieldType;
     ModernFieldType[ModernFieldType["percent"] = 13] = "percent";
     ModernFieldType[ModernFieldType["currency"] = 14] = "currency";
     ModernFieldType[ModernFieldType["managedMetadata"] = 15] = "managedMetadata";
-    ModernFieldType[ModernFieldType["calculated"] = 16] = "calculated";
     ModernFieldType[ModernFieldType["file"] = 17] = "file";
     ModernFieldType[ModernFieldType["color"] = 18] = "color";
     ModernFieldType[ModernFieldType["login"] = 19] = "login";
@@ -27,5 +26,6 @@ var ModernActionType;
 (function (ModernActionType) {
     ModernActionType[ModernActionType["form"] = 0] = "form";
     ModernActionType[ModernActionType["custom"] = 1] = "custom";
+    ModernActionType[ModernActionType["service"] = 2] = "service";
 })(ModernActionType = exports.ModernActionType || (exports.ModernActionType = {}));
 //# sourceMappingURL=Modern.Types.js.map

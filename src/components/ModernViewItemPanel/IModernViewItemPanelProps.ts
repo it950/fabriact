@@ -38,4 +38,6 @@ export interface IModernViewItemPanelProps {
     onSaveNewAction: (actionId, form, items) => Promise<any>;
 
     placeholderImage?: string;
+
+    renderCustomAction: any;
 }

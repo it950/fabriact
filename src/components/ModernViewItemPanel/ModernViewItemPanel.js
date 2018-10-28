@@ -31,6 +31,7 @@ var ModernDeleteDialog_1 = require("../ModernDeleteDialog");
 var ModernSpinner_1 = require("../ModernSpinner");
 var ModernNewItemPanel_1 = require("../ModernNewItemPanel");
 var ModernRedirectDialog_1 = require("../ModernRedirectDialog");
+var ModernCustomActionPanel_1 = require("../ModernCustomActionPanel");
 var ModernViewItemPanel = /** @class */ (function (_super) {
     __extends(ModernViewItemPanel, _super);
     function ModernViewItemPanel(props) {
@@ -69,6 +70,7 @@ var ModernViewItemPanel = /** @class */ (function (_super) {
                 React.createElement(ModernDeleteDialog_1.ModernDeleteDialog, { isVisible: this.config.showDeleteConfirmation, onConfirmed: this.config.onDeleteConfirmed, itemCount: 1, onCanceled: this.config.onDeleteCanceled, language: this.props.language })),
             React.createElement(ModernEditItemPanel_1.ModernEditItemPanel, { resolveSuggestions: this.props.resolveSuggestions, item: this.config.editItem, titleProperty: this.props.titleProperty, descriptionProperty: this.props.descriptionProperty, secondaryDescriptionProperty: this.props.secondaryDescriptionProperty, colorProperty: this.props.colorProperty, imageProperty: this.props.imageProperty, onUpdateItem: this.config.onUpdateItem, getNewOptionFieldGroups: this.props.getNewOptionFieldGroups, onSaveNewOption: this.props.onSaveNewOption, getNewOptionItem: this.props.getNewOptionItem, fields: this.config.editFields, onDismiss: this.config.onDismissEditForm, title: this.config.editGroupTitle, resolveLookup: this.props.resolveLookup, isVisible: this.config.editGroup != null }),
             React.createElement(ModernNewItemPanel_1.ModernNewItemPanel, { isVisible: this.config.newActionItemFormVisible, language: this.props.language, resolveLookup: this.props.resolveLookup, resolveSuggestions: this.props.resolveSuggestions, getNewOptionFieldGroups: this.props.getNewOptionFieldGroups, onSaveNewOption: this.props.onSaveNewOption, getNewOptionItem: this.props.getNewOptionItem, onDismiss: this.config.onNewActionItemDismiss, item: this.config.newActionItem, groups: this.config.newActionFields, onSaveNewItem: this.config.onSaveNewActionItem }),
+            React.createElement(ModernCustomActionPanel_1.ModernCustomActionPanel, { isVisible: this.config.customActionPanelVisible, item: this.config.item, titleProperty: this.props.titleProperty, action: this.config.currentAction, descriptionProperty: this.props.descriptionProperty, secondaryDescriptionProperty: this.props.secondaryDescriptionProperty, renderCustomAction: this.props.renderCustomAction, colorProperty: this.props.colorProperty, imageProperty: this.props.imageProperty, onDismiss: this.config.onCustomActionDismiss }),
             React.createElement(ModernRedirectDialog_1.ModernRedirectDialog, { isVisible: this.config.requestRedirect, onCanceled: this.config.cancelRedirect, language: this.props.language, url: this.config.redirectUrl })));
     };
     ModernViewItemPanel = __decorate([

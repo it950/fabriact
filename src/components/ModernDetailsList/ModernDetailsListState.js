@@ -247,7 +247,7 @@ var ModernDetailsListState = /** @class */ (function (_super) {
                     isSorted: _this.sorting && _this.sorting.field == field.key ? true : false,
                     isSortedDescending: _this.sorting && _this.sorting.field == field.key && !_this.sorting.ascending ? true : false,
                     isFiltered: _this.currentFilters.findIndex(function (g) { return g.field == field.key; }) > -1,
-                    maxWidth: (field.type == Modern_Types_1.ModernFieldType.image || field.type == Modern_Types_1.ModernFieldType.boolean || field.type == Modern_Types_1.ModernFieldType.number || field.type == Modern_Types_1.ModernFieldType.calculated
+                    maxWidth: (field.type == Modern_Types_1.ModernFieldType.image || field.type == Modern_Types_1.ModernFieldType.boolean || field.type == Modern_Types_1.ModernFieldType.number
                         || field.type == Modern_Types_1.ModernFieldType.percent || field.type == Modern_Types_1.ModernFieldType.currency || (field.type == Modern_Types_1.ModernFieldType.url && field.icon)) ? 50 : 150,
                     fieldName: field.key
                 };

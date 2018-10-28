@@ -27,7 +27,7 @@ var ModernCurrencyDisplayField = /** @class */ (function (_super) {
         return _super.call(this, props) || this;
     }
     ModernCurrencyDisplayField.prototype.render = function () {
-        var result = this.props.value != null ? "\u20AC " + this.props.value.toLocaleString("nl-NL") : React.createElement("span", null);
+        var result = this.props.value != null && this.props.value != 0 ? "\u20AC " + this.props.value.toLocaleString("nl-NL") : React.createElement("span", null);
         return (React.createElement("span", null, result));
     };
     ModernCurrencyDisplayField = __decorate([

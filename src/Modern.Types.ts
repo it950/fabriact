@@ -17,7 +17,6 @@ export enum ModernFieldType {
     percent = 13,
     currency = 14,
     managedMetadata = 15,
-    calculated = 16,
     file = 17,
     color = 18,
     login = 19
@@ -25,7 +24,8 @@ export enum ModernFieldType {
 
 export enum ModernActionType {
     form = 0,
-    custom = 1
+    custom = 1,
+    service = 2
 }
 
 export interface IModernAction {

@@ -11,6 +11,7 @@ import { ModernDeleteDialog } from '../ModernDeleteDialog';
 import { ModernSpinner } from '../ModernSpinner';
 import { ModernNewItemPanel } from '../ModernNewItemPanel';
 import { ModernRedirectDialog } from '../ModernRedirectDialog';
+import { ModernCustomActionPanel } from '../ModernCustomActionPanel';
 
 @observer
 export class ModernViewItemPanel extends React.Component<IModernViewItemPanelProps, any> {
@@ -91,6 +92,11 @@ export class ModernViewItemPanel extends React.Component<IModernViewItemPanelPro
                     getNewOptionFieldGroups={this.props.getNewOptionFieldGroups} onSaveNewOption={this.props.onSaveNewOption} getNewOptionItem={this.props.getNewOptionItem}
                     onDismiss={this.config.onNewActionItemDismiss} item={this.config.newActionItem} groups={this.config.newActionFields}
                     onSaveNewItem={this.config.onSaveNewActionItem} />
+
+                <ModernCustomActionPanel isVisible={this.config.customActionPanelVisible} item={this.config.item} titleProperty={this.props.titleProperty}
+                    action={this.config.currentAction}
+                    descriptionProperty={this.props.descriptionProperty} secondaryDescriptionProperty={this.props.secondaryDescriptionProperty} renderCustomAction={this.props.renderCustomAction}
+                    colorProperty={this.props.colorProperty} imageProperty={this.props.imageProperty} onDismiss={this.config.onCustomActionDismiss} />
 
                 <ModernRedirectDialog isVisible={this.config.requestRedirect} onCanceled={this.config.cancelRedirect}
                     language={this.props.language} url={this.config.redirectUrl} />

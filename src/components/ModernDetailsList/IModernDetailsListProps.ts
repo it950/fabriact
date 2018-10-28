@@ -55,4 +55,6 @@ export interface IModernDetailsListProps {
 
     hideDelete?: boolean;
 
+    renderCustomAction: any;
+
 }

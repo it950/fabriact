@@ -16,6 +16,9 @@ export default class ModernViewItemPanelState extends ModernState {
     public showDeleteConfirmation: boolean;
 
     @observable
+    currentActionId: string;
+
+    @observable
     public editGroup: string;
 
     @observable
@@ -33,14 +36,24 @@ export default class ModernViewItemPanelState extends ModernState {
     @observable
     public isValid: boolean;
 
-    //  @observable
-    //  public step: number = 0;
-
     @observable
     public showEmbeddedFieldId: string;
 
     @observable
     public _groups: IModernFieldGroup[];
+
+
+    @observable
+    public newActionFields: IModernFieldGroup[];
+
+    @observable
+    public newActionItem: any;
+
+    @observable
+    public requestRedirect: boolean;
+
+    @observable
+    public redirectUrl: string;
 
     @computed
     get groups() {
@@ -94,16 +107,6 @@ export default class ModernViewItemPanelState extends ModernState {
         return actions;
     }
 
-
-    //@computed
-    //get viewGroups(): IModernFieldGroup[] {
-    //    return this.itemGroups.map(o => {
-    //        o.fields = o.fields.filter(a => !a.hideInViewForm);
-
-    //        return o;
-    //    });
-    //}
-
     @computed
     get itemGroups(): IModernFieldGroup[] {
 
@@ -118,17 +121,6 @@ export default class ModernViewItemPanelState extends ModernState {
                     description: o.description,
                     fields: o.fields.filter(a => !a.hideInViewForm)
                 };
-              //  o.fields = o.fields.filter(a => !a.hideInViewForm);
-
-                //if (o.fields.length > 0 && o.fields.filter(a => a.editGroupTrigger).length == 0 && o.fields.filter(a => !a.readOnly).length > 0) {
-                //    var field = o.fields.find(f => !f.action && !f.embeddedFields);
-
-                //    if (field != null) {
-                //        field.editGroupTrigger = true;
-                //    }
-                //} 
-
-             //   return o;
             });
         }
 
@@ -149,7 +141,6 @@ export default class ModernViewItemPanelState extends ModernState {
             this.groups.forEach(a => {
                 fields = fields.concat(a.fields);
             });
-            // return this.groups[this.step].fields;
         }
 
         return fields;
@@ -173,6 +164,28 @@ export default class ModernViewItemPanelState extends ModernState {
     get editGroupTitle() {
         if (this.editGroup) {
             return this.groups.find(a => a.id == this.editGroup).description;
+        }
+
+        return null;
+    }
+
+
+
+    @computed
+    get newActionItemFormVisible() {
+        return this.currentActionId != null && this.currentAction.type == ModernActionType.form;
+    }
+
+    @computed
+    get customActionPanelVisible() {
+        return this.currentActionId != null && this.currentAction.type == ModernActionType.custom;
+    }
+
+
+    @computed
+    get currentAction() {
+        if (this.currentActionId) {
+            return this.getAction(this.currentActionId);
         }
 
         return null;
@@ -219,11 +232,7 @@ export default class ModernViewItemPanelState extends ModernState {
     public onDeleteConfirmed = () => {
         this.showDeleteConfirmation = false;
         from(this.onDeleteItemEvent(this.item)).pipe(map(b => {
-            //    this.item = null;
-            // this.item = item;
-            // this.onDismissEditForm();
-            //this.editGroup = null;
-            //this.editItem = null;
+
         })).subscribe();
     }
 
@@ -257,79 +266,7 @@ export default class ModernViewItemPanelState extends ModernState {
         console.log(fieldId);
         this.showEmbeddedFieldId = fieldId;
     }
-
-    //@action
-    //public onBackClicked = () => {
-    //    this.showEmbeddedFieldId = null;
-    //}
-
-    @action
-    public onActionClicked = (id) => {
-        console.log(id);
-        this.isLoading = true;
-        from(this.onActionClickedEvent(id, [toJS(this.item)])).pipe(map(x => {
-            this.getItem();
-        })).subscribe();
-
-     //   this.onActionClickedEvent(id);
-    }
-
-
-    //@action
-    //public onActionClicked = (action) => {
-    //    console.log(action);
-    //    const act: IModernAction = this.currentView.actions.find((g: IModernAction) => g.key == action);
-
-    //    switch (act.type) {
-    //        case ModernActionType.form:
-    //            this.newActionItemFormVisible = true;
-
-    //            zip(from(this.getNewActionFieldsEvent(action)), from(this.getNewActionItemEvent(action))).pipe(map(g => {
-    //                this.newActionFields = g[0];
-    //                this.newActionItem = g[1];
-    //            })).subscribe();
-
-    //            break;
-    //        case ModernActionType.custom:
-    //            from(this.onActionClickedEvent(action)).subscribe();
-
-    //            break;
-    //    }
-
-
-    //}
-
-    @observable
-    currentActionId: string;
-
-    @computed
-    get newActionItemFormVisible() {
-        return this.currentActionId != null;
-    }
-
-    @computed
-    get currentAction() {
-        if (this.currentActionId) {
-            return this.itemActions.find(v => v.key == this.currentActionId);
-        }
-
-        return null;
-    }
-
-//    @observable
- //   newActionItemFormVisible: boolean;
-
-    @observable
-    newActionFields: IModernFieldGroup[];
-
-    @observable
-    newActionItem: any;
-
-    @observable
-    requestRedirect: boolean;
-
-    @observable
-    redirectUrl: string;
+    
 
     @action
     public onSaveNewActionItem = (item): Promise<void> => {
@@ -354,9 +291,67 @@ export default class ModernViewItemPanelState extends ModernState {
     @action
     public onNewActionItemDismiss = () => {
         this.currentActionId = null;
-      //  this.newActionItemFormVisible = false;
     }
 
+
+    @action
+    public onCustomActionDismiss = () => {
+        this.currentActionId = null;
+    }
+
+
+    private getAction = (actionId) => {
+        let action: IModernAction = this.itemActions.find((g: IModernAction) => g.key == actionId);
+
+        if (action != null) {
+            return action;
+        }
+
+        this.groups.forEach(v => {
+            v.fields.forEach(f => {
+                if (action == null && f.action != null && f.action.key == actionId) {
+                    action = f.action;
+                }
+            });
+        });
+
+        return action;
+    }
+
+    @action
+    public executeAction = (actionId) => {
+
+        const act: IModernAction = this.getAction(actionId);
+
+        const items = [toJS(this.item)];
+        switch (act.type) {
+            case ModernActionType.form:
+                this.currentActionId = act.key;
+                this.redirectUrl = act.redirectUrl;
+                zip(from(this.getNewActionFieldsEvent(act.key, items)), from(this.getNewActionItemEvent(act.key, items))).pipe(map(g => {
+                    this.newActionFields = g[0];
+                    this.newActionItem = g[1];
+                })).subscribe();
+                break;
+            case ModernActionType.service:
+                this.isLoading = true;
+
+                from(this.onActionClickedEvent(act.key, items)).pipe(map(x => {
+                    this.getItem();
+                })).subscribe();
+                break;
+
+            case ModernActionType.custom:
+                this.currentActionId = act.key;
+                break;
+        }
+
+    }
+
+    @action
+    public onActionClicked = (id) => {
+        this.executeAction(id);
+    }
 
     @action
     public onPanelActionClicked = (id) => {
@@ -369,28 +364,8 @@ export default class ModernViewItemPanelState extends ModernState {
                 this.showEmbeddedFieldId = null;
                 break;
             default:
-                const act: IModernAction = this.itemActions.find((g: IModernAction) => g.key == id);
-                const items = [ toJS(this.item) ];
-                switch (act.type) {
-                    case ModernActionType.form:
-                        this.currentActionId = act.key;
-//                        this.newActionItemFormVisible = true;
-                        this.redirectUrl = act.redirectUrl;
-                        zip(from(this.getNewActionFieldsEvent(act.key, items)), from(this.getNewActionItemEvent(act.key, items))).pipe(map(g => {
-                            this.newActionFields = g[0];
-                            this.newActionItem = g[1];
-                        })).subscribe();
-                        break;
-                    case ModernActionType.custom:
-                        this.isLoading = true;
-                        from(this.onActionClickedEvent(act.key, items)).pipe(map(x => {
-                            this.getItem();
-                        })).subscribe();
-                   //     this.onActionClickedEvent(id, toJS(this.item));
-                        break;
-                }
+                this.executeAction(id);
 
-               
                 break;
         }
     }

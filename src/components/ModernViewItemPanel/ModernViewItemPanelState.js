@@ -84,18 +84,6 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
             console.log(fieldId);
             _this.showEmbeddedFieldId = fieldId;
         };
-        //@action
-        //public onBackClicked = () => {
-        //    this.showEmbeddedFieldId = null;
-        //}
-        _this.onActionClicked = function (id) {
-            console.log(id);
-            _this.isLoading = true;
-            rxjs_1.from(_this.onActionClickedEvent(id, [mobx_1.toJS(_this.item)])).pipe(operators_1.map(function (x) {
-                _this.getItem();
-            })).subscribe();
-            //   this.onActionClickedEvent(id);
-        };
         _this.onSaveNewActionItem = function (item) {
             return rxjs_1.from(_this.onSaveActionItemEvent(_this.currentActionId, item, [_this.item])).pipe(operators_1.map(function (o) {
                 _this.currentActionId = null;
@@ -112,6 +100,74 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
             _this.currentActionId = null;
             //  this.newActionItemFormVisible = false;
         };
+        _this.onCustomActionDismiss = function () {
+            _this.currentActionId = null;
+            //   this.showCustomActionPanel = false;
+            //this.isLoading = true;
+            //from(this.onActionClickedEvent(id, [toJS(this.item)])).pipe(map(x => {
+            //    this.getItem();
+            //})).subscribe();
+            //   this.onActionClickedEvent(id);
+        };
+        //  @observable
+        // public currentAction: any;
+        _this.getAction = function (actionId) {
+            var action = _this.itemActions.find(function (g) { return g.key == actionId; });
+            if (action != null) {
+                return action;
+            }
+            _this.groups.forEach(function (v) {
+                v.fields.forEach(function (f) {
+                    if (action == null && f.action != null && f.action.key == actionId) {
+                        action = f.action;
+                    }
+                });
+            });
+            return action;
+        };
+        _this.executeAction = function (actionId) {
+            var act = _this.getAction(actionId);
+            var items = [mobx_1.toJS(_this.item)];
+            switch (act.type) {
+                case Modern_Types_1.ModernActionType.form:
+                    _this.currentActionId = act.key;
+                    //                        this.newActionItemFormVisible = true;
+                    _this.redirectUrl = act.redirectUrl;
+                    rxjs_1.zip(rxjs_1.from(_this.getNewActionFieldsEvent(act.key, items)), rxjs_1.from(_this.getNewActionItemEvent(act.key, items))).pipe(operators_1.map(function (g) {
+                        _this.newActionFields = g[0];
+                        _this.newActionItem = g[1];
+                    })).subscribe();
+                    break;
+                case Modern_Types_1.ModernActionType.service:
+                    //     this.showCustomActionPanel = true;
+                    _this.isLoading = true;
+                    rxjs_1.from(_this.onActionClickedEvent(act.key, items)).pipe(operators_1.map(function (x) {
+                        _this.getItem();
+                    })).subscribe();
+                    //     this.onActionClickedEvent(id, toJS(this.item));
+                    break;
+                case Modern_Types_1.ModernActionType.custom:
+                    //     this.showCustomActionPanel = true;
+                    //  this.currentAction = act;
+                    _this.currentActionId = act.key;
+                    //   this.showCustomActionPanel = true;
+                    //     this.onActionClickedEvent(id, toJS(this.item));
+                    break;
+            }
+        };
+        _this.onActionClicked = function (id) {
+            console.log(id);
+            _this.executeAction(id);
+            //const act: IModernAction = this.itemActions.find((g: IModernAction) => g.key == id);
+            //switch (act.type) {
+            //}
+            //this.showCustomActionPanel = true;
+            //this.isLoading = true;
+            //from(this.onActionClickedEvent(id, [toJS(this.item)])).pipe(map(x => {
+            //    this.getItem();
+            //})).subscribe();
+            //   this.onActionClickedEvent(id);
+        };
         _this.onPanelActionClicked = function (id) {
             console.log(id);
             switch (id) {
@@ -122,26 +178,33 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
                     _this.showEmbeddedFieldId = null;
                     break;
                 default:
-                    var act = _this.itemActions.find(function (g) { return g.key == id; });
-                    var items = [mobx_1.toJS(_this.item)];
-                    switch (act.type) {
-                        case Modern_Types_1.ModernActionType.form:
-                            _this.currentActionId = act.key;
-                            //                        this.newActionItemFormVisible = true;
-                            _this.redirectUrl = act.redirectUrl;
-                            rxjs_1.zip(rxjs_1.from(_this.getNewActionFieldsEvent(act.key, items)), rxjs_1.from(_this.getNewActionItemEvent(act.key, items))).pipe(operators_1.map(function (g) {
-                                _this.newActionFields = g[0];
-                                _this.newActionItem = g[1];
-                            })).subscribe();
-                            break;
-                        case Modern_Types_1.ModernActionType.custom:
-                            _this.isLoading = true;
-                            rxjs_1.from(_this.onActionClickedEvent(act.key, items)).pipe(operators_1.map(function (x) {
-                                _this.getItem();
-                            })).subscribe();
-                            //     this.onActionClickedEvent(id, toJS(this.item));
-                            break;
-                    }
+                    _this.executeAction(id);
+                    //                const act: IModernAction = this.itemActions.find((g: IModernAction) => g.key == id);
+                    //                const items = [ toJS(this.item) ];
+                    //                switch (act.type) {
+                    //                    case ModernActionType.form:
+                    //                        this.currentActionId = act.key;
+                    ////                        this.newActionItemFormVisible = true;
+                    //                        this.redirectUrl = act.redirectUrl;
+                    //                        zip(from(this.getNewActionFieldsEvent(act.key, items)), from(this.getNewActionItemEvent(act.key, items))).pipe(map(g => {
+                    //                            this.newActionFields = g[0];
+                    //                            this.newActionItem = g[1];
+                    //                        })).subscribe();
+                    //                        break;
+                    //                    case ModernActionType.service:
+                    //                   //     this.showCustomActionPanel = true;
+                    //                        this.isLoading = true;
+                    //                        from(this.onActionClickedEvent(act.key, items)).pipe(map(x => {
+                    //                            this.getItem();
+                    //                        })).subscribe();
+                    //                   //     this.onActionClickedEvent(id, toJS(this.item));
+                    //                        break;
+                    //                    case ModernActionType.customPanel:
+                    //                        //     this.showCustomActionPanel = true;
+                    //                        this.showCustomActionPanel = true;
+                    //                        //     this.onActionClickedEvent(id, toJS(this.item));
+                    //                        break;
+                    //                }
                     break;
             }
         };
@@ -280,16 +343,22 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
     });
     Object.defineProperty(ModernViewItemPanelState.prototype, "newActionItemFormVisible", {
         get: function () {
-            return this.currentActionId != null;
+            return this.currentActionId != null && this.currentAction.type == Modern_Types_1.ModernActionType.form;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ModernViewItemPanelState.prototype, "customActionPanelVisible", {
+        get: function () {
+            return this.currentActionId != null && this.currentAction.type == Modern_Types_1.ModernActionType.custom;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(ModernViewItemPanelState.prototype, "currentAction", {
         get: function () {
-            var _this = this;
             if (this.currentActionId) {
-                return this.itemActions.find(function (v) { return v.key == _this.currentActionId; });
+                return this.getAction(this.currentActionId);
             }
             return null;
         },
@@ -378,14 +447,14 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
         mobx_1.action
     ], ModernViewItemPanelState.prototype, "onMoreClicked", void 0);
     __decorate([
-        mobx_1.action
-    ], ModernViewItemPanelState.prototype, "onActionClicked", void 0);
-    __decorate([
         mobx_1.observable
     ], ModernViewItemPanelState.prototype, "currentActionId", void 0);
     __decorate([
         mobx_1.computed
     ], ModernViewItemPanelState.prototype, "newActionItemFormVisible", null);
+    __decorate([
+        mobx_1.computed
+    ], ModernViewItemPanelState.prototype, "customActionPanelVisible", null);
     __decorate([
         mobx_1.computed
     ], ModernViewItemPanelState.prototype, "currentAction", null);
@@ -410,6 +479,15 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
     __decorate([
         mobx_1.action
     ], ModernViewItemPanelState.prototype, "onNewActionItemDismiss", void 0);
+    __decorate([
+        mobx_1.action
+    ], ModernViewItemPanelState.prototype, "onCustomActionDismiss", void 0);
+    __decorate([
+        mobx_1.action
+    ], ModernViewItemPanelState.prototype, "executeAction", void 0);
+    __decorate([
+        mobx_1.action
+    ], ModernViewItemPanelState.prototype, "onActionClicked", void 0);
     __decorate([
         mobx_1.action
     ], ModernViewItemPanelState.prototype, "onPanelActionClicked", void 0);

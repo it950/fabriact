@@ -74,6 +74,30 @@ var Demo = /** @class */ (function (_super) {
                 });
             });
         };
+        _this.renderCustomAction = function (action) {
+            return (React.createElement("span", null, action.key));
+            //return (
+            //    <div>
+            //        <ModernOfficeList views={this.exampleData.views} defaultView={"1"} onSearch={this.onSearch}
+            //            onViewChange={this.onViewChange} newItemGroups={this.exampleData.demoNewFieldGroupsData}
+            //            viewItemActions={this.itemActions} onExport={this.onExport}
+            //            getNewOptionFieldGroups={this.getNewOptionFieldGroups} getNewOptionItem={this.getNewOptionItem}
+            //            onSaveNewOption={this.onSaveNewOption}
+            //            placeholderImage={this.exampleData.placeholder} renderCustomAction={this.renderCustomAction}
+            //            viewItemGroups={this.exampleData.demoViewFieldGroupsData} onGetFieldValue={this.getFieldValue}
+            //            onNextPage={this.onNextPage} hasNextPage={this.hasNextPage} itemIdProperty={"id"}
+            //            onSaveNewItem={this.onSaveNewItem} onDeleteItem={this.onDelete} resolveLookup={this.resolveLookup}
+            //            resolveSuggestions={this.resolveSuggestions} language={"nl-NL"} onUpdateItem={this.onUpdateItem}
+            //            itemTitleProperty={"name"} itemSecondaryDescriptionProperty={"jobTitle"} onFilterChanged={this.onFilterChanged}
+            //            onSortChanged={this.onSortChanged} getFilterOptions={this.getFilterOptions}
+            //            itemColorProperty={"color"} onSaveNewAction={this.onSaveNewAction} getNewActionFieldGroups={this.getNewActionFieldGroups} getNewActionItem={this.getNewActionItem}
+            //            onViewOffsetChange={this.onViewOffsetChange} onGetItem={this.onGetItem} onActionClicked={this.onActionClicked}
+            //            itemDescriptionProperty={"jobType"} itemImageProperty={"image"} itemAuthorProperty={"author"}
+            //            itemModifiedProperty={"modified"} itemCreatedProperty={"created"} itemEditorProperty={"editor"}
+            //            onNewItem={this.onNewItem} />
+            //    </div>
+            //);
+        };
         _this.onSaveNewAction = function (actionId, item, selection) {
             return new Promise(function (resolve, reject) {
                 _this.delay(function () {
@@ -289,7 +313,7 @@ var Demo = /** @class */ (function (_super) {
         //        getNewActionItem={this.getNewActionItem} />
         //</ModernItemPanel>
         return (React.createElement("div", null,
-            React.createElement(src_1.ModernOfficeList, { views: this.exampleData.views, defaultView: "1", onSearch: this.onSearch, onViewChange: this.onViewChange, newItemGroups: this.exampleData.demoNewFieldGroupsData, viewItemActions: this.itemActions, onExport: this.onExport, getNewOptionFieldGroups: this.getNewOptionFieldGroups, getNewOptionItem: this.getNewOptionItem, onSaveNewOption: this.onSaveNewOption, placeholderImage: this.exampleData.placeholder, viewItemGroups: this.exampleData.demoViewFieldGroupsData, onGetFieldValue: this.getFieldValue, onNextPage: this.onNextPage, hasNextPage: this.hasNextPage, itemIdProperty: "id", onSaveNewItem: this.onSaveNewItem, onDeleteItem: this.onDelete, resolveLookup: this.resolveLookup, resolveSuggestions: this.resolveSuggestions, language: "nl-NL", onUpdateItem: this.onUpdateItem, itemTitleProperty: "name", itemSecondaryDescriptionProperty: "jobTitle", onFilterChanged: this.onFilterChanged, onSortChanged: this.onSortChanged, getFilterOptions: this.getFilterOptions, itemColorProperty: "color", onSaveNewAction: this.onSaveNewAction, getNewActionFieldGroups: this.getNewActionFieldGroups, getNewActionItem: this.getNewActionItem, onViewOffsetChange: this.onViewOffsetChange, onGetItem: this.onGetItem, onActionClicked: this.onActionClicked, itemDescriptionProperty: "jobType", itemImageProperty: "image", itemAuthorProperty: "author", itemModifiedProperty: "modified", itemCreatedProperty: "created", itemEditorProperty: "editor", onNewItem: this.onNewItem })));
+            React.createElement(src_1.ModernOfficeList, { views: this.exampleData.views, defaultView: "1", onSearch: this.onSearch, onViewChange: this.onViewChange, newItemGroups: this.exampleData.demoNewFieldGroupsData, viewItemActions: this.itemActions, onExport: this.onExport, getNewOptionFieldGroups: this.getNewOptionFieldGroups, getNewOptionItem: this.getNewOptionItem, onSaveNewOption: this.onSaveNewOption, placeholderImage: this.exampleData.placeholder, renderCustomAction: this.renderCustomAction, viewItemGroups: this.exampleData.demoViewFieldGroupsData, onGetFieldValue: this.getFieldValue, onNextPage: this.onNextPage, hasNextPage: this.hasNextPage, itemIdProperty: "id", onSaveNewItem: this.onSaveNewItem, onDeleteItem: this.onDelete, resolveLookup: this.resolveLookup, resolveSuggestions: this.resolveSuggestions, language: "nl-NL", onUpdateItem: this.onUpdateItem, itemTitleProperty: "name", itemSecondaryDescriptionProperty: "jobTitle", onFilterChanged: this.onFilterChanged, onSortChanged: this.onSortChanged, getFilterOptions: this.getFilterOptions, itemColorProperty: "color", onSaveNewAction: this.onSaveNewAction, getNewActionFieldGroups: this.getNewActionFieldGroups, getNewActionItem: this.getNewActionItem, onViewOffsetChange: this.onViewOffsetChange, onGetItem: this.onGetItem, onActionClicked: this.onActionClicked, itemDescriptionProperty: "jobType", itemImageProperty: "image", itemAuthorProperty: "author", itemModifiedProperty: "modified", itemCreatedProperty: "created", itemEditorProperty: "editor", onNewItem: this.onNewItem })));
     };
     __decorate([
         mobx_1.observable

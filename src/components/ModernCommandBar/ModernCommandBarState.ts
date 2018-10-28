@@ -258,7 +258,7 @@ export default class ModernCommandBarState extends ModernState {
                 })).subscribe();
 
                 break;
-            case ModernActionType.custom:
+            case ModernActionType.service:
                 from(this.onActionClickedEvent(action)).subscribe();
 
                 break;

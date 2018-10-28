@@ -103,11 +103,11 @@ export class ModernDetailsList extends React.Component<IModernDetailsListProps, 
             <span>
                 {result}
 
-                <ModernViewItemPanel item={this.config.currentViewItem} isVisible={this.config.currentViewItem} imageProperty={this.props.itemImageProperty}
+                <ModernViewItemPanel item={this.config.currentViewItem} isVisible={this.config.currentViewItem != null} imageProperty={this.props.itemImageProperty}
                     onDismiss={this.config.onDismissViewItemPanel} groups={this.props.viewItemGroups} authorProperty={this.props.itemAuthorProperty}
                     onGetItem={this.props.onGetItem} language={this.props.language} colorProperty={this.props.itemColorProperty} onActionClick={this.props.onActionClicked}
                     editorProperty={this.props.itemEditorProperty} onGetFieldValue={this.props.onGetFieldValue} actions={this.props.viewItemActions}
-                    placeholderImage={this.props.placeholderImage} hideDelete={this.props.hideDelete}
+                    placeholderImage={this.props.placeholderImage} hideDelete={this.props.hideDelete} renderCustomAction={this.props.renderCustomAction}
                     onSaveNewAction={this.props.onSaveNewAction} getNewActionFieldGroups={this.props.getNewActionFieldGroups} getNewActionItem={this.props.getNewActionItem}
                     getNewOptionFieldGroups={this.props.getNewOptionFieldGroups} onSaveNewOption={this.props.onSaveNewOption} getNewOptionItem={this.props.getNewOptionItem}
                     createdProperty={this.props.itemCreatedProperty} modifiedProperty={this.props.itemModifiedProperty} onDeleteItem={this.props.onDeleteItem}

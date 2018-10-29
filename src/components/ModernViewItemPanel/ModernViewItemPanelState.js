@@ -104,6 +104,13 @@ var ModernViewItemPanelState = /** @class */ (function (_super) {
                     if (action == null && f.action != null && f.action.key == actionId) {
                         action = f.action;
                     }
+                    if (action == null && f.embeddedFields != null) {
+                        f.embeddedFields.forEach(function (s) {
+                            if (action == null && s.action != null && s.action.key == actionId) {
+                                action = s.action;
+                            }
+                        });
+                    }
                 });
             });
             return action;

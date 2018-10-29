@@ -307,6 +307,15 @@ export default class ModernViewItemPanelState extends ModernState {
                 if (action == null && f.action != null && f.action.key == actionId) {
                     action = f.action;
                 }
+
+                if (action == null && f.embeddedFields != null) {
+                    f.embeddedFields.forEach(s => {
+                        if (action == null && s.action != null && s.action.key == actionId) {
+                            action = s.action;
+                        }
+                    });
+
+                }
             });
         });
 
